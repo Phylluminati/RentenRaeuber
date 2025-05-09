@@ -1,0 +1,63 @@
+﻿title: The_Cube
+tags:
+position: -6,-118
+---
+<<declare $CubeCompleted = false>>
+<<declare $GotWallet = false>>
+<<if $GotWallet is true>>
+    <<jump GotWallet>>
+<<endif>>
+<<if $CubeCompleted is true>>
+    <<jump CubeComplete>>
+<<endif>>
+The Cube: So you have found me in this empty plane, yet to be populated...
+The Cube: You may ask me, the all knowing Cube, 1 question, choose wisely
+-> Where do the deleted starting Cubes in Blender go?
+    Cube Heaven
+-> What is the perfect shape
+   The Cube
+-> How many corners does a cube have?
+    A Cube has precisely 8 corners, not one more or less. For if it hath'd 9 corners, ne'er speak off even 7, it wouldethed never been a cube to begin with
+-> Can you do any cool tricks?
+    No, I cannot...
+The Cube: Anyways, I hope I, the all knowing Cube, could answer your existential Question...
+The Cube: That'll be 9.99
+-> Oh, Uh, yeah, I'll get my Wallet be back in a bit
+    <<set $CubeCompleted = true>>
+===
+
+title: CubeComplete
+position: 310,-118
+---
+The Cube: So you got my money already?
+The Cube:Better hurry, I have alot of other people I have to talk to
+<<stop>>
+
+===
+
+title: GotWallet
+position: -18,382
+---
+
+The Cube: Ah, you have your Wallet now?
+ -> Yes I do, here's your ten bucks
+    <<jump tenbucks>>
+ -> Yeah, but I only have 50 dollar note...
+    <<jump tips>>
+===
+title: tips
+position: 416,287
+---
+The Cube: Oh, don't worry, I accept tips
+    
+===
+title: tenbucks
+position: 410,489
+---
+The Cube: WHAT!
+The Cube: HOW DARE YOU!
+The Cube: I asked for 9.99 not for 10 Dollars!
+The Cube: You shall rue this day
+The Cube: (And hear from my lawyer...)
+<<stop>>
+===
