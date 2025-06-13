@@ -1,0 +1,50 @@
+title: Combat
+tags:
+---
+<<jump character1Turn>>
+===
+title: character1Turn
+---
+<<declare $character1 = "Fashionista">>
+<<declare $character2 = "Cat Grandma">>
+<<declare $character3 = "Old Bag">>
+It is currently {$character1}'s turn. What will they do?
+-> Fight
+    <<fight BattleManager {$character1}>>
+    <<jump character2Turn>>
+-> Special
+    <<special BattleManager {$character1}>>
+    <<jump character2Turn>>
+-> Guard
+    <<guard BattleManager {$character1}>>
+    <<jump character2Turn>>
+===
+
+title: character2Turn
+---
+It is {$character2}'s turn. What will they do
+-> Fight
+    <<fight BattleManager {$character2}>>
+    <<jump character3Turn>>
+-> Special
+    <<special BattleManager {$character2}>>
+    <<jump character3Turn>>
+-> Guard
+    <<guard BattleManager {$character2}>>
+    <<jump character3Turn>>
+===
+
+title: character3Turn
+---
+It is {$character3}'s turn. What will they do
+-> Fight
+    <<fight BattleManager {$character3}>>
+    <<jump k>>
+-> Special
+    <<special BattleManager {$character3}>>
+    <<jump k>>
+-> Guard
+    <<guard BattleManager {$character3}>>
+    <<jump k>>
+===
+
