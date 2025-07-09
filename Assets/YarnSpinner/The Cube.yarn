@@ -126,14 +126,13 @@ Choice and free will are an illusion in the end, alas, the Merchant hasn't been 
 ===
 title: Rando1
 ---
-test #line:02a4fc5 
  <<once>>
-Random Customer: I am actually here to make a deposit
-Random Customer: But that secretary lady keeps bugging me about a form I don't have, so I have to wait
+Random Customer: I was actually here to make a deposit, but that secretary lady keeps bugging me about a form I don't have, so I have to wait
 Random Customer: And now I spent all my money on drinks from this vending machine...
 Random Customer: Oh well, that's economics I guess...
 <<else>>
-Random Customer: I wonder if all of these drinks are a better economic investment than depositing my money into my bank account... #line:0a4b30d 
+Random Customer: Hmmm....
+Random Customer: I wonder if all of these drinks are a better economic investment than saving my money in my bank account...
 <<endonce>>
 <<stop>>
 ===
