@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
 
 public class BattleManager : MonoBehaviour
 {
+    public GameObject Enemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,8 @@ public class BattleManager : MonoBehaviour
     public void Fight(GameObject Character)
     {
         Debug.Log(Character + " is trying to FIGHT, but is hasn't been coded yet");
+        int currentDamage = Character.GetComponent<Unit>().damage / Enemy.GetComponent<Unit>().guard;
+        Enemy.GetComponent<Unit>().currentHP =- currentDamage;
     }
     [YarnCommand("special")]
     public void Special(GameObject Character)

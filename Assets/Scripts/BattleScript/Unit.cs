@@ -14,6 +14,9 @@ public class Unit : MonoBehaviour
 	public int maxHP;
 	public int currentHP;
 
+	public int guard;
+	//public bool hasGuard;
+
 	public bool TakeDamage(int dmg)
 	{
 		currentHP -= dmg;
@@ -46,6 +49,13 @@ public class Unit : MonoBehaviour
 		OldBag.maxHP = 140;
 		OldBag.currentHP = 140;
 		OldBag.damage = 20;
+
+		Unit CatGranny = new Unit();
+		OldBag.unitName = "CatGranny";
+		OldBag.unitDescriptor = "";
+		OldBag.maxHP = 120;
+		OldBag.currentHP = 120;
+		OldBag.damage = 10;
 
     }
      

@@ -4,33 +4,44 @@ position: -6,-118
 ---
 <<declare $CubeCompleted = false>>
 <<declare $GotWallet = false>>
+<<declare $SpokeToSecretary = false>>
 <<if $GotWallet is true>>
     <<jump GotWallet>>
 <<endif>>
 <<if $CubeCompleted is true>>
     <<jump CubeComplete>>
 <<endif>>
-The Cube: So you have found me in this empty plane, yet to be populated...
-The Cube: You may ask me, the all knowing Cube, 1 question, choose wisely
--> Where do the deleted starting Cubes in Blender go?
-    Cube Heaven
--> What is the perfect shape
-   The Cube
--> How many corners does a cube have?
-    A Cube has precisely 8 corners, not one more or less. For if it hath'd 9 corners, ne'er speak off even 7, it wouldethed never been a cube to begin with
--> Can you do any cool tricks?
-    No, I cannot...
-The Cube: Anyways, I hope I, the all knowing Cube, could answer your existential Question...
-The Cube: That'll be 9.99
--> Oh, Uh, yeah, I'll get my Wallet be back in a bit
+The Cube: So you have found me in this empty plane, yet to be populated... #line:0f0da03 
+The Cube: You may ask me, the all knowing Cube, 1 question, choose wisely #line:0780372 
+    -> Can you help me get this 1 8... uhm B... form? <<if $SpokeToSecretary is true>>
+        The Cube: Ah yes, the 18B81-C7 form, an all time classic question...
+        The Cube: Here, you can have mine
+        The Cube: In duplicate, of course...
+        <<set $GottenForms = true>>
+    -> Where do the deleted starting Cubes in Blender go? #line:07f23d5 
+        Cube Heaven #line:0965c22 
+    -> What is the perfect shape #line:022199f 
+        The Cube #line:07f214e 
+    -> How many corners does a cube have? #line:0a91828 
+        A Cube has precisely 8 corners, not one more or less. For if it hath'd 9 corners, ne'er speak off even 7, it wouldethed never been a cube to begin with #line:083ffc4
+    -> Can you do any tricks?
+        <<change2 ThirdPersonPlayer>>
+        I can do this, does this count as trick?
+        <<change3 ThirdPersonPlayer>>
+        I can also do this, pretty cool right?
+//-> Can you do any cool tricks?
+    //No, I cannot...
+The Cube: Anyways, I hope I, the all knowing Cube, could answer your existential Question... #line:03ca4d3 
+The Cube: That'll be 9.99 #line:0aa8bfa 
+-> Oh, Uh, yeah, I'll get my Wallet be back in a bit #line:05438d3 
     <<set $CubeCompleted = true>>
 ===
 
 title: CubeComplete
 position: 310,-118
 ---
-The Cube: So you got my money already?
-The Cube:Better hurry, I have alot of other people I have to talk to
+The Cube: So you got my money already? #line:034153d 
+The Cube:Better hurry, I have alot of other people I have to talk to #line:08dc7fc 
 <<stop>>
 
 ===
@@ -39,25 +50,90 @@ title: GotWallet
 position: -18,382
 ---
 
-The Cube: Ah, you have your Wallet now?
- -> Yes I do, here's your ten bucks
+The Cube: Ah, you have your Wallet now? #line:05a6793 
+ -> Yes I do, here's your ten bucks #line:0af4d75 
     <<jump tenbucks>>
- -> Yeah, but I only have 50 dollar note...
+ -> Yeah, but I only have 50 dollar note... #line:045b8dc 
     <<jump tips>>
 ===
 title: tips
 position: 416,287
 ---
-The Cube: Oh, don't worry, I accept tips
+The Cube: Oh, don't worry, I accept tips #line:0ecaa95 
+<<stop>>
     
 ===
 title: tenbucks
 position: 410,489
 ---
-The Cube: WHAT!
-The Cube: HOW DARE YOU!
-The Cube: I asked for 9.99 not for 10 Dollars!
-The Cube: You shall rue this day
-The Cube: (And hear from my lawyer...)
+The Cube: WHAT! #line:0f140fd 
+The Cube: HOW DARE YOU! #line:0de29d5 
+The Cube: I asked for 9.99 not for 10 Dollars! #line:0c4af9f 
+The Cube: You shall rue this day #line:061b2f5 
+The Cube: (And hear from my lawyer...) #line:050bb29 
+<<stop>>
+===
+
+title: emptyVendingMachine
+---
+An old, dirty vending machine. #line:032d7ac 
+Seems like noone bothered to restock it for ages. #line:0bae044 
+===
+
+title: secretaryInitial
+---
+<<declare $SecretaryDone = false>>
+<<declare $GottenForms = false>>
+<<if $SecretaryDone is true>>
+    <<jump SecretaryDone>>
+<<endif>>
+<<set $SpokeToSecretary = true>>
+Secretary: Shouldn't you all be in an old folks home? #line:03f61a3 
+Secretary: Whatever... You want to make a deposit?, I'll need form 18B81-C7 #line:0c8a63a 
+Secretary: In duplicate, of course... #line:0689831 
+-> I don't have this... 1 8 B Uhm... 8- whatever form... #line:05ee055 
+    Secretary: Well, I can't do anything without form 18B81-C7 #line:0b1de61 
+    Secretary: In duplicate, of course... #line:06054e4 
+    <<stop>>
+-> I have this 18B81-C7 form right here, in duplicate, of course <<if $GottenForms is true>> #line:0b90e77 
+    Secretary: Splendid, I see, I'm working with a professional #line:08584ee 
+    Secretary: Very well, you may go to the cashier's area to make your deposit #line:082d2ea 
+    Secretary: I'm going to have to archive this form, that's just good secretary practice #line:08f526b 
+    *Skrrhrkrhshshshss* #line:01c9103 
+    *You hear the unmistakeable sound of a shredder being fed paper under the counter #line:04fa152 
+    <<set $SecretaryDone = true>>
+    <<stop>>
+===
+title: SecretaryDone
+---
+Secretary: I love shredding duplicates. #line:03c54cc 
+Secretary: Highlight of my day. #line:041c27d 
+===
+title: basicMerchant
+---
+You see a well stocked vending machine with exuberant prices #line:047fbf1 
+<<once>>
+
+<<endonce>>
+The machine offers a wide range of luxurious and expensive looking drinks
+    -> Buy a cup of water (10$)
+    -> Buy a Te(a)tra-pack (40$)
+    -> Buy Sodium-Soda (30$)
+    -> Buy Sodium-Soda light (40$)
+    -> I am too broke to buy things
+Choice and free will are an illusion in the end, alas, the Merchant hasn't been coded yet...
+
+===
+title: Rando1
+---
+test #line:02a4fc5 
+ <<once>>
+Random Customer: I am actually here to make a deposit
+Random Customer: But that secretary lady keeps bugging me about a form I don't have, so I have to wait
+Random Customer: And now I spent all my money on drinks from this vending machine...
+Random Customer: Oh well, that's economics I guess...
+<<else>>
+Random Customer: I wonder if all of these drinks are a better economic investment than depositing my money into my bank account... #line:0a4b30d 
+<<endonce>>
 <<stop>>
 ===

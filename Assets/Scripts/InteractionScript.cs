@@ -11,8 +11,8 @@ public class InteractionScript : MonoBehaviour
     private DialogueRunner dialogueRunner;
     private GameObject portrait;
 
-    
-    void onInteract() 
+
+    void onInteract()
     {
         //
 
@@ -23,18 +23,18 @@ public class InteractionScript : MonoBehaviour
         print("Trigger Enter");
         print(other);
         cube = other.gameObject;
-        if(cube.tag == "Item")
+        if (cube.tag == "Item")
         {
-        
+
             Destroy(cube);
-            
+
         }
-        if(cube.tag == "Interactable" && !E2Interact.activeSelf)
+        if (cube.tag == "Interactable" && !E2Interact.activeSelf)
         {
             E2Interact.SetActive(true);
         }
     }
-    private void OnTriggerExit(Collider other) 
+    private void OnTriggerExit(Collider other)
     {
         E2Interact.SetActive(false);
         print("Trigger Exit");
@@ -47,17 +47,56 @@ public class InteractionScript : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetButtonDown("Jump") && E2Interact.activeSelf &&  cube.tag == "Interactable" && !dialogueRunner.IsDialogueRunning)
+        if (Input.GetButtonDown("Jump") && E2Interact.activeSelf && cube.tag == "Interactable" && !dialogueRunner.IsDialogueRunning)
         {
             dialogueRunner.StartDialogue(cube.GetComponent<Interactee>().dialogue);
 
         }
-        
+
     }
-    public void ChangePortrait() 
+    [YarnCommand("change1")]
+    public void ChangePortrait()
     {
 
-        Image image = portrait.GetComponent<Image>(); 
-        image.sprite = cube.GetComponent<Interactee>().portrait;
+        Image image = portrait.GetComponent<Image>();
+        if (cube.GetComponent<Interactee>().portrait != null)
+        {
+            image.enabled = true;
+            image.sprite = cube.GetComponent<Interactee>().portrait;
+        }
+        else
+        {
+            image.enabled = false;
+        }
+    }
+    [YarnCommand("change2")]
+    public void ChangePortrait2()
+    {
+        Image image = portrait.GetComponent<Image>();
+        if (cube.GetComponent<Interactee>().altPortrait1 != null)
+        {
+            image.enabled = true;
+            image.sprite = cube.GetComponent<Interactee>().altPortrait1;
+        }
+        else
+        {
+            image.enabled = false;
+        }
+
+    }
+    [YarnCommand("change3")]
+    public void ChangePortrait3()
+    {
+        Image image = portrait.GetComponent<Image>();
+        if (cube.GetComponent<Interactee>().altPortrait2 != null)
+        {
+            image.enabled = true;
+            image.sprite = cube.GetComponent<Interactee>().altPortrait2;
+        }
+         else
+        {
+            image.enabled = false;
+        }
+
     }
 }
