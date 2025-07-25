@@ -26,10 +26,10 @@ public class BattleManager : MonoBehaviour
         Enemy.GetComponent<Unit>().currentHP =- currentDamage;
     }
     [YarnCommand("special")]
-    public void Special(GameObject Character)
+    public void Special(GameObject Character, GameObject Target)
     {
         Debug.Log(Character + " is trying to use their SPECIAL, but it hasn't been coded yet");
-
+        //Character.GetComponent<Unit>().
     }
     [YarnCommand("guard")]
     public void Guard(GameObject Character)

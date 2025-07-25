@@ -10,7 +10,18 @@ public class MovementScript : MonoBehaviour
 
     public float speed = 6f;
     public bool dialogueFreeze = false;
-    
+    [SerializeField]
+    GameObject CharacterGFX;
+    float xGFX;
+    Animator myAnimator;
+
+    void Start()
+    {
+        myAnimator = this.GetComponentInChildren<Animator>();
+        xGFX = CharacterGFX.transform.localScale.x;
+        //Doing this with a tempory Variable, so this variable will only have to be defined once at start, I think that should optimize the runtime abit (not that the game really needs that though)
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -20,13 +31,19 @@ public class MovementScript : MonoBehaviour
         if(dialogueFreeze == false)
         {
             UnityEngine.Vector3 direction = new UnityEngine.Vector3(horizontal, 0f, vertical).normalized;
-        
-
-            if(direction.magnitude >= 0.1f)
+            //UnityEngine.Vector3 lTemp = transform.localScale;
+            //lTemp.x = direction;
+            if (horizontal != 0)
             {
-                controller.Move(direction * speed * Time.deltaTime);
-    
-            
+
+            CharacterGFX.transform.localScale = new UnityEngine.Vector3(-horizontal, 1f, 1f);
+            }
+            myAnimator.SetBool("isWalking", direction.magnitude >= 0.1f);
+
+
+            if (direction.magnitude >= 0.1f)
+            {
+                controller.Move(xGFX * direction * speed * Time.deltaTime);
             }
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
@@ -54,9 +55,33 @@ public class InteractionScript : MonoBehaviour
         }
 
     }
-    [YarnCommand("change1")]
+
+    //New Change Method, using an Array, instead of multiple public variables. Should be WAYYYY more streamlined and Modular 
+    // (Previous System only allowed 3 different portraits, now Infinite Portraits for conversations are possible, yayyyyy)
+    [YarnCommand("change")]
+    public void ChangePortrait(int number)
+    {
+        Image image = portrait.GetComponent<Image>();
+        if (cube.GetComponent<Interactee>().spriteList[number] != null)
+            {
+                image.enabled = true;
+                image.sprite = cube.GetComponent<Interactee>().spriteList[number];
+            }
+        else
+            {
+                image.enabled = false;
+                return;
+            }
+    }
+
+    // OBSOLETE METHODS FROM PREVIOUS PORTRAIT CHANGING WAY, KEPT HERE IN CASE WE NEED TO REVERT DUE TO SOMETHING
+
+
+
+    /*[YarnCommand("change1")]
     public void ChangePortrait()
     {
+
 
         Image image = portrait.GetComponent<Image>();
         if (cube.GetComponent<Interactee>().portrait != null)
@@ -98,5 +123,5 @@ public class InteractionScript : MonoBehaviour
             image.enabled = false;
         }
 
-    }
+    }*/
 }

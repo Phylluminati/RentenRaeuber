@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
+using Yarn.Unity;
 
 public class Unit : MonoBehaviour
 {
@@ -14,10 +16,13 @@ public class Unit : MonoBehaviour
 	public int maxHP;
 	public int currentHP;
 
+	public int maxMP;
+	public int currentMP;
+
 	public int guard;
 	//public bool hasGuard;
 
-	public bool TakeDamage(int dmg)
+	/*public bool TakeDamage(int dmg)
 	{
 		currentHP -= dmg;
 
@@ -25,6 +30,16 @@ public class Unit : MonoBehaviour
 			return true;
 		else
 			return false;
+	}*/
+	[YarnCommand("EnemyAttack")]
+	public void takeDamage(int dmg, GameObject targetCharacter)
+	{
+		this.currentHP -= (dmg / guard);
+
+		if (currentHP <= 0)
+		{
+			
+		}
 	}
 
 	public void Heal(int amount)
@@ -41,6 +56,8 @@ public class Unit : MonoBehaviour
 		Fashionista.unitDescriptor = "A cool, fashionable Grandma, that always knows what to say. She will never go out of style";
 		Fashionista.maxHP = 100;
 		Fashionista.currentHP = 100;
+		Fashionista.maxMP = 100;
+		Fashionista.currentMP = 100;
 		Fashionista.damage = 10;
 
 		Unit OldBag = new Unit();
@@ -48,14 +65,18 @@ public class Unit : MonoBehaviour
 		OldBag.unitDescriptor = "Reminiscing of the good ol' eighties. Old Bag's best times might be past him, but he enjoys life best he can (by being mildly annoyed at all times and knitting)";
 		OldBag.maxHP = 140;
 		OldBag.currentHP = 140;
+		OldBag.maxMP = 100;
+		OldBag.currentMP = 100;
 		OldBag.damage = 20;
 
 		Unit CatGranny = new Unit();
-		OldBag.unitName = "CatGranny";
-		OldBag.unitDescriptor = "";
-		OldBag.maxHP = 120;
-		OldBag.currentHP = 120;
-		OldBag.damage = 10;
+		CatGranny.unitName = "CatGranny";
+		CatGranny.unitDescriptor = "";
+		CatGranny.maxHP = 120;
+		CatGranny.currentHP = 120;
+		CatGranny.maxMP = 100;
+		CatGranny.currentMP = 100;
+		CatGranny.damage = 10;
 
     }
      

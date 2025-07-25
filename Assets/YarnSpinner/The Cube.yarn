@@ -29,6 +29,13 @@ The Cube: You may ask me, the all knowing Cube, 1 question, choose wisely #line:
         I can do this, does this count as trick?
         <<change3 ThirdPersonPlayer>>
         I can also do this, pretty cool right?
+    -> Hi Cube, I'm the developer. I need to test my new portrait Method.
+        The Cube: Oh hi, I forgot that, despite how inneffable I am, there are still powers beyond my comprehension
+        The Cube: Anyways, Existential Dread aside, here you go...
+        <<change ThirdPersonPlayer 2>>
+        The Cube: What do you think?
+        <<change ThirdPersonPlayer 4>>
+        The Cube: Are the Changes working?
 //-> Can you do any cool tricks?
     //No, I cannot...
 The Cube: Anyways, I hope I, the all knowing Cube, could answer your existential Question... #line:03ca4d3 

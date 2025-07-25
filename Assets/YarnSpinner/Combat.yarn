@@ -2,15 +2,17 @@ title: Combat
 tags:
 position: -297,5
 ---
-<<jump character1Turn>>
-===
-title: character1Turn
-position: -2,144
----
 <<declare $character1 = "Fashionista">>
 <<declare $character2 = "Cat_Grandma">>
 <<declare $character3 = "Old_Bag">>
 <<declare $turnController = 0>>
+
+<<jump character1Turn>>
+===
+title: character1Turn
+position: 13,106
+---
+<<set $turnController = 0>>
 It is currently {$character1}'s turn. What will they do? #line:062249f 
 -> Fight #line:028f7a2 
     <<fight BattleManager {$character1}>>
@@ -29,6 +31,7 @@ It is currently {$character1}'s turn. What will they do? #line:062249f
 title: character2Turn
 position: 327,-165
 ---
+<<set $turnController = 1>>
 It is {$character2}'s turn. What will they do #line:032c3d7 
 -> Fight #line:0efd2e9 
     <<fight BattleManager {$character2}>>
@@ -44,6 +47,7 @@ It is {$character2}'s turn. What will they do #line:032c3d7
 title: character3Turn
 position: 620,199
 ---
+<<set $turnController = 2>>
 It is {$character3}'s turn. What will they do #line:035b344 
 -> Fight #line:0a5d5ce 
     <<fight BattleManager {$character3}>>
@@ -56,7 +60,7 @@ It is {$character3}'s turn. What will they do #line:035b344
     <<jump EnemyTurn>>
 ===
 title: EnemyTurn
-position: 510,620
+position: 1007,215
 ---
 The Enemy Attacks
 // Make Script with 3 random possibilities Attack/AttackAll/Guard
@@ -68,13 +72,13 @@ color: red
 What Item do you want this Character to Use
 -> Teatra-Pack
 -> Go Back
-    <<if $turnController == 1>>
+    <<if $turnController == 0>>
         <<jump character1Turn>>
     <<endif>>
-    <<if $turnController==2>>
+    <<if $turnController==1>>
         <<jump character2Turn>>
     <<endif>>
-    <<if $turnController==3>>
+    <<if $turnController==2>>
         <<jump character3Turn>>
     <<endif>>
 ===
