@@ -26,8 +26,12 @@ public class InteractionScript : MonoBehaviour
         cube = other.gameObject;
         if (cube.tag == "Item")
         {
-
-            Destroy(cube);
+            if (cube.GetComponent<Interactee>())
+            {
+                //This method is being used to force initiate dialogue without player input, if the Item Object has an Interactee script to point to
+                dialogueRunner.StartDialogue(cube.GetComponent<Interactee>().dialogue);
+            }
+            //Destroy(cube);
 
         }
         if (cube.tag == "Interactable" && !E2Interact.activeSelf)

@@ -21,9 +21,15 @@ public class BattleHUD : MonoBehaviour
 	private Image _manaBarSprite;
 	void Start()
 	{
-    }
-	public void UpdateHealthBar(float maxHealth, float currentHealth)
+		UpdateHealthBar(this.GetComponent<Unit>().currentHP);
+		if (_manaBarSprite != null)
+		{
+			UpdateManaBar(this.GetComponent<Unit>().currentMP);
+		}
+	}
+	public void UpdateHealthBar(float currentHealth)
 	{
+		float maxHealth = this.GetComponent<Unit>().maxHP;
 		_target = currentHealth / maxHealth;
 	}
 	/*public void SetHUD(Unit unit)
@@ -39,10 +45,17 @@ public class BattleHUD : MonoBehaviour
 		hpSlider.value = hp;
 	} 
 	*/
+	public void UpdateManaBar(float currentMP)
+	{
+		float maxMana = this.GetComponent<Unit>().maxMP;
+		_manaBarSprite.fillAmount = currentMP / maxMana;
+
+	}
 
 	void Update()
 	{
 		_healthBarSprite.fillAmount = Mathf.MoveTowards(_healthBarSprite.fillAmount, _target, _reduceSpeed * Time.deltaTime);
 	}
+
 
 }

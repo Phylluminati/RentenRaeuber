@@ -19,7 +19,7 @@ public class Unit : MonoBehaviour
 	public int maxMP;
 	public int currentMP;
 
-	public int guard;
+	public float guard;
 	//public bool hasGuard;
 
 	/*public bool TakeDamage(int dmg)
@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour
 	[YarnCommand("EnemyAttack")]
 	public void takeDamage(int dmg, GameObject targetCharacter)
 	{
-		this.currentHP -= (dmg / guard);
+		this.currentHP -= (int)(dmg / guard);
 
 		if (currentHP <= 0)
 		{
