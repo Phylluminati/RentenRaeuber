@@ -87,6 +87,18 @@ An old, dirty vending machine. #line:032d7ac
 Seems like noone bothered to restock it for ages. #line:0bae044 
 ===
 
+title: ATM
+---
+Suprisingly, the atm seeems to be brand new.
+But how do you work with such a modern machine?
+Old Bag: They want me to insert my debitcard and expose not only my personal data, but also my pin number to this spying technologie!
+Old Bag: HAH. They think I am a simpletion. Such a trick will not work on me, ever!
+===
+title: EmptyDesk
+---
+A tidy desk that should be occupied by a smiling clerk.
+But where could they be?
+===
 title: secretaryInitial
 ---
 <<declare $SecretaryDone = false>>
@@ -127,6 +139,7 @@ The machine offers a wide range of luxurious and expensive looking drinks
     -> Buy a Te(a)tra-pack (40$)
     -> Buy Sodium-Soda (30$)
     -> Buy Sodium-Soda light (40$)
+    -> Buy high-protein-almond-strawberry-protein-bar (one coin)
     -> I am too broke to buy things
 Choice and free will are an illusion in the end, alas, the Merchant hasn't been coded yet...
 
@@ -142,4 +155,798 @@ Random Customer: Hmmm....
 Random Customer: I wonder if all of these drinks are a better economic investment than saving my money in my bank account...
 <<endonce>>
 <<stop>>
+===
+
+title: Intro
+---
+<<once>>
+Fashionista: Is everyone ready?
+Cat Grandma: As ready as I'll ever be...
+Fashionista: It's going to be okay. Just stick to the plan, keeping using the codenames and nothing will go wrong.
+Cat Grandma: Gosh, I never expected to be robbing a bank in my old age.
+Old Bag: HMPF, it's not a robbery. We're just taking what is rightfully owed to us!
+Old Bag: 3 months of pension paiment are these goons withholding from us. 3 MONTHS!
+Old Bag: THE GALL! How are we supposed to feed ourselves?
+Cat Grandma: Don't worry, we know. We're in the same boat after all.
+Old Bag: And everytime, I tried to get through they always put me on these stupid automated calls that are keep going in circles...
+Fashionista: Old Bag, you've complained quite enough about this already on the way here.
+Fashionista: Let's focus now. We're entering this bank and we're not giving in until we have our money!
+Fashionista: And Cat Grandma, make sure your nuisance stays quiet. Imagine the cat blows our cover.
+Cat Grandma: I'll have you know, Maximilian is one of the best behaved kittens of the litter I adopted. You do NOT have to worry about a thing, right Maxi.
+Maximilian: Meow
+Old Bag: Remember, we move with the ARROW KEYS or WASD. With SPACE BAR we can interact with the enviroment.
+Fashionista: What in the retirement fund did you just say?
+Old Bag: I..I don't now? It just came over me.
+Cat Grandma: What even is a spacebar? Is that like a rebar pipe in space?
+Fashionista: Head in the game now, everyone. It is showtime!
+<<endonce>>
+
+===
+title: CatIntro
+position: 70,70
+---
+<<once>>
+Cat: Meow
+Fashionista: What is this dog doing here?
+Cat Grandma: "Fashionista", have you forgotten your contacts again?
+Fashionista: Pah! I do not need them! I can see clearly. So, don't bother me about it.
+Cat Grandma: Right...What animal is infront of us?
+Fashionista: It's obviously a racoon! Ha, you didn't anticipate me seeing so clearly, did you now?
+Cat: Meow...
+Old Bag: I told you guys we have entered the wrong building. But you wouldn't listen!
+Fashionista: Hmm.... but the voice inside the smartphone thingy told us to come here.
+Old Bag: We should have never trusted those impractical computer maps.
+Old Bag: I could have knittet us a map and we would have been at the right place from the get go!
+Old Bag: Damn you technologie!
+Cat: ....
+Cat: Meow?
+Cat Grandma: I think we are right. This is the Money-Central-Cash-First bank.
+Cat Grandma: The cat went to visit her husband at work and lost her 22 kittens. She is now just looking for them.
+Old Bag: How do you know?
+Cat Grandma: I lived my whole life with those wonderful creatures. Of course, I learned how to comunicate in cat language.
+Fashionista: That's still a racoon! You can't fool me.
+Cat Grandma: ...
+Cat: Meow! Meeeeeeeoooowwww!
+Old Bag: Fokus ladies! What did it say? Translate for us please!
+Cat Grandma: It asked us to find their kitten!
+Fashionista: For free? 
+Fashionista: No! Not in this economy.
+Cat: .... Meeeeooooowwwww!
+Cat: HISSS!
+Old Bag: You made her angry!
+Old Bag: Stay back cat! I have wool and I am not afraid to use it!
+Old Bag: Back in my days I was a high ranking milit-
+Cat Grandma: The cat says, she pays us one coin for every found kitten. There are 9 in this entrance.
+Fashionista: That sounds much better! I am in!
+Cat: Meow. Meow, Meow!
+Cat Grandma: She want's to make sure that we won't adopt them...
+Old Bag: Simple. We find the cats. Bring them back and get the payment! This is how we operated back in -
+Fashionista: That's great. We'll just do it like this.
+Cat: Meow!
+Cat Grandma: How convinient! The kitty promised to stay at the same place, so we won't have to find her!
+Old Bag: We should press SPACE BAR, when we are near one of her kittens to collect them.
+Old Bag: What is wrong with me? I am keep saying this weird stuff. This is getting-
+Fashionista: Well then. Let us go and talk to the staff!
+<<else>>
+Cat: Meow.
+Cat Grandma: Don't worry, I promis to reunite you with your children.
+Fashionista: You better keep your end of the deal, cat!
+Old Bag: We have important work to do ladies! Let us proceed!
+<<endonce>>
+===
+
+title: PicPocLiveHack
+---
+<<once>>
+Frustrated Man: OH NOOOOOOOOOO! What should I do?!
+Frustrated Man: My money!
+Frustrated Man: It is gone!
+Old Bag: Sounds terrible, what happened young fellow?
+Frustrated Man: I saw the unlimited money live hack on picpoc. And I tried it...
+Frustrated Man: But now the bank believes I commited fraud... 
+Frustrated Man: They froze my account because of this! What should I do?
+Fashionista: Youngling, you shouldn't believe everything you see on the internet in the first place!
+Fashionista: People spread a lot of nonsense!
+Cat Grandma: Right! Last time I found out that I wasn't chatting with a nigerian prince but with a scammer that wanted my money! 
+Cat Grandma: But sadly for both of us, I have none.
+Old Bag: Don't worry, son. Everything will be alright. You just have to hang in there for now.
+Old Bag: Just... don't do that again.
+Frustrated Man: Thank you.
+<<else>>
+Frustrated Man: I should delete picpoc...
+<<endonce>>
+===
+
+title: WaitingForMom
+---
+<<once>>
+Little Girl: This is sooo boring!
+Little Girl: I am waiting for tooo long! When is mum coming back?!
+Cat Grandma: Child, are you lost?
+Little Girl: No, I am just waiting for my mum.
+Fashionista: You too?
+Fashionista: My mom made me wait in this area, since I was...
+Fashionista: 8 years old....
+Fashionista: And now my beautiful red hair turned gray and I am in my 70ies 
+Fashionista: I am slowly beginning to think that she might has forgotten me..
+Little Girl: *GASPS*
+Little Girl: You are so old...
+Little Girl: I do not wan't to wait this long!
+Little Girl: MOOOOOOOOOOOOM!
+Little GIrl: MOOOOOOOOOOOOM!
+Old Bag: Ugh. Look at what you did!
+Little Girl: MOOOOOOOOOOOOOOOOOM!
+Old Bag: Listen Kid. She was just joking! 
+Fashionista: Come on. It was just a little prank! She is just overreacting.
+Old Bag: See, she was. We apologize. Here take one of my caramel bonbons.
+Old Bag: Do not worry, I am sure your mother didn't forget about you.
+Little Girl: ... I hope.
+<<else>>
+Little Girl: I don't talk to mean grannys!
+Little Girl: Bleh!
+<<endonce>>
+===
+
+title: RugPull
+---
+<<once>>
+Young Man: I cannot believe that this happend to ME!
+Cat Grandma: What is wrong?
+Young Man: An Investment! That is what went wrong!
+Young Man: I invested in the new Fratz Coin!
+Young Man: By beeing one of the early investors I should have had made a lot of money by now.
+Young Man: But me eagerly waiting to invest, didn't pay out as planned.
+Old Bag: Why?
+Young Man: I got rug pulled! 
+Old Bag: What? The rugs are being pulled out from under peoples feet?
+Young Man: NO! Easyliy explaind, the person who made this coin took all of the money investet into it and ran away.
+Fashionista: Who is this person? Can you not sue them?
+Young Man: ... I could try. But I got rug pulled by a 10 year old...
+Young Man: It is kind of embarassing... because he did this before.... and I fell for it again...
+Fashionista: ... 
+Cat Grandma: I get the feeling, this Crypto stuff isn't for you...
+<<else>>
+Young Man: Hmm... this new Geezer Coin seems interesting.
+<<endonce>>
+===
+
+title: Replaced
+---
+<<once>>
+Bussiness Woman: Everything went so well at first. How did it go so terribly wrong?
+Old Bag: Young lady, you look troubelled!
+Bussiness Woman: obviously, I just filed for bankruptcy. My company is gone... I have nothing left.
+Bussines Woman: I trusted the new AI to do all of the required work and therefore fired all my workers.
+Old Bag: See, technologie is unreliable garbage. Why is everybody trusing it nowadays. Back in-
+Fashionista: Let me make this clear. You fired everybody in favor of AI. Whitout checking if it actually works in the first place?
+Bussines Woman: Yes... I saved a ton of money from doing so.
+Cat Grandma: It seems you didn't make any either...
+<<else>>
+Bussines Woman: I think I figured it out.
+Bussines Woman: I should have replaced my workers way sooner with AI!
+Bussines Woman: Then the switch would've worked and my company would be still striving.
+Bussines Woman: Heh. I don't need human labour to succeed. Now I'll just found a company that is only powered by AI.
+<<endonce>>
+===
+
+title: StartUp
+---
+<<once>>
+Young Entrepenour: I do not understand! Why is this so complicated?
+Young Entrepenour: Why do I need start capital in order to fund a company.
+Fashionista: Right! This doesn't make any sense!
+Cat Grandma: It kind of does...
+Young Entrepenour: Sadly I cannot find any investors interested in my bussiness idea at the moment.
+Young Entrepenour: But I am sure the bank will lend me some money and support my endavors!
+Old Bag: I love passionate recui- younglings. What kind of StartUp are you trying to fund?
+Young Entrepenour: A company that lends lown mowers. You know, for a few days for mowing gras and stuff. 
+Fashionista: OHH. I get it. You mown in exchange for money.
+Young Entrepenour: What? NO! I make the customer pay for lending the lownmower AND let them do the work themselves.
+Cat Grandma: Wouln't it be more beneficial for the customer to buy one themselves then?
+<<else>>
+Young Entrepenour: You are back! Are you interested in making an investment?
+Young Entrepenour: Hey! Don't leave! You could make millions!
+<<endonce>>
+===
+title: PinkTax
+---
+<<once>>
+Bussines Man: I cannot fantom how my company keeps loosing money.
+Bussines Man: Even a few investors already stoped supporting the company.
+Old Bag: What are you selling?
+Bussines Man: Oh you care for an investment? We sell tools.
+Cat Grandma: Doesn't this already exist? What is the twist?
+Bussines Man: Everything I sell is pink, so I can make it a bit more expencive.
+Bussines Man: Women flock to my products. They love pink after all.
+Fashionista: Seems like it doesen't work as good as you are trying to sell us right now.
+Bussines Man: How offencive! I know what women need and want!
+<<else>>
+Bussines Man: Women love pink. I am sure of it! There is no way, they don't love my tools. 
+Bussines Man: Maybe I should focus an making more adds about my pink products.
+<<endonce>>
+
+===
+
+title: NursesApearance
+---
+<<once>>
+Passionate Trainee Nurse: THERE THEY ARE!
+Passionate Trainee Nurse: GUYS! I HAVE FOUND THEM!
+Head Nurse: Good Job, April! 
+Head Nurse: Thanks to you, we can now bring them back.
+Indifferent Trainee Nurse: Ugh. Finally.
+Head Nurse: Ladies and Gentelman, please follow us. We will bring you home safe and sound.
+Fashionista: No! I do not want to! Leave us alone.
+Old Bag: We are not done with what we came to do! You have to wait.
+Passionate Trainee Nurse: What do you need to do? We might be able to help, right Melissa?
+Indifferent Trainee Nurse: NOOOOO! That isn't in our job description.
+Cat Grandma: We are here to rob this bank!
+Head Nurse: Puhahahahahahahaha!
+Head Nurse: HAHAHAHAHAHAHA!
+Head Nurse: That was a good one.
+Old Bag: We are wasting time! You are in the way! Let us trough!
+Passionate Trainee Nurse: No can do! It is time for your medication!
+Cat Grandma: Please! I do not want to miss out on my favourite TV Series today!
+Indifferent Trainee Nurse: Then just follow us... less work for us and you can watch your series in peace.
+Fashionista: If you won't leave on your own, we will make you!
+Head Nurse: Let's proceed with the hard way then! I have to teach my trainees how to catch seniors anyways.
+Head Nurse: April!
+Passionate Trainee Nurse: YES, MA'AM!
+Head NUrse: Stop them!
+Passionate Trainee Nurse: The more you resist the more it will hurt!
+<<endonce>>
+
+===
+title: PassionateNurseLost
+---
+<<once>>
+Old Bag: Hah! You didn't see my military tactics coming! Back in-
+Fashionista: HAH! We won! LOOOSER!
+Cat Grandma: Now you have to let us do as we please!
+Passionate Trainee Nurse: Ugh noooo! We lost. What do we do now?
+Head Nurse: Fine! You win for now! We WILL catch you soon enough!
+<<endonce>>
+===
+
+title: PassionateNurseWin
+---
+<<once>>
+Head Nurse: Good job, April!
+Passionate Trainee Nurse: Thanky you, Ma'am.
+Old Bag: No. My tactics where splendid.... I got rusty.
+Fashionista: That can't be. I lost... Is my age finally catching up with me?
+Cat Grandma: At least I can watch my series now...
+<<endonce>>
+===
+
+title: BeatenPassionateNurse
+---
+The beaten nurse wipes her tears wuth tissues.
+Sad Trainee Nurse:....
+Cat Grandma: Maybe, we were too hard on her...
+Old Bag: All you need after loosing an important operation is a bit space...
+Fashionista: You might be right.
+===
+
+title: TissuesPassionateNurse
+---
+<<once>>
+Standing there still in shock from this terrifing loss, she is treating the scratch Maximilian gave her with an tissue.
+Fashionista: Look she has paper?! Why would she put paper on a wound?
+Cat Grandma: Those are tissues! You seriously need to bring your actual glasses next time!
+Fashionista: But they aren't stylish enough!
+Cat Grandma: ....Old Bag, you are carrying this big bag on your shoulders... didn't you pack any tissues?
+Old Bag: HMPF. Why should I give up my important space for insignificant tissues. During the military I used -
+Fashionista: What do you even have in there then?
+Old Bag: Wool. Obviously.
+Cat Grandma: ... we can try asking the nurse if she could give us her pack of tissues.
+Sad Trainee Nurse: How could this happen!
+Sad Trainee Nurse: Maybe I am not made for this job afer all....
+Fashionista: Don't talk nonsense, girl. You are very passionate! 
+Old Bag: I would have been very proud if I ever had such an passionate soldiers as you in my ranks.
+Cat Grandma: You almost got us! One wrong move and we would have lost!
+Sad Trainee Nurse: .....
+Sad Trainee Nurse: Really?
+Old Bag: Yes! Your tactics just needed a little bit more refinement.
+Fashionista: Don't beat yourself up about your loss, you are still a trainee after all.
+Cat Grandma: I agree, you only need a little bit more experience. But that is something that only comes with age. Use it as a learning experience.
+Passionate Trainee Nurse: Wow... I never thought about my losses as a learning oportunity.
+Passionate Trainee Nurse: Thank you. I feel so much better now.
+Cat Grandma: I am glad, we could help-
+Fashionista: You know. I need to blow my nose but we sadly have no tissues to use. I asked old bag to pack some, but-
+Old Bag: I grew a little forgetful with age... would you be so friendly to give me your pack of tissues, please?
+Passionate Trainee Nurse: Of course! Wait a-
+*GROOWWL*
+Fashionista: What was that!? Did Maximilian growl?
+Maximilian: Meow!
+Cat Grandma: NO! He didn't! A well behaved cat wouldn't do something like this.
+Passionate Trainee Nurse: ... 
+Passionate Trainee NUrse: All this questioning my existence made me a bit hungry....
+Old Bag: Wait. Ahh, There! Here I have caramel bonbons with me.
+Passionate Trainee Nurse: Thank you, but I cannot eat sweets... unless I want to loose my gains. Do you, only by chance, have a high-protein-almond-strawberry-protein-bar?
+Cat Grandma: We don't... but we could get you one!
+Fashionista: We could? Do you actually want to buy her a-
+Passionate Trainee Nurse: Oh. You don't have to!
+Cat Grandma: See it as an apology! We will be right back!
+<<else>>
+Passionate Trainee Nurse: Sooo hungry...
+Passionate Trainee Nurse: Should I try eating my tissues?
+Old Bag: Hold on, young lady! We'll get you something else....
+<<endonce>>
+
+===
+title: CollectTissues
+---
+<<once>>
+Fashionista: Youngling, we got your candybar with the fancy name!
+Passionate Trainee Nurse: ....
+Cat Grandma: What is wrong?
+Passionate Trainee Nurse: I... I ate my last tissue...
+Passionate Trainee Nurse: I am sorry.
+Old Bag: Why would you eat them?! What are we going to do now?
+Passionate Trainee Nurse: I sill have alcohol wipes left... but I wouldn't recomend using them as tissues...
+Passionate Trainee Nurse: This is the only thing I can give you...
+Cat Grandma: Don't worry about it. We'll take them. Thank you!
+Fashionista: Take the bar, after all we brought it just for you.
+Passionate Trainee Nurse: Thanks...
+<<else>>
+Passionate Trainee Nurse: Hmmmmmm! So Yummy!
+<<endonce>>
+===
+title: QueWomanAnnoyed
+---
+<<once>>
+Annoyed older Woman: This is tireing. When is this unprofessional clerk coming back.
+Annoyed older Woman: Running away weeping after I took it upon myself to correct him about his spelling misstakes.
+Annoyed older Woman: PAH. He was working at a snail's pace on this computer as well. Typing with only two of his ten fingers.
+<<else>>
+Annoyed older Woman: How annoying. I have places to be. I should talk to his superior about this. Hopefully they fire someone as useless as him.
+<<endonce>>
+===
+
+title: QueWomanChild
+---
+<<once>>
+Woman with Child: Why did she feel the need to be rude tho this poor service worker...
+Woman with Child: She should have cut him some slak. That man was obviously new.
+Woman with Child: I hope he is okay.
+<<else>>
+Woman with Child: Hopefully your sister is behaving, until we are back....
+<<endonce>>
+
+===
+title: QueAnnoyedMan
+---
+<<once>>
+Annoyed Man: This clerk needs to grow some thiker skin!
+Annoyed Man: Because of him I might miss my bus! I hope he comes back soon.
+Annoyed Woman: Can't you just check up on him? I mean, I can't possibly enter the mens restroom.
+Annoyed Man: You just want to steal my good spot in this que! Unlucky for you, nobody can manipulate me!
+Annoyed Woman: Whatever...
+<<else>>
+Annoyed Man: UGH. I just missed my bus.
+<<endonce>> 
+===
+
+title: QueAnotherWoman
+---
+<<once>>
+Woman: This man is not made for this job. Only yesterday he ran and hid in the womans restroom and cryed so much that it flooded.
+Woman: Today I thought I could talk to my bank about some investments I want to make into a certain lawn mower lender company.
+<<else>>
+Woman: I guess, it might take a bit longer today as well.
+<<endonce>>
+
+===
+title: ManOnToilett
+---
+Random Man: Giving all the toilet paper I had in this bathroomstall to the crying man next to me seemed like a good idea at first.
+Random Man: But now I don't have any left to wipe myself with...
+Random Man: I guess I just stay here a little bit longer.
+
+===
+title: SadClerk
+---
+<<once>>
+A big puddle is flowing through from under the stall's door.
+Old Bag: EWWW! DISGUSTING!
+Old Bag: Look at that, they can't even keep their toilets clean in this place.
+Cat Grandma: PSSSSSSSSHHHHHHHHHHHHHT!
+Cat Grandma: Do you hear that?
+Bathroomstall: *SOB*....*SOB*
+Old Bag: Oh thank god, for a moment I thought the puddle was actually something else...
+Cat Grandma: Of course it's not, Old Bag! It's just tears... Some poor young must've been crying in this stall for ages.
+*KNOCK KNOCK*
+Cat Grandma: Hello, dear! Is everything aright in there?
+Bathroomstall: ..........
+Bathroomstall: SNIIIIIIIIIIIIFFFFFFF!!!!
+Bathroomstall: Hello and welcome... to the Money-Central-Chash-First bank, MCCF bank in short. *SOB*
+Bathroomstall: If I can help you with any--*SNIFF* -thing, please do--- *SOB* *SOB*
+Fashionista: Wow, he is really going at it in there, isn't he?
+Cat Grandma: Maybe we should give him a moment to collect himself and try again.
+Clerk: *SOB* *SOB* *CRY* *SOB *SOB* *CRY OF WOEFUL SUFFERING* *SNIFF* *SOB*
+Fashionista, Cat Grandma & Old Bag: .................................
+Old Bag: Did he just say cry of woeful suffering out lou-
+Clerk: *SNIIIIIIIIIIIIIIIIIIIIFF*
+Clerk: I can't.... I just can't work here anymore.
+Clerk: The customers ALWAYS yell at me for beeing too slow...
+Clerk: My boss ALWAYS yells at me for making mistakes because I get to hasty....
+Clerk: And the worst of them all is the secretary. My direct superior. She ALWAYS yells at me because she hates me...
+Clerk: WHY IS EVERYONE ALWAYS YELLING AT ME?!
+Cat Grandma: Oh dear, I do not know what to say...
+Fashionista: Well, at least we know now that we are not the only ones beeing mistreated by this joke of a bank.
+Old Bag: I'd normaly say this builds character, but... oh my god, that is really too much.
+Clerk: I'm so sorry.... *SNIFF* Sitting on the toilet, crying like a baby.... I must seem so unprofessional to you.
+Cat Grandma: Don't worry, dear. We are not here to yell at you.
+Old Bag: We are not here to yell at people? Why did I come then?
+Fashionista: Actually, we came here to sneak into the staff- only area past the reception.
+Clerk: ... I mean, you would have to file a- *SOB* -4962B for... for getting family visitation access...
+Fashionista: Hmmm. Say, how do you normaly enter the staff area?
+Clerk: Me?... I just *SOB* use my keycard.
+Fashionista: I see... Can I have it?
+Clerk: I don't know... that would be a breach of protocoll... I could get fired for this.
+Clerk: ....
+Clerk: After saying this outloud...That actually doesn't sound so bad.
+Clerk: Okay, you can have it.
+Clerk: But... I would like to ask for a favor first.
+Cat Grandma: Of course, how can we help you?
+Clerk: I look like a teary mess. I need something to wipe my face with because I have already used up all the toiletpaper in this stall.
+Cat Grandma: We'll get you something just hang in there.
+<<else>>
+Old Bag: We will bring you some tissues, hang in there.
+Clerk: Thank you, for helping me.
+<<endonce>>
+===
+title: SadClerkWipes
+---
+<<once>>
+*KNOCK* *KNOCK*
+Old Bag: Are you still in here?
+Clerk: Yes. I've been waiting for you... I thought you forgot about me already.
+Fashionista: How could we possibly forget.
+Cat Grandma: We brought you the ...tissues! Here!
+Clerk: Thanky you, soooo much! Now I can clean my face and pretend that I did not cry for an hour.
+Fashionista: surely... no one will question the puddle of tears...
+Clerk: Are you sure that those are tissues?
+Old Bag: ...Yes. Helps with the more intense tears.
+Clerk: Souns convinient.
+Clerk: A promis is a promis. Here! Take my card.
+A hand reaches out of the bathroomstall, holding an unprofessionally designed card.
+Old Bag: Thank you! Now we can enter the staff-only ara. Let the operation-
+Fashionista: Finally, we are closer to our retirement funds.
+Cat Grandma: Let's go! We shouln't waste too much time.
+<<else>>
+Clerk: ...
+Clerk: Why are you still here? Insert the keycard inside the cardreader next to the door behind the desks.
+Clerk: My eyes are burning... are you sure this is supposed to happen?
+<<endonce>>
+===
+
+
+title: DocumentVendingMachine
+---
+<<once>>
+A vending machine that only sells boring and overly complicated documents. Maybe this is the reason this machine looks unused.
+Old bag: I do not think we need to fiddle with this machine.
+Cat Grandma: Just by looking at it Maximilian fell asleep.
+<<else>>
+Fashionista: Why are those letters so smal?
+Cat Grandma: You could have seen them better with the right glasses on.
+<<endonce>>
+===
+title: DocumentMerchant
+---
+A vending machine that only sells boring and overly complicated documents.
+Vending Machine: Important protocoll note: No access for employees.
+Vending Machine: Which of these forms would you like to buy?
+    ->Buy form z-2830fl (2 Catcoins)
+    Vending Machine: This form allows you to have ONE holiday per year. And you cannot choose christmas!
+    Old Bag: We don't need this!
+    Cat Grandma: Did you forget or did you just not see the right form, Fashionista?
+    Fashionista: What? I thought this is the right one!
+    ->Buy form z-2835fe (2 Catcoins)
+    Vending Machine: Unpaid sick leave. You can only be sick for one day or your salary will be cut in half. Get well soon.
+    Old Bag: Is this even legal? Cancel it quick!
+    Fashionista: I missklicked! It just wouldn't let my change my choice. But now I can revert it.
+    Old Bag: HMPF,Technologie is more useless than I initilally thought!
+    ->Buy form z-28401ft (2 Catcoins)
+    Vending Machine: Alarm! Alarm! Highly illegal form. You can be sued for using it and must pay back all of your earned salary.
+    Vending Machine: Are you really REALLY sure you want to proceed with this purchase?
+    Vending Machine: Reccomendation: Pick "no"
+        ->no
+        Vending machine: You just accedently pressed the wrong button? Important Warning: Try to not repeat this mistake.
+        Fashionista: HUH? What just happened? I pressed yes to buy it!
+        Old Bag: No, you didn't! Please, bring your glasses with you next time....
+        ->yes
+        Vending machine: You poor soul. You are in dept now. Here is your form.
+        Old Bag: How offencive?! Come here we fight it out like -
+        Fashionista: This took longer than it should have.
+        Cat Grandma: At least we have the right document now! Lets go back to the banker and give him this form.
+        The vending machine slowly releases the choosen document from its holfer. 
+        Suddenly the stoped moving. Now the form is stuck with the majority of the paper inside the machine.
+        Vending machine: ERROR! ERROR! ERROR! ERROR!
+        Vending machine: Document is stuck. No refund possible. Shutdown activatet. PEEEEEP
+        Old Bag: UGGGHHHHHHH! Damn you technologie!!
+        Cat Grandma: Oh no...Is there a way to get the form from another machine?
+        Fashionista: I havent seen another vending machine with documents inside, have you?
+        Old Bag: I tried to pull the form out, but I cannot grab onto it long enough! Stupid machine! I should-
+        Cat: Meow
+        Cat Grandma: Wow! How thoughtful of you. 
+        Cat Grandma: The friendly cat just proposed that we find 5 of her kittens and bring them back to her.
+        Cat Grandma: In the meantime, she will do her best to pull out the form with the help of her claws.
+        Old Bag: Good news!
+        Fashionista: Let's get to work then.
+
+===
+title: OfficeRomance
+---
+<<once>>
+flirty banker: Hello, my lovely worker bee.
+flirty banker: The document you just filled out was as splendidly formated as ever.
+flirty banker: In addition to this, it has been a while since I last read a document this unessesarely complicated.
+blushing banker: Thank you for those compliments. I used arial for writing them, because I know how much you like it.
+blushing banker: I also love the suit you are wairing today. It looks so official and suits you very well.
+Fashionista: Haahhh young love. So horribly cringy.
+Cat Grandma: Let them be. We can find someone else to talk to.
+<<else>>
+Old Bag: I am going to puke if I have to listen to even one more of their terrible pickup lines.
+<<endonce>>
+
+===
+title: NotWorking
+---
+<<once>>
+Cat Grandma: Hello, could you-
+Slaking Banker: NOOOO TEAM!
+Fashionista: HUH?! Are you playing phone games instead of working?
+Old Bag: TSK. No work morale these days.
+Slaking Banker: Hey! You are distracting me! Please, bother someone else.
+Cat Grandma: HUH?! But you already are distracting yourself from work!
+Slaking Banker: Look. The secretary is too busy to notice right now. I need a little break or else I go crazy... or else I end up like coffee John.
+<<else>>
+Slaking Banker: YEEESSSS! Finally, I ranked up!
+Slaking Banker: I should do the rest of my work now....
+<<endonce>>
+===
+
+title: CoffeeAddict
+---
+<<once>>
+Cat Grandma: Hello, kind sir could-
+Addicted Banker: AHHHHHH! NOOOOOOOOOOOOO! MY COFFEEEE!
+Old Bag: What happend?! Are we under attack? Stay behind me, I was one of the top fighters -
+Addicted Banker: My coffee fell on the dirty floor!
+Addicted Banker: CAN YOU EVEN FANTHOM WHAT THIS MEANS FOR ME?
+Cat Grandma: no....
+Addicted Banker: I can't. I CAN NOT FALL ASLEEP! I must stay awake AT ALL COST!
+Old Bag: Did you not get enough rest last night?
+Addicted Banker: How dare you accuse me of sleeping! I worked for one week straight!
+Fashionista: You really should take a nap...
+Addicted Banker: NO! If I can manage to work trough a whole month without breaks I can get 1% more salary.
+Cat Grandma: This isn't worth risking your health for...
+Addicted Banker: I. AM. PLENTY. HEALTHY!
+Old Bag: Why not just buy another coffee?
+Addicted Banker: My abnormal craving for an enourmous amount of coffee made me buy the whole vending machines empty....
+Addicted Banker: What am I supposed to dooooooo? 
+Fashionista: There is a coffee machine in the break room. You could make yourself one.
+Addicted Banker: No! My pay will be cut if I am beeing seen in this area during my work time-
+Addicted Banker: Maybe... I should just lik my spilled coffee from the floor.
+Cat Grandma: Please don't...
+<<else>>
+Old Bag: This fella seems to be a little locoloco. We should ask someone ese.
+Fashionista: I hope he gets some rest soon.
+<<endonce>>
+===
+title: BreakroomCat
+---
+<<once>>
+Fashionista: I have never witnessed a racoon smoking.
+Old Bag: That is also a cat.
+Fashionista: Stop trying to gaslight me! I am not blind!
+Banker Cat: M I A U *COUGH*
+Cat Grandma: Oh, we just wanted to find someone helping us with our issue.
+Banker Cat: M I A U
+Cat Grandma: Sorry, we did not mean to disturb your break time. We will leave now.
+<<else>>
+Banker Cat: M I A U
+Cat Grandma: What?! You must be overworked to be seeing your children wandering around. Try to relax a bit more...
+<<endonce>>
+===
+
+title: BreakroomSmoker
+---
+<<once>>
+Smoking Banker: Is it really worth it to destroy my health for a 10 second longer break from this hellish workplace?
+Smoking Banker: Definitely. 
+Cat Grandma: Really? That doesn't sound right.
+Smoking Banker: Look. The economy is so bad even a cat had to start working to sustain his family.
+Smoking Banker: I still remember how cheerful he was when he started. Now he also turned into a smoker. Hah, life. What can you do.
+<<else>>
+Old Bag: I do not like the fumes in this room. Let us leave!
+Fashionista: What do you mean. I find it cosy in here.
+<<endonce>>
+
+===
+title: OfficeCatmom
+---
+<<once>>
+Cat: Meow!
+Old Bag: Hello there! Did you sneak in with us?
+Cat Grandma: She did. She suspects there are 9 more of her kitten in this area.
+Cat: MEOW!
+Cat Grandma: You are right. There is no garantie that someone might just adopt your kittens.
+Fashionista: Don't worry we will keep looking for your kids. The money you paid us came in handy after all.
+Cat: Meow...
+Cat Grandma: Oh! Of course we will keep you loosing your kitten from your husband.
+Old Bag: We should move on. The secretary is keeping an eye on us. If we drag this out any longer, she might kick us out...
+<<else>>
+Cat: Meeeeeeeoooowwww
+Cat Grandma: Yes yes! You have my word, we won't tell your husband.
+<<endonce>>
+
+===
+title: OfficeIntro
+---
+<<once>>
+Secretary: What are you old folks doing here?! This office is for staff only.
+Cat Grandma: We are here because there is nobody at the reception.
+Old Bag: And we do not know how to use these new and modern atm machines.
+Secretary: UGH. Not again. This simpelton is always weeping in the bathroom and floods the stalls with his patetic little tears.
+Secretary: I sometimes wished he would put as much effort into his work as when he does when he's hiding.
+Fashionista: We need to figure out some problems with our rent payments.
+Secretary: Fine. You have my permission to ask one of my free workes for help.
+Secretary: Just make it quick. This isn't an retirement home after all.
+Old Bag: Back in my days this rude way of speak-
+Fashionista: Thank you! You won't need to worry about that. We are always fast. I promis, you won't even notice us leave.
+<<else>>
+Secretary: Are you still here?
+Secretary: Finish what you came here for and leave.
+<<endonce>>
+===
+
+title: TroubelledBanker
+---
+<<once>>
+Banker: Welcome to Money-Central-Chash-First bank, MCCF Bank in short, how can I help you?
+Banker: .... Why did you bring a cat with you?
+Cat Grandma: Uhmm... We couldn't find a cat sitter...
+Fashionista: Wow, you have a lot of paperwork ahead of you. Is this all due today?
+Banker: Please, don't remind me...
+Banker: But yes... I have to finish my tasks today. Eventhough I would be lying that I don't struggle with. The workload here is just way too much.
+Banker: My coworkers are already going insane... some of them certainly already are.
+Banker: Am I supposed to work overtime? Just like the last month? Or the month before that. 
+Banker: Having not seen my family for a whole year makes me question what I am even doing here sometimes.
+Banker: While my coworkers, although crazy, are really kind, our superiors are a nightmare to work under.
+Banker: Everything just sucks here. 
+Fashionista: Why don't you just... leave? You could find a diffrent job.
+Banker: I would have said money... but the pay is a joke. 
+Banker: You are right... why haven't I tried looking for a better job till now?
+Old Bag: Fashionista, What are you doing? We need someone to help us inflitrate this bank-
+Cat Grandma: PSSSHHHT! That guy is dangerously smart. He is the only one that questioned me bringing Maximilian here.
+Banker: Very interesting. This is my first time witnessing seniors trying to rob a bank.
+Banker: I like you guys. I'll help you with your plan, as long as MCCF looses it's footing in the world. 
+Banker: I have always hated this place with every fiber of my body and want to see it burn down in flames.
+Fashionista: Splendid. We need to pass to the safe! We are due 3 months of retirement payment and need it.
+Banker: Payment cuts are included into our dayly tasks. Personally I found it deplorable when I started here.
+Banker: But this enviroment gaslights you into cutting down payments from people who deserve it. Everything needs to make profits after all.
+Banker: Our superiors make our lifes living hell if we don't comply to their onedimensionally evil demands.
+Old Bag: We'd love to pass further into the building but your superior, the secretary, is guarding the door.
+Banker: Oh that, I can easyly distract her for you. Working here made me unfortunally memorize what ticks her off. 
+Banker: Working here made me realise nothing is free in life. Therefore I want you to bring me something first.
+Old Bag: What do you want us to get?
+Banker: Do you see the vending machine filled with documents? I need form z-28401ft. 
+Fashionista: Why are not getting it yourself?
+Banker: Sadly, they have safety messures in place to prevent workers, like me, from accessing them. 
+Banker: They make it extra hard by cutting our salery per use. But normal people can easyly bypass these ridiculous funktions.
+Old Bag: Situations like this is what I am always warining you about. Technologie is made to spy on everybody and will destroy humanit-
+Cat Grandma: Sure, we can do this much for you.
+Fashionista: You better keep your end of the deal! 
+<<else>>
+Banker: Please, bring me form z-28401ft. Otherwise I'll refuse to help with your endavour.
+<<endonce>>
+===
+
+title: FifeBabysfound
+---
+<<once>>
+Cat: Meow
+Fashionista: Here are your kitten. Did you get the form, cat?
+Cat: Hissssss
+Cat Grandma: Oh no. Someone is trying to adopt one of her children.
+Old Bag: You know what, that seems fair. The situation changed. Operation save kitty starts now.
+Fashionista: Why are you suddenly talking like this.
+<<else>>
+Cat: Hisssssss
+Fashionista: Don't worry we will safe your child!
+<<endonce>>
+===
+
+title: FightIndifferentNurse
+---
+Indifferent Trainee Nurse: Awww! Where did you little cutie come from.
+Lost Kitten: Meow
+Indifferent Trainee Nurse: Oh, I know! From now on your name will be Estefania! 
+Indifferent Trainee Nurse: How exciting! I can take you to the gym, tell you all about the right way to build muscles and eat all the high protein stuff with you... 
+Lost Kitten: Meow
+Old Bag: Hey! Leave the kitten alone!
+Fashionista: Its mother is already worried about it.
+Cat Grandma: Please, give it back!
+Indifferent Trainee Nurse: Oh, no! I didn't know that little cutie already has a family. Please, I didn't mean to steal it!
+Old Bag: It's all water under the bridge! Everybody makes mistakes af-
+Indifferent Trainee Nurse: I would say, if I actually cared. I found her. I keep her. Simple.
+Fashionista: But! her Parents worry about her.
+Indifferent Trainee Nurse: To me it sounds a lot like that this is their porblem. Not mine. Estefania is now my cat.
+Cat Grandma: I've heard enough! You better hand us the cat over!
+Indifferent Trainee Nurse: Or what? What can you old people even do? 
+Old Bag: We fight you, win, reunite this family and lastly rob this bank.
+Indifferent Trainee Nurse: It's been a while since you prouldy annouced that you will rob this boring bank. Guess what. Didn't happen.
+Fashionista: Didn't happen YET. How did you even get in here?
+Indifferent Trainee Nurse: I opened the door like with every other door. Everybody is struggling to open it without a keycard for some reason.
+Indifferent Trainee Nurse: Well, I was in need of a short pre workout anyways. 
+===
+
+title: IndifferentNurseLoose
+---
+Indifferent Trainee Nurse: Hah! I knew it. You guys where all bark and no bite!
+Indifferent Trainee Nurse: Now I can bring you back to the retirement home. And Estefania is coming with me.
+Lost Kitten: Meow
+Old Bag: You are just lucky, you haven't fought me during my prime!
+Fashionista: No! How did we loose against that brat?
+Cat Grandma: My heart is bleeding for this poor cat family. I cannot fantom the sadness her parents will feel.
+===
+
+title: IndiffrentNurseWin
+---
+<<once>>
+Indifferent Trainee Nurse: Noooo! You must have cheated!
+Old Bag: There is no such thing as cheating in a real fight. Thinking like that could easyly cost you your-
+Fashionista: Eat this, looser!
+Cat Grandma: Give us the cat, now!
+Indifferent Trainee Nurse: Can I atleast say goodbye?
+Old Bag: Make it quick.
+Indifferent Trainee Nurse: Eventhough I only knew you for 10 minutes, you quickly turned out to be my favourite person in the entire world. 
+Indifferent Trainee Nurse: Nothing will ever change the love I have for you. I will forever cherish the memmories I made with you and hold them dearly to my heart. 
+Indifferent Trainee Nurse: Goodbye...*SOB* Estefania. No other cat will ever be able to fill the void you will leave.
+Lost Kitten: *Sad* meow
+Cat Grandma: Truly touching! *SNIFF*
+Fashionista: Are you finally done?
+Indifferent Trainee Nurse: Yes. Take her fast! I do not want to think about it any further.
+<<else>>
+Indifferent Trainee Nurse: Estefania...
+<<endonce>>
+===
+
+title: CatMomWithKitten
+---
+<<once>>
+Cat: Meow
+Cat Grandma: You're welcome.
+Old Bag: You should watch your children a little more closely. Another human almost adopted her.
+Fashionista: Luckly, we were able to hinder her from doing so.
+Cat: Meeeeeeeoooowwww
+The cat reaches behind her. She hands you the form z-28401ft in a passable condition.
+Cat Grandma: Yes! We finally can help the banker out.
+Old Bag: Hopefully his promised comotion is big enough for the secretary to be fully distracted!
+<<else>>
+Cat: Meow
+<<endonce>>
+===
+
+title: BankerForm
+---
+Fashionista: Here is your paper with a too smal text size. How are you even supossed to decipher what is written on there?
+Cat Grandma: By wearing your reading glasses maybe.
+Fashionista: I do not need them!
+Banker: How neat. Now I can bypass giving them my pay for the last ten years I have worked for them.
+Old Bag: Now. Do you already know, how you are going to concentrate your attention soly towards her?
+Banker: That's easy. Her ego is bigger than her forehead. I already know what I want to do.
+Fashionista: We should make a sign when you are about to start, like in those movies.
+Banker: Trust me. We don't need them. You'll know.
+===
+
+title: BankerDistraction
+---
+Banker: EXCUSE ME EVERYBODY! 
+
+Banker:
 ===
