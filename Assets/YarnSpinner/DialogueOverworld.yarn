@@ -295,7 +295,7 @@ Cat Grandma: At least I can watch my series now...
 
 title: BeatenPassionateNurse
 ---
-The beaten nurse wipes her tears wuth tissues.
+The beaten nurse wipes her tears with tissues.
 Sad Trainee Nurse:....
 Cat Grandma: Maybe, we were too hard on her...
 Old Bag: All you need after loosing an important operation is a bit space...
@@ -908,7 +908,7 @@ Henchman: Headguard Kyle, could you please repeat your message, over!
 Walkie Talkie: *BUZZZ* Senior *BUZZ* Them *BUZZZ* Over!
 Henchman: The security firm needs to spend more money on better equipment.
 Walkie Talkie: What did you just say! The equipment is working you *BUZZZ*! Learn how to listen probably! 
-Walkie Talkie: Do I always have to get angry at you for you to actually listen to my orders!
+Walkie Talkie: Do I always have to get angry at you for you to actually listen to what I tell you to do?!
 Henchman: What? I couldn't understand what you where saying...
 Fashionista: For some reason we could clearly hear him scold you.
 Old Bag: Maybe you should go over to him and ask him for his order?
@@ -938,10 +938,74 @@ title: HallwayCat
 ---
 <<once>>
 Cat: Meow
-
-Cat Grandma: 
+Fashionista: I slowly get the feeling this racoon is stalking us...
+Old Bag: Do not talk so much nonesense! Identifying creatures correctly could mean life and-
+Cat: Meeeeooooowwwww
+Cat Grandma: Woah your husband almost spotted your children? Hiding here must be the only way to escape his eyes.
+Cat: Meow
+Cat Grandma: Hmm. You want to tank us somehow? But you already did enough for us. 
 <<else>>
 <<endonce>>
+===
+title: HeadNurse
+---
+Head Guard: How could you even loose to seniors. They can't be that fast.
+Head Nurse: The other nurses with me are only trainees. Sadly we are short on staff, so I had to pick the unexperienced ones.
+Head Guard: Normaly no outsiders are allowed here, but you knowing those people might put us at an advantage.
+Head Guard: After all you are doing my job for me...
+Head Guard: And you seem a lot more reliable... and stronger than my flimsy and confused henchman, Billi.
+Walkie Talkie: The old people are ignoring me! What should I do? Over.
+Head Guard: Billi, just catch them! Or at least one of them! They are old. You are faster than them. Over.
+Walkie Talkie: What did you say? The walkie talkie didn't pick it up. Over.
+Head Guard: TSK. See he is totally useless! 
+Head Guard: Wanna work for me? My security company pays well-
+Head Nurse: No thank you! I am a nurse at heart. Looking after old people and going to the gym are my joys in life.
+Cat Grandma: Oh no! Not another nurse!
+Head Nurse: See, they are even greeting me with such enthusiasm. They love me.
+Head Guard: Stop lying to yourself-
+Old Bag: Let us trough! We need to speak to the head of Money-Central-Cash-First Bank!
+Old Bag: Or else we-
+Fashionista: Who is this short man?
+Head Guard: SHORT? Who are you calling short, Lady?
+Fashionista: There is no other man standing next to the head nurse, is there?
+Head Guard: You are right. I should help you catch those intruders and make sure that they get arressted.
+Head Nurse: HAHAHAHAHAHAHA! Easy guys, we can just talk it out. Follow me back to the re-
+Cat Grandma: I am sorry, but we can't. We are so close to finish what we came here for.
+Head Nurse: But robbing a bank. Come on, you wouldn't want to spend the rest of your life in prison.
+Head Nurse: How about we all relax now and take a deep breath.
+Fashionista: We cannot let anybody ruin this. Not even you.
+Henchman: I SAID STOP!
+Fashionista: We are already standing still. Do you need glasses by chance.
+Cat Grandma: The irony...
+Old Bag: Boy, go back... We already outsmarted you. In the military you wouldn't even have lasted one-
+Henchman: See, Kyle! They are ignoring me!
+Head Guard: Now you know how I feel....
+Cat Grandma: We have proof that this bank is embezzeling our hard earned money! 
+Cat Grandma: My whole life I looked after sick and injured animals, just to end up beeing barly able to feed my 4 cats.
+Old Bag: And I can't buy high quality wool anymore, without struggling to find something to eat. 
+Old Bag: I just want to enjoy the rest of my remaining time. I spend so much time on the battle fields-
+Fashionista: Finally I have enough freetime to visit all the places I always wanted to see. But now I am struggeling more than ever before.
+Head Nurse: ...
+Head Nurse: Of couse I understand. But protocoll is protocoll. You guys are harming yourself. Let us go back and figure everything out-
+Old Bag: For the last time! We will finish this operation. And if it is the last thing I do!
+Fashionista: Show us what you can.
+Cat Grandma: The hard way it is.
+Head Nurse: Fine! Boys help me out!
+Henchman: Who is this?
+Head Guard: I littary told you over the- never mind.
+===
+title: HeadNurseWin
+---
+Head Nurse: You two are utterly useless! I miss my girls.
+Henchman: That isn't true. Their strengh just suprised me!
+Head Guard: We can still catch them.
+Old Bag: Hey! That isn't fair! We won fair and square!
+Fashionista: Move, you are hindering us.
+Head Guard: There is no way, I'll let you. MCCF is the biggest partner of my security firm. Loosing them, would be a huge loss for us.
+Cat: Meow
+Cat Grandma: What are you still doing here?
+Cat Grandma: You already have all your children. Leave it is too dangerous here.
+
 ===
 title: Conclusion
 ---
