@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using Yarn.Unity;
 
 public class BattleManager : MonoBehaviour
@@ -16,7 +17,7 @@ public class BattleManager : MonoBehaviour
     GameObject catGrandma;
     int targetCharacter;
     [SerializeField]
-    DialogueRunner  runner;
+    DialogueRunner runner;
 
     int guardCounter = 0;
 
@@ -43,9 +44,22 @@ public class BattleManager : MonoBehaviour
         catGrandma.GetComponent<BattleHUD>().UpdateHealthBar(catGrandma.GetComponent<Unit>().currentHP);
         oldBag.GetComponent<BattleHUD>().UpdateHealthBar(oldBag.GetComponent<Unit>().currentHP);
         Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
-        fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentMP);
-        catGrandma.GetComponent<BattleHUD>().UpdateHealthBar(catGrandma.GetComponent<Unit>().currentMP);
-        oldBag.GetComponent<BattleHUD>().UpdateHealthBar(oldBag.GetComponent<Unit>().currentMP);
+        fashionista.GetComponent<BattleHUD>().UpdateManaBar(fashionista.GetComponent<Unit>().currentMP);
+        catGrandma.GetComponent<BattleHUD>().UpdateManaBar(catGrandma.GetComponent<Unit>().currentMP);
+        oldBag.GetComponent<BattleHUD>().UpdateManaBar(oldBag.GetComponent<Unit>().currentMP);
+        CharacterHealthCheck(fashionista);
+        CharacterHealthCheck(oldBag);
+        CharacterHealthCheck(catGrandma);
+    }
+    public void BarUpdate()
+    {
+        fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
+        catGrandma.GetComponent<BattleHUD>().UpdateHealthBar(catGrandma.GetComponent<Unit>().currentHP);
+        oldBag.GetComponent<BattleHUD>().UpdateHealthBar(oldBag.GetComponent<Unit>().currentHP);
+        Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
+        fashionista.GetComponent<BattleHUD>().UpdateManaBar(fashionista.GetComponent<Unit>().currentMP);
+        catGrandma.GetComponent<BattleHUD>().UpdateManaBar(catGrandma.GetComponent<Unit>().currentMP);
+        oldBag.GetComponent<BattleHUD>().UpdateManaBar(oldBag.GetComponent<Unit>().currentMP);
     }
     public GameObject TurnDetector(int turnTracker)
     {
@@ -66,7 +80,7 @@ public class BattleManager : MonoBehaviour
             return Enemy;
         }
 
-        
+
         print("ERROR IN TURNDETECTOR, TurnTracker exceeds expected values");
         return null;
     }
@@ -76,12 +90,7 @@ public class BattleManager : MonoBehaviour
     {
         //Runs every newly started turn to check things (atm it resets everyones guard back from 2 to 1, but I expect to use this more often)
         TurnDetector(turnTracker).GetComponent<Unit>().guard = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        BarUpdate();
     }
 
     [YarnCommand("fight")]
@@ -113,43 +122,101 @@ public class BattleManager : MonoBehaviour
         Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
     }
     [YarnCommand("special")]
-    public void Special(GameObject Character, int specialTarget)
+    public void Special(int turnController, int specialTarget)
     {
+        GameObject Character = TurnDetector(turnController);
         GameObject characterSpecialTarget = TurnDetector(specialTarget);
 
-        int tempNumber = Random.Range(10, 21);
-        characterSpecialTarget.GetComponent<Unit>().currentHP += tempNumber;
-
-        runner.VariableStorage.SetValue("$tempNumber", tempNumber);
-        Mathf.Clamp(characterSpecialTarget.GetComponent<Unit>().currentHP, 0, characterSpecialTarget.GetComponent<Unit>().maxHP);
-        characterSpecialTarget.GetComponent<BattleHUD>().UpdateHealthBar(characterSpecialTarget.GetComponent<Unit>().currentHP);
-
-        /*if (specialTarget != 0)
+        if (Character = TurnDetector(1))
         {
-            if (specialTarget == 1)
+            if (Character.GetComponent<Unit>().currentMP >= 20)
             {
-                print("Healing Fashionista");
-                //Targets Fashionista
-                int tempNumber = 10 + Random.Range(0, 11);
-                fashionista.GetComponent<Unit>().currentHP += tempNumber;
-                print("Fashionista got healed by " + tempNumber + " HP.");
+                int tempNumber = Random.Range(10, 21);
+                characterSpecialTarget.GetComponent<Unit>().currentHP += tempNumber;
+
                 runner.VariableStorage.SetValue("$tempNumber", tempNumber);
-                Mathf.Clamp(fashionista.GetComponent<Unit>().currentHP, 0, fashionista.GetComponent<Unit>().maxHP);
-                fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
+                Mathf.Clamp(characterSpecialTarget.GetComponent<Unit>().currentHP, 0, characterSpecialTarget.GetComponent<Unit>().maxHP);
+                characterSpecialTarget.GetComponent<BattleHUD>().UpdateHealthBar(characterSpecialTarget.GetComponent<Unit>().currentHP);
+                Character.GetComponent<Unit>().currentMP -= 20;
+                Mathf.Clamp(Character.GetComponent<Unit>().currentMP, 0, Character.GetComponent<Unit>().maxMP);
+            }
+            else
+            {
+                runner.VariableStorage.SetValue("$specialBlocked", true);
+            }
+        }
+        if (Character = TurnDetector(0))
+        {
+            //Fashionista's Special: A debuff inflicted on the enemy, making them either 1) drop their guard or 2) make them take double damage. The Enemy can't guard for the next turn
+            if (Character.GetComponent<Unit>().currentMP >= 20)
+            {
+                Enemy.GetComponent<Unit>().guard = 0.5f;
+                Character.GetComponent<Unit>().currentMP -= 20;
+                guardCounter = 2;
+            }
+            else
+            {
+                runner.VariableStorage.SetValue("$specialBlocked", true);
+            }
+
+        }
+        if (Character = TurnDetector(2))
+        {
+            if (Character.GetComponent<Unit>().currentMP >= 30)
+            {
+
+                Character.GetComponent<Unit>().currentMP -= 30;
+
+                int tempDamage = (int)(Random.Range(20, 31) / Enemy.GetComponent<Unit>().guard);
+                int tempNumber = Random.Range(10, 20);
+
+                runner.VariableStorage.SetValue("$tempNumber", tempDamage);
+                runner.VariableStorage.SetValue("$tempNumber2", tempNumber);
+
+                Enemy.GetComponent<Unit>().currentHP -= tempDamage;
+
+                CharacterHealthCheck(Character);
+
 
             }
-            else if (specialTarget == 2)
+            else
             {
-                print("Healing Cat Grandma");
-                //targets Cat Grandma
+                runner.VariableStorage.SetValue("$specialBlocked", true);
             }
-            else if (specialTarget == 3)
-            {
-                print("Healing Old Bag");
-                // targets Old Bag
-            }
-        }*/
-        Debug.Log(Character + " is trying to use their SPECIAL, but it hasn't been coded yet");
+
+
+        }
+        /*if (specialTarget != 0)
+{
+    if (specialTarget == 1)
+    {
+        print("Healing Fashionista");
+        //Targets Fashionista
+        int tempNumber = 10 + Random.Range(0, 11);
+        fashionista.GetComponent<Unit>().currentHP += tempNumber;
+        print("Fashionista got healed by " + tempNumber + " HP.");
+        runner.VariableStorage.SetValue("$tempNumber", tempNumber);
+        Mathf.Clamp(fashionista.GetComponent<Unit>().currentHP, 0, fashionista.GetComponent<Unit>().maxHP);
+        fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
+
+    }
+    else if (specialTarget == 2)
+    {
+        print("Healing Cat Grandma");
+        //targets Cat Grandma
+    }
+    else if (specialTarget == 3)
+    {
+        print("Healing Old Bag");
+        // targets Old Bag
+    }
+}*/
+        Debug.Log(Character + "used their SPECIAL");
+
+        //Updating all important InfoBars after special
+        Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
+        Character.GetComponent<BattleHUD>().UpdateHealthBar(Character.GetComponent<Unit>().currentHP);
+        Character.GetComponent<BattleHUD>().UpdateManaBar(Character.GetComponent<Unit>().currentMP);
         //Character.GetComponent<Unit>().
     }
     [YarnCommand("guard")]
@@ -177,14 +244,14 @@ public class BattleManager : MonoBehaviour
     [YarnCommand("EnemyTurn")]
     public void EnemyTurn()
     {
-        
+
         int randomNumber = Random.Range(0, 10);
         if (guardCounter > 0)
         {
             guardCounter -= 1;
             if (guardCounter == 0)
             {
-                
+
                 if (Enemy.GetComponent<Unit>().guard == 0.5)
                 {
                     runner.VariableStorage.SetValue("$enemySpecialString", " is no longer weakened.");
@@ -205,7 +272,7 @@ public class BattleManager : MonoBehaviour
 
             //The Attacker has to pick between the 3 Characters
 
-            targetCharacter = Random.Range(1, 4);
+            targetCharacter = Random.Range(0, 3);
             EnemyAttack(targetCharacter);
         }
         else
@@ -233,33 +300,152 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyAttack(int targetCharacter)
     {
-        targetCharacter = Random.Range(1, 4);
 
-        if (targetCharacter == 1)
+        if (targetCharacter == 0)
         {
+            if (CharacterDown(TurnDetector(targetCharacter)))
+            {
+                targetCharacter += 1;
+                EnemyAttack(targetCharacter);
+                return;
+            }
             print("Enemy is Attacking Fashionista");
             fashionista.GetComponent<Unit>().currentHP -= (int)(Enemy.GetComponent<Unit>().damage / fashionista.GetComponent<Unit>().guard);
             fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
             runner.VariableStorage.SetValue("$enemyAttackController", 1);
+            CharacterHealthCheck(TurnDetector(targetCharacter));
+            return;
 
         }
-        else if (targetCharacter == 2)
+        else if (targetCharacter == 1 && !CharacterDown(TurnDetector(targetCharacter)))
         {
+            if (CharacterDown(TurnDetector(targetCharacter)))
+            {
+                targetCharacter += 1;
+                EnemyAttack(targetCharacter);
+                return;
+            }
             print("Enemy is Attacking Cat Grandma");
             catGrandma.GetComponent<Unit>().currentHP -= (int)(Enemy.GetComponent<Unit>().damage / catGrandma.GetComponent<Unit>().guard);
             catGrandma.GetComponent<BattleHUD>().UpdateHealthBar(catGrandma.GetComponent<Unit>().currentHP);
             runner.VariableStorage.SetValue("$enemyAttackController", 2);
+            CharacterHealthCheck(TurnDetector(targetCharacter));
+            return;
 
 
         }
-        else if (targetCharacter == 3)
+        else if (targetCharacter == 2 && !CharacterDown(TurnDetector(targetCharacter)))
         {
+            if (CharacterDown(TurnDetector(targetCharacter)))
+            {
+                targetCharacter = 0;
+                EnemyAttack(targetCharacter);
+                return;
+            }
+
             print("Enemy is Attacking Old Bag");
             oldBag.GetComponent<Unit>().currentHP -= (int)(Enemy.GetComponent<Unit>().damage / oldBag.GetComponent<Unit>().guard);
             oldBag.GetComponent<BattleHUD>().UpdateHealthBar(oldBag.GetComponent<Unit>().currentHP);
             runner.VariableStorage.SetValue("$enemyAttackController", 3);
+            CharacterHealthCheck(TurnDetector(targetCharacter));
+            return;
+
+
         }
-                print("End of Enemy Attack");
-                return;
+
+        print("End of Enemy Attack");
+        return;
+        //Okay, about this method...
+        //If EnemyAttack gets initiated, when all three characters are down, it basically crashes EVERYTHING, because of infinite looping back and forth
+        //I am trying to fix it, but the best fix, is either a failsafe that adds more complexity, or (how I'm currently doing it) make sure EnemyAttack NEVER initiates after all three characters go down
+        //I am praying that this code won't end up being a problem
+    }
+    public void CharacterHealthCheck(GameObject character)
+    {
+        if (character.GetComponent<Unit>().currentHP <= 0)
+        {
+            Mathf.Clamp(character.GetComponent<Unit>().currentHP, 0, character.GetComponent<Unit>().maxHP);
+            if (character == TurnDetector(0))
+            {
+                //Fashionista gets downed
+                runner.VariableStorage.SetValue("$char1Down", true);
+                character.GetComponentInChildren<Animator>().SetBool("KO", true);
+            }
+            else if (character == TurnDetector(1))
+            {
+                //Cat Grandma gets downed
+                runner.VariableStorage.SetValue("$char2Down", true);
+                character.GetComponentInChildren<Animator>().SetBool("KO", true);
+            }
+            else if (character == TurnDetector(2))
+            {
+                //Old Bag gets downed
+                runner.VariableStorage.SetValue("$char3Down", true);
+                character.GetComponentInChildren<Animator>().SetBool("KO", true);
+            }
+
+        }
+        else
+        {
+            if (character == TurnDetector(0))
+            {
+                //Fashionista gets downed
+                runner.VariableStorage.SetValue("$char1Down", false);
+                character.GetComponentInChildren<Animator>().SetBool("KO", false);
+            }
+            else if (character == TurnDetector(1))
+            {
+                //Cat Grandma gets downed
+                runner.VariableStorage.SetValue("$char2Down", false);
+                character.GetComponentInChildren<Animator>().SetBool("KO", false);
+            }
+            else if (character == TurnDetector(2))
+            {
+                //Old Bag gets downed
+                runner.VariableStorage.SetValue("$char3Down", false);
+                character.GetComponentInChildren<Animator>().SetBool("KO", false);
+            }
+        }
+    }
+    public bool CharacterDown(GameObject character)
+    {
+        if (character.GetComponent<Unit>().currentHP <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        // could also just be return (character.GetComponent<Unit>().currentHP <= 0)
+        // But it's more readabe this way, otherwise I'm going to lose complete oversight over my code
+    }
+
+    public void WinLoseCheck()
+    {
+
+    }
+    [YarnCommand("Lost")]
+    public void Lost()
+    {
+        fashionista.GetComponent<Unit>().currentHP += 1;
+        oldBag.GetComponent<Unit>().currentHP += 1;
+        catGrandma.GetComponent<Unit>().currentHP += 1;
+        //Needs to return 1 HP to every downed character, getting them out of the downed state
+        CharacterHealthCheck(fashionista);
+        CharacterHealthCheck(oldBag);
+        CharacterHealthCheck(catGrandma);
+
+
+    }
+    public void Won()
+    {
+        fashionista.GetComponent<Unit>().currentHP += 1;
+        oldBag.GetComponent<Unit>().currentHP += 1;
+        catGrandma.GetComponent<Unit>().currentHP += 1;
+        //Needs to return 1 HP to every downed character, getting them out of the downed state
+        CharacterHealthCheck(fashionista);
+        CharacterHealthCheck(oldBag);
+        CharacterHealthCheck(catGrandma);
     }
 }

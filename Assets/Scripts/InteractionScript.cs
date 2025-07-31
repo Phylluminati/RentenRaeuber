@@ -10,6 +10,7 @@ public class InteractionScript : MonoBehaviour
     public GameObject E2Interact;
     GameObject cube;
     private DialogueRunner dialogueRunner;
+    [SerializeField]
     private GameObject portrait;
 
 
@@ -47,7 +48,6 @@ public class InteractionScript : MonoBehaviour
     void Start()
     {
         dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
-        portrait = GameObject.Find("Portrait");
     }
 
     void Update()

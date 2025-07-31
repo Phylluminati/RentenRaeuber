@@ -12,8 +12,13 @@ position: -297,5
 <<declare $enemyTarget = "Undefined, ERROR">>
 <<declare $friendlyTarget = 0>>
 <<declare $tempNumber = 0>>
+<<declare $tempNumber2 = 0>>
 <<declare $bossEnemy = false>>
 <<declare $enemySpecialString = "">>
+<<declare $specialBlocked = false>>
+<<declare $char1Down = false>>
+<<declare $char2Down = false>>
+<<declare $char3Down = false>>
 
 <<jump character1Turn>>
 ===
@@ -22,13 +27,28 @@ position: 13,106
 ---
 <<set $turnController = 0>>
 <<newTurn BattleManager {$turnController}>>
+<<if $char1Down is true>>
+    Fashionista has fallen and can't get up.
+    <<jump character2Turn>>
+<<endif>>
 It is currently {$character1}'s turn. What will they do? #line:062249f 
 -> Fight #line:028f7a2 
     <<fight BattleManager {$turnController}>>
     {$character1} decided to attack
     <<jump character2Turn>>
 -> Special #line:060eb37 
-    <<special BattleManager {$turnController}>>
+    <<set $specialBlocked to false>>
+    <<once>>
+    {$character1} can use the charisma and prestige she attained in her fashion-designer days to humiliate an enemy, making them either drop their guard or double as vulnerable to attacks.
+        -> Use Special.
+        -> Not now.
+            <<jump character1Turn>>
+    <<endonce>>
+    <<special BattleManager {$turnController} 0>>
+    <<if $specialBlocked is true>>
+        {$character1} has not enough MP to humiliate
+        <<jump character1Turn>>
+    <<endif>>
     <<jump character2Turn>>
 -> Use Item
     <<jump Inventory>>
@@ -43,6 +63,10 @@ title: character2Turn
 position: 327,-165
 ---
 <<set $turnController = 1>>
+<<if $char2Down is true>>
+    Cat Grandma has fallen and can't get up.
+    <<jump character3Turn>>
+<<endif>>
 <<newTurn BattleManager {$turnController}>>
 It is {$character2}'s turn. What will they do #line:032c3d7 
 -> Fight #line:0efd2e9 
@@ -50,16 +74,42 @@ It is {$character2}'s turn. What will they do #line:032c3d7
     {$character2} decided to attack
     <<jump character3Turn>>
 -> Special #line:0f6690c 
+    <<once>>
+    Cat Grandma has mastered the ability to ease any pain or suffering with cute pictures of her many, many cats.
+    <<endonce>>
     Who do you wish to heal
+    <<set $specialBlocked to false>>
     -> Fashionista
+        <<if $char1Down is true>>
+            Fashionista is downed and can't be healed
+            <<jump character2Turn>>
+        <<endif>>
         <<special BattleManager {$turnController} 0>>
+        <<if $specialBlocked is true>>
+            {$character2} has not enough MP to heal
+            <<jump character2Turn>>
+        <<endif>>
         Fashionista recovered {$tempNumber} HP.
     -> Cat Grandma
         <<special BattleManager {$turnController} 1>>
+        <<if $specialBlocked is true>>
+            {$character2} has not enough MP to heal
+            <<jump character2Turn>>
+        <<endif>>
         Cat Grandma recovered {$tempNumber} HP.
     -> Old Bag
+        <<if $char3Down is true>>
+            Old Bag is downed and can't be healed
+            <<jump character2Turn>>
+        <<endif>>
         <<special BattleManager {$turnController} 2>>
+        <<if $specialBlocked is true>>
+            {$character2} has not enough MP to heal
+            <<jump character2Turn>>
+        <<endif>>
         Old Bag recovered {$tempNumber} HP.
+    -> nevermind.
+        <<jump character2Turn>>
     <<jump character3Turn>>
 -> Use Item
     <<jump Inventory>>
@@ -74,6 +124,10 @@ title: character3Turn
 position: 620,199
 ---
 <<set $turnController = 2>>
+<<if $char3Down is true>>
+    Old Bag has fallen and can't get up.
+    <<jump EnemyTurn>>
+<<endif>>
 <<newTurn BattleManager {$turnController}>>
 It is {$character3}'s turn. What will they do #line:035b344 
 -> Fight #line:0a5d5ce 
@@ -81,7 +135,21 @@ It is {$character3}'s turn. What will they do #line:035b344
     {$character3} decided to attack
     <<jump EnemyTurn>>
 -> Special #line:06a3ac3 
-    <<special BattleManager {$turnController}>>
+    <<once>>
+    Old Bag channels his inner grumpiness to really put the hurt on people with an overwhelming number of complaints.
+    This will both hurt the enemy and to a certain degree Old Bag.
+        -> Start complaining
+        -> Not now
+            <<jump character3Turn>>
+    <<endonce>>
+    <<set $specialBlocked to false>>
+    <<special BattleManager {$turnController} 0>>
+    <<if $specialBlocked is true>>
+            {$character3} has not enough MP to complain excessively
+            <<jump character3Turn>>
+        <<endif>>
+    The Enemy takes {$tempNumber} damage.
+    Old Bag riles himself up too much and takes {$tempNumber2} damage as well.
     <<jump EnemyTurn>>
 -> Guard #line:0fc35da 
     <<guard BattleManager {$turnController}>>
@@ -92,6 +160,13 @@ It is {$character3}'s turn. What will they do #line:035b344
 title: EnemyTurn
 position: 1007,215
 ---
+<<if $char1Down is true>>
+    <<if $char2Down is true>>
+        <<if $char3Down is true>>
+            <<jump battleLost>>
+        <<endif>>
+    <<endif>>
+<<endif>>
 It's {$enemy}'s turn...
 <<EnemyTurn  BattleManager>>
 <<if $enemySpecialString != "">>
@@ -106,6 +181,13 @@ It's {$enemy}'s turn...
     {$enemy} has decided to attack {$character2}
 <<elseif $enemyAttackController == 3>>
     {$enemy} has decided to attack {$character3}
+<<endif>>
+<<if $char1Down is true>>
+    <<if $char2Down is true>>
+        <<if $char3Down is true>>
+            <<jump battleLost>>
+        <<endif>>
+    <<endif>>
 <<endif>>
 <<if $bossEnemy is true>>
     <<EnemyTurn  BattleManager>>
@@ -138,4 +220,10 @@ What Item do you want this Character to Use
     <<if $turnController==2>>
         <<jump character3Turn>>
     <<endif>>
+===
+title: battleLost
+---
+You and your team lost.
+<<Lost BattleManager>>
+
 ===

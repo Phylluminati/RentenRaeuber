@@ -3196,7 +3196,7 @@ MonoBehaviour:
   unitLevel: 0
   damage: 15
   maxHP: 100
-  currentHP: 100
+  currentHP: 0
   maxMP: 100
   currentMP: 100
   guard: 1
@@ -3504,6 +3504,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2958262986520364888, guid: 52571f68872914e24837210513edea1d,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2958262987206614837, guid: 52571f68872914e24837210513edea1d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3628,6 +3633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020628925673895294, guid: 52571f68872914e24837210513edea1d,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d,
         type: 3}
@@ -3817,7 +3827,7 @@ Transform:
   m_GameObject: {fileID: 1169201382}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 1.8, z: -15.74}
+  m_LocalPosition: {x: 13, y: 1.8, z: -17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6085,7 +6095,7 @@ MonoBehaviour:
   maxHP: 100
   currentHP: 100
   maxMP: 80
-  currentMP: 80
+  currentMP: 100
   guard: 1
 --- !u!114 &1741726718
 MonoBehaviour:
@@ -6837,7 +6847,7 @@ MonoBehaviour:
   maxHP: 100
   currentHP: 100
   maxMP: 120
-  currentMP: 120
+  currentMP: 100
   guard: 1
 --- !u!114 &2067560130
 MonoBehaviour:
