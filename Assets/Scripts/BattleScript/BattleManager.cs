@@ -18,6 +18,8 @@ public class BattleManager : MonoBehaviour
     int targetCharacter;
     [SerializeField]
     DialogueRunner runner;
+    [SerializeField] ProgressionManager progressionManager;
+    [SerializeField] DialogueRunner overworldDialogueRunner;
 
     int guardCounter = 0;
 
@@ -36,6 +38,19 @@ public class BattleManager : MonoBehaviour
 
     public void BattleStart()
     {
+        if (GameObject.Find("Nurse1"))
+        {
+            Enemy = GameObject.Find("Nurse1");
+        }
+        if (GameObject.Find("Nurse2"))
+        {
+            Enemy = GameObject.Find("Nurse2");
+        }
+        if (GameObject.Find("Nurse3"))
+        {
+            Enemy = GameObject.Find("Nurse3");
+        }
+
         string tempString = Enemy.GetComponent<Unit>().unitName;
         runner.VariableStorage.SetValue("$enemy", tempString);
 
@@ -50,6 +65,7 @@ public class BattleManager : MonoBehaviour
         CharacterHealthCheck(fashionista);
         CharacterHealthCheck(oldBag);
         CharacterHealthCheck(catGrandma);
+        CharacterHealthCheck(Enemy);
     }
     public void BarUpdate()
     {
@@ -120,6 +136,7 @@ public class BattleManager : MonoBehaviour
         int currentDamage = (int)(character.GetComponent<Unit>().damage / Enemy.GetComponent<Unit>().guard);
         Enemy.GetComponent<Unit>().currentHP -= currentDamage;
         Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
+        CharacterHealthCheck(Enemy);
     }
     [YarnCommand("special")]
     public void Special(int turnController, int specialTarget)
@@ -127,7 +144,7 @@ public class BattleManager : MonoBehaviour
         GameObject Character = TurnDetector(turnController);
         GameObject characterSpecialTarget = TurnDetector(specialTarget);
 
-        if (Character = TurnDetector(1))
+        if (Character == TurnDetector(1))
         {
             if (Character.GetComponent<Unit>().currentMP >= 20)
             {
@@ -145,7 +162,7 @@ public class BattleManager : MonoBehaviour
                 runner.VariableStorage.SetValue("$specialBlocked", true);
             }
         }
-        if (Character = TurnDetector(0))
+        if (Character == TurnDetector(0))
         {
             //Fashionista's Special: A debuff inflicted on the enemy, making them either 1) drop their guard or 2) make them take double damage. The Enemy can't guard for the next turn
             if (Character.GetComponent<Unit>().currentMP >= 20)
@@ -153,6 +170,7 @@ public class BattleManager : MonoBehaviour
                 Enemy.GetComponent<Unit>().guard = 0.5f;
                 Character.GetComponent<Unit>().currentMP -= 20;
                 guardCounter = 2;
+                Character.GetComponent<BattleHUD>().UpdateManaBar(Character.GetComponent<Unit>().currentMP);
             }
             else
             {
@@ -160,7 +178,7 @@ public class BattleManager : MonoBehaviour
             }
 
         }
-        if (Character = TurnDetector(2))
+        if (Character == TurnDetector(2))
         {
             if (Character.GetComponent<Unit>().currentMP >= 30)
             {
@@ -174,8 +192,12 @@ public class BattleManager : MonoBehaviour
                 runner.VariableStorage.SetValue("$tempNumber2", tempNumber);
 
                 Enemy.GetComponent<Unit>().currentHP -= tempDamage;
+                oldBag.GetComponent<Unit>().currentHP -= tempNumber;
 
+                Character.GetComponent<BattleHUD>().UpdateHealthBar(Character.GetComponent<Unit>().currentHP);
                 CharacterHealthCheck(Character);
+                Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
+                CharacterHealthCheck(Enemy);
 
 
             }
@@ -383,6 +405,12 @@ public class BattleManager : MonoBehaviour
                 runner.VariableStorage.SetValue("$char3Down", true);
                 character.GetComponentInChildren<Animator>().SetBool("KO", true);
             }
+            else if (character == TurnDetector(3))
+            {
+                runner.VariableStorage.SetValue("$enemyDown", true);
+                character.GetComponentInChildren<Animator>().SetBool("KO", true);
+
+            }
 
         }
         else
@@ -404,6 +432,12 @@ public class BattleManager : MonoBehaviour
                 //Old Bag gets downed
                 runner.VariableStorage.SetValue("$char3Down", false);
                 character.GetComponentInChildren<Animator>().SetBool("KO", false);
+            }
+            else if (character == TurnDetector(3))
+            {
+                runner.VariableStorage.SetValue("$enemyDown", false);
+                character.GetComponentInChildren<Animator>().SetBool("KO", false);
+
             }
         }
     }
@@ -428,6 +462,7 @@ public class BattleManager : MonoBehaviour
     [YarnCommand("Lost")]
     public void Lost()
     {
+        overworldDialogueRunner.VariableStorage.SetValue("$battleLost", true);
         fashionista.GetComponent<Unit>().currentHP += 1;
         oldBag.GetComponent<Unit>().currentHP += 1;
         catGrandma.GetComponent<Unit>().currentHP += 1;
@@ -435,11 +470,14 @@ public class BattleManager : MonoBehaviour
         CharacterHealthCheck(fashionista);
         CharacterHealthCheck(oldBag);
         CharacterHealthCheck(catGrandma);
+        GameObject.Destroy(Enemy);
 
 
     }
+    [YarnCommand("Won")]
     public void Won()
     {
+        overworldDialogueRunner.VariableStorage.SetValue("$battleWon", true);
         fashionista.GetComponent<Unit>().currentHP += 1;
         oldBag.GetComponent<Unit>().currentHP += 1;
         catGrandma.GetComponent<Unit>().currentHP += 1;
@@ -447,5 +485,7 @@ public class BattleManager : MonoBehaviour
         CharacterHealthCheck(fashionista);
         CharacterHealthCheck(oldBag);
         CharacterHealthCheck(catGrandma);
+        GameObject.Destroy(Enemy);
+
     }
 }

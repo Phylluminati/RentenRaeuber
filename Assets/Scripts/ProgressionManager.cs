@@ -5,6 +5,11 @@ using Yarn.Unity;
 
 public class ProgressionManager : MonoBehaviour
 {
+    [SerializeField] List<GameObject> enemyPrefab;
+    [SerializeField] GameObject battleParent;
+    [SerializeField] GameObject overworldParent;
+
+    [SerializeField] DialogueRunner overworldDialogueRunner;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +23,31 @@ public class ProgressionManager : MonoBehaviour
     }
 
     [YarnCommand("Deactivate")]
-    public void Deactivate()
+    public void Deactivate(GameObject gameObject)
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     [YarnCommand("Activate")]
-    public void Activate()
+    public void Activate(GameObject gameObject)
     {
-        this.gameObject.SetActive(true);
+        gameObject.SetActive(true);
+    }
+
+    [YarnCommand("Battle")]
+    public void InitiateBattle(int enemyPrefabSelection)
+    {
+        GameObject enemy = enemyPrefab[enemyPrefabSelection];
+        overworldParent.SetActive(false);
+        battleParent.SetActive(true);
+        battleParent.GetComponentInChildren<BattleManager>().BattleStart();
+    }
+
+    [YarnCommand("EndBattle")]
+    public void LeaveBattle()
+    {
+
+        battleParent.SetActive(false);
+        overworldParent.SetActive(true);
     }
 }

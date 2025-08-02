@@ -11,6 +11,9 @@ position: -6,-118
 <<if $CubeCompleted is true>>
     <<jump CubeComplete>>
 <<endif>>
+//IMPORTANT THE FOLLOWING DECLARATION NEEDS TO BE IN THE FINISHED SCRIPT, OTHERWISE THE COMBAT TRANSITIONS WON'T WORK
+<<declare $battleWon = false>>
+<<declare $battleLost = false>>
 The Cube: So you have found me in this empty plane, yet to be populated... #line:0f0da03 
 The Cube: You may ask me, the all knowing Cube, 1 question, choose wisely #line:0780372 
     -> Can you help me get this 1 8... uhm B... form? <<if $SpokeToSecretary is true>>
@@ -148,4 +151,32 @@ Random Customer: Hmmm....
 Random Customer: I wonder if all of these drinks are a better economic investment than saving my money in my bank account...
 <<endonce>>
 <<stop>>
+===
+title: battler
+---
+<<declare $nurse1Beaten = false>>
+<<if $battleWon == true>>
+    <<set $nurse1Beaten = true>>
+    <<set $battleWon to false>>
+<<endif>>
+<<if $nurse1Beaten == true>>
+    Uuugh, you evil pensioners...
+    I'll get you.. some day...
+    <<stop>>
+<<endif>>
+<<if $battleLost == true>>
+    HAHAHAHAHA, Beating up old people is truely such a fulfilling evil deed...
+    What? Do you want a rematch?
+    Do you worst!
+<<endif>>
+<<once>>
+Ahahahaha, look at this, some poor geriatric folk.
+<<endonce>>
+I challenge you to a duel, do you accept?
+-> Yes
+    <<Battle  ProgressionManager 1>>
+    <<stop>>
+-> No
+    <<stop>>
+
 ===
