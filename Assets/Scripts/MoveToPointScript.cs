@@ -16,12 +16,12 @@ public class MoveToPointScript : MonoBehaviour
     Vector3 targetPosition;
     bool isMoving;
 
-    public GameObject TestWaypoint;
+    //public GameObject TestWaypoint;
     private GameObject nWaypoint;
     // Start is called before the first frame update
     void Start()
     {
-        MoveToPoint(TestWaypoint);
+
     }
 
     // Update is called once per frame
@@ -52,8 +52,11 @@ public class MoveToPointScript : MonoBehaviour
             }
 
         }
-        
-        myAnimator.SetBool("isWalking", endPosition != targetPosition);
+
+        if (myAnimator != null)
+        {
+            myAnimator.SetBool("isWalking", endPosition != targetPosition);
+        }
 
     }
 

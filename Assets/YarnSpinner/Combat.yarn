@@ -20,7 +20,12 @@ position: -297,5
 <<declare $char2Down = false>>
 <<declare $char3Down = false>>
 <<declare $enemyDown = false>>
+//<<if $HealCommand == true>>
+//    <<Heal BattleManager>>
+//    <<set $HealCommand = false>>
+//<<endif>>
 You can advance the combat-dialogue by pressing the arrow below or pressing space on your keyboard.
+
 
 <<jump character1Turn>>
 ===

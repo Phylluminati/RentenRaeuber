@@ -20,6 +20,7 @@ public class BattleManager : MonoBehaviour
     DialogueRunner runner;
     [SerializeField] ProgressionManager progressionManager;
     [SerializeField] DialogueRunner overworldDialogueRunner;
+    public bool healActive = false;
 
     int guardCounter = 0;
     [SerializeField] List<Material> particles;
@@ -56,8 +57,13 @@ public class BattleManager : MonoBehaviour
         string tempString = Enemy.GetComponent<Unit>().unitName;
         runner.VariableStorage.SetValue("$enemy", tempString);
 
+        if (healActive == true)
+        {
+            FullHeal();
+            healActive = false;
+        }
         //Updating all Healthbars and Manabars on start, just to be sure
-        fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
+            fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
         catGrandma.GetComponent<BattleHUD>().UpdateHealthBar(catGrandma.GetComponent<Unit>().currentHP);
         oldBag.GetComponent<BattleHUD>().UpdateHealthBar(oldBag.GetComponent<Unit>().currentHP);
         Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
@@ -70,6 +76,12 @@ public class BattleManager : MonoBehaviour
         CharacterHealthCheck(Enemy);
         runner.StartDialogue("Combat");
     }
+   /* public void MainPositionReset()
+    {
+        fashionista.GetComponentInChildren<Transform>().position = 
+        oldBag.GetComponentInChildren<Transform>().position = 
+        catGrandma.GetComponentInChildren<Transform>().position = 
+    } */
     public void BarUpdate()
     {
         fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
@@ -356,7 +368,7 @@ public class BattleManager : MonoBehaviour
             return;
 
         }
-        else if (targetCharacter == 1 && !CharacterDown(TurnDetector(targetCharacter)))
+        else if (targetCharacter == 1) //&& !CharacterDown(TurnDetector(targetCharacter)))
         {
             if (CharacterDown(TurnDetector(targetCharacter)))
             {
@@ -375,7 +387,7 @@ public class BattleManager : MonoBehaviour
 
 
         }
-        else if (targetCharacter == 2 && !CharacterDown(TurnDetector(targetCharacter)))
+        else if (targetCharacter == 2) //&& !CharacterDown(TurnDetector(targetCharacter)))
         {
             if (CharacterDown(TurnDetector(targetCharacter)))
             {
@@ -510,5 +522,19 @@ public class BattleManager : MonoBehaviour
 
         progressionManager.LeaveBattle();
 
+    }
+    [YarnCommand("Heal")]
+    public void FullHeal()
+    {
+        fashionista.GetComponent<Unit>().currentHP = fashionista.GetComponent<Unit>().maxHP;
+        oldBag.GetComponent<Unit>().currentHP = oldBag.GetComponent<Unit>().maxHP;
+        catGrandma.GetComponent<Unit>().currentHP = catGrandma.GetComponent<Unit>().maxHP;
+        fashionista.GetComponent<Unit>().currentMP = fashionista.GetComponent<Unit>().maxMP;
+        oldBag.GetComponent<Unit>().currentMP = oldBag.GetComponent<Unit>().maxMP;
+        catGrandma.GetComponent<Unit>().currentMP = catGrandma.GetComponent<Unit>().maxMP;
+        CharacterHealthCheck(fashionista);
+        CharacterHealthCheck(oldBag);
+        CharacterHealthCheck(catGrandma);
+        BarUpdate();
     }
 }

@@ -475,9 +475,9 @@ MonoBehaviour:
   unitName: Nurse
   unitDescriptor: 
   unitLevel: 1
-  damage: 20
-  maxHP: 200
-  currentHP: 200
+  damage: 10
+  maxHP: 150
+  currentHP: 150
   maxMP: 0
   currentMP: 0
   guard: 1

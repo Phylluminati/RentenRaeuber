@@ -4,7 +4,6 @@ title: EmptyVendingMachine
 An old, dirty vending machine.
 Seems like noone bothered to restock it for ages.
 ===
-
 title: ATM
 ---
 <<change ThirdPersonPlayer 0>>
@@ -33,8 +32,9 @@ The machine offers a wide range of luxurious and expensive looking drinks
         <<change ThirdPersonPlayer 3>>
         Old Bag: Why are you trying to waste our money?
     -> Buy high-protein-almond-strawberry-protein-shake (5 catcoins)
-        <<if $CatsFound >= 5>>
+        <<if $CatCoin >= 5>>
             <<set $GetShake = true>>
+            <<set $CatCoin = $CatCoin - 5>>
             <<change ThirdPersonPlayer 1>>
             Fashionista: We got the shake with the complicated name, let's go and exchange it for some tissues!
         <<else>>
@@ -46,6 +46,15 @@ The machine offers a wide range of luxurious and expensive looking drinks
 ===
 title: Intro
 ---
+<<declare $CatsFound = 0>>
+<<declare $CatsFoundTotal = 0>>
+<<declare $battleWon = false>>
+<<declare $battleLost = false>>
+<<declare $SpokenToClerk = false>>
+<<declare $GetShake = false>>
+<<declare $WipesCollected = false>>
+<<declare $ProgressToOffice = false>>
+
 <<once>>
 <<change ThirdPersonPlayer 1>>
 Fashionista: Is everyone ready?
@@ -80,6 +89,7 @@ Old Bag: I..I don't know? It just came over me.
 Cat Grandma: What even is a spacebar? Is that like a rebar pipe in space?
 <<change ThirdPersonPlayer 1>>
 Fashionista: Head in the game now, everyone. It is showtime!
+<<Deactivate ProgressionManager IntroTrigger>>
 <<endonce>>
 
 ===
@@ -87,8 +97,7 @@ title: CatIntro
 position: 70,70
 ---
 <<once>>
-<<declare $CatsFound = 0>>
-
+<<declare $CatCoin = 0>>
 <<change ThirdPersonPlayer 0 >>
 Cat: Meow
 <<change ThirdPersonPlayer 1>>
@@ -139,7 +148,7 @@ Cat: .... Meeeeooooowwwww!
 Cat: HISSS!
 <<change ThirdPersonPlayer 3>>
 Old Bag: You made her angry!
-Old Bag: Stay back, cat! I have wool and I am not afraid to use it!
+Old Bag: Stay back, cat! I have a ball of wool and I am not afraid to use it!
 Old Bag: Back in my days, I was a high ranking milit-
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: The cat says, she pays us one coin for every found kitten. There are 7 in this entrance.
@@ -162,9 +171,68 @@ Old Bag: We should press SPACE BAR, when we are near one of her kittens to colle
 Old Bag: What is wrong with me? I keep saying this weird stuff. This is getting-
 <<change ThirdPersonPlayer 1>>
 Fashionista: Well then. Let us go and talk to the staff!
+<<if $CatsFound > 0>>
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: Wait a moment everyone...
+    Cat Grandma: haven't we already collected some baby cats?
+    <<change  ThirdPersonPlayer 0>>
+    Cat: MEEEEOOOOOOW!
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: Of course, here we'll give the little one back to you
+    Cat Grandma: Here you go {$CatsFound} kittens.
+    <<change ThirdPersonPlayer 0>>
+    Cat: Meow meow meow.
+    <<set $CatsFoundTotal = $CatsFoundTotal + $CatsFound>>
+    The cat quickly slips behind a closeby object, after a few seconds she comes back out, holding {$CatsFound} CatCoins.
+    <<set $CatCoin = $CatCoin + $CatsFound>>
+    You now have a total of {$CatCoin} CatCoins.
+    <<set $CatsFound = 0>>
+    Cat Grandma: Thank you, miss kitty!
+    <<stop>>
+<<endif>>
 <<else>>
 <<change ThirdPersonPlayer 0>>
 Cat: Meow.
+<<if $battleLost is true>>
+    <<once>>
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: We really need your help, Mama Cat.
+    <<change ThirdPersonPlayer 0>>
+    Cat: Meow?
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Yes, you see this nurse lady defeated us and now stops us from doing what we came here to do...
+    <<change ThirdPersonPlayer 0>>
+    Cat: ...  Meow meow... meow meow meow, mrrrp!
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: That would be wonderful, thank you!
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: What did she say?
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: She is willing to let us play and pet with her and any of her kittens we have already found.
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Don't know if I want to play around with a raccoon, don't they have all kinds of illnesses.
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: ...
+    Cat Grandma: Anyways, we would love to, miss cat.
+    <<endonce>>
+    The group spends some time petting and playing with the Cat and her {$CatsFoundTotal} found kittens.
+    <<HealFlag ProgressionManager>>
+<<endif>>
+<<if $CatsFound > 0>>
+     <<change ThirdPersonPlayer 2>>
+    Cat Grandma: We found more of your kittens, Mama Cat.
+    Cat Grandma: Here you go {$CatsFound} kittens.
+    <<change ThirdPersonPlayer 0>>
+    Cat: Meow meow meow.
+    <<set $CatsFoundTotal = $CatsFoundTotal + $CatsFound>>
+    The cat quickly slips behind a closeby object, after a few seconds she comes back out, holding {$CatsFound} CatCoins.
+    <<set $CatCoin = $CatCoin + $CatsFound>>
+    You now have a total of {$CatCoin} CatCoins.
+    <<set $CatsFound = 0>>
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: Thank you, miss kitty!
+    <<stop>>
+<<endif>>
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: Don't worry, I promise to reunite you with your children.
 <<change ThirdPersonPlayer 1>>
@@ -179,72 +247,84 @@ title: KittenFound01
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Found you!
+<<Deactivate ProgressionManager Cat01Item>>
 ===
 title: KittenFound02
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Found one!
+<<Deactivate ProgressionManager Cat02Item>>
 ===
 title: KittenFound03
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Another coin added to my balance!
+<<Deactivate ProgressionManager Cat03Item>>
 ===
 title: KittenFound04
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 There it is!
+<<Deactivate ProgressionManager Cat04Item>>
 ===
 title: KittenFound05
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 You have found one kitten!
+<<Deactivate ProgressionManager Cat05Item>>
 ===
 title: KittenFound06
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Search for a better hiding spot next time.
+<<Deactivate ProgressionManager Cat06Item>>
 ===
 title: KittenFound07
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Found another one!
+<<Deactivate ProgressionManager Cat07Item>>
 ===
 title: KittenFound08
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 There you are!
+<<Deactivate ProgressionManager Cat08Item>>
 ===
 title: KittenFound09
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 You can't hide from me!
+<<Deactivate ProgressionManager Cat09Item>>
 ===
 title: KittenFound10
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Let`s bring you home!
+<<Deactivate ProgressionManager Cat10Item>>
 ===
 title: KittenFound11
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 HA! You are coming with us!
+<<Deactivate ProgressionManager Cat11Item>>
 ===
 title: KittenFound12
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Yes, found you!
+<<Deactivate ProgressionManager Cat12Item>>
 ===
 
 title: KittenFound13
@@ -252,18 +332,21 @@ title: KittenFound13
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Yes, found you!
+<<Deactivate ProgressionManager Cat13Item>>
 ===
 title: KittenFound14
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Ha, you cant hide from me!
+<<Deactivate ProgressionManager Cat14Item>>
 ===
 title: KittenFound15
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 I almost missed you!
+<<Deactivate ProgressionManager Cat15Item>>
 ===
 
 
@@ -459,61 +542,72 @@ Business Man: Maybe I should focus on making more advertisments about my pink pr
 
 title: NursesApearance
 ---
-
+<<if $GetShake is true>>
+    <<jump CollectTissues>>
+<<endif>>
+<<if $battleWon == true>>
+    <<set $nurse1Beaten = true>>
+    <<set $battleWon to false>>
+    <<set $battleLost to false>>
+<<endif>>
+<<if $nurse1Beaten == true>>
+    <<jump WinPassionateNurse>>
+    <<stop>>
+<<endif>>
+<<if $battleLost == true>>
+    <<jump LossPassionateNurse>>
+<<endif>>
 <<once>>
 <<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: THERE THEY ARE!
+The Nurse excitedly picks up a radio from her belt and yells into it.
 Passionate Trainee Nurse: GUYS! I HAVE FOUND THEM!
-<<change ThirdPersonPlayer 4>>
+<<change ThirdPersonPlayer 0>>
+*KKKkkkRRRrRRRrrsSSSssssSSshhhh*
 Head Nurse: Good Job, April! 
 Head Nurse: Thanks to you, we can now bring them back.
-<<change ThirdPersonPlayer 6>>
 Indifferent Trainee Nurse: Ugh. Finally.
-<<change ThirdPersonPlayer 4>>
-Head Nurse: Ladies and Gentleman, please follow us. We will bring you home safe and sound.
+<<change ThirdPersonPlayer 5>>
+Passionate Trainee Nurse: Ma'ams and Mister, please follow me. I will bring you home safe and sound to the Old folks home.
 <<change ThirdPersonPlayer 1>>
-Fashionista: No! I do not want to! Leave us alone.
+Fashionista: Back to the old folks home?! How boring! Leave us alone.
 <<change ThirdPersonPlayer 3>>
-Old Bag: We are not done with what we came to do! You have to wait.
+Old Bag: We are not done with what we came to do! You are going to have to wait.
 <<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: What do you need to do? We might be able to help, right Melissa?
-<<change ThirdPersonPlayer 6>>
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: NOOOOO! That isn't in our job description.
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: We are here to rob this bank!
-<<change ThirdPersonPlayer 4>>
+<<change ThirdPersonPlayer 0>>
 Head Nurse: Puhahahahahahahaha!
 Head Nurse: HAHAHAHAHAHAHA!
 Head Nurse: That was a good one.
+Head Nurse: Anyways, April, you can bring them back now, we will be with you shortly.
 <<change ThirdPersonPlayer 3>>
 Old Bag: We are wasting time! You are in the way! Let us through!
 <<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: No can do! It is time for your medication!
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: Please! I do not want to miss out on my favourite TV series today!
-<<change ThirdPersonPlayer 6>>
-Indifferent Trainee Nurse: Then just follow us... less work for us and you can watch your series in peace.
+<<change ThirdPersonPlayer 0>>
+Indifferent Trainee Nurse: Then just follow April... would be less work for us and you can watch your series in peace.
 <<change ThirdPersonPlayer 1>>
 Fashionista: If you won't leave on your own, we will make you!
-<<change ThirdPersonPlayer 4>>
-Head Nurse: Let's proceed with the hard way then! I have to teach my trainees how to catch seniors anyways.
+<<change ThirdPersonPlayer 0>>
+Head Nurse: Let's proceed with the hard way then! My trainees still have to learn how to catch seniors anyways.
 Head Nurse: April!
 <<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: YES, MA'AM!
-
-Head Nurse: Stop them!
-<<change ThirdPersonPlayer 5>>
-Passionate Trainee Nurse: The more you resist the more it will hurt!
+<<change ThirdPersonPlayer 0>>
+<<declare $nurse1Beaten = false>>
+<<Battle  ProgressionManager 1>>
+<<stop>>
 <<endonce>>
 
 ===
 title: WinPassionateNurse
 ---
-<<declare $PasNurseIsBeaten = false>>
-    <<if $PasNurseIsBeaten is true>>
-    <<jump BeatenPassionateNurse>>
-<<endif>>
-
 <<once>>
 <<change ThirdPersonPlayer 3>>
 Old Bag: Hah! You didn't see my military tactics coming! Back in-
@@ -525,14 +619,14 @@ Cat Grandma: Now you have to let us do as we please!
 Passionate Trainee Nurse: Ugh noooo! I lost. What do we do now?
 <<change ThirdPersonPlayer 4>>
 Head Nurse: Fine! You win for now! We WILL catch you soon enough!
-<<set $PasNurseIsBeaten = true>>
 <<endonce>>
+
+<<jump BeatenPassionateNurse>>
 ===
 
 title: LossPassionateNurse
 ---
 <<once>>
-<<change ThirdPersonPlayer 4>>
 Head Nurse: Good job, April!
 <<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Thank you, Ma'am.
@@ -542,15 +636,40 @@ Old Bag: No. My tactics were splendid.... I got rusty.
 Fashionista: That can't be. I lost... Is my age finally catching up with me?
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: At least I can watch my series now...
+<<change ThirdPersonPlayer 3>>
+Old Bag: We're not stopping here ladies.
+Old Bag: We just have to lick our wounds and try again.
+<<change ThirdPersonPlayer 1>>
+Fashionista: That's easy to say, but I'm pooped. I don't have any energy left in me to fight
+<<change ThirdPersonPlayer 2>>
+Cat Grandma: Cats are pretty good at licking their wounds
+Cat Grandma: I mean they lick their paws all the time, maybe we should ask the Cat Missy if she can help us.
+<<else>>
+
+Passionate Nurse: Hi there, old people. Are you ready to finally give up on this and let me take you back home?
+<<change ThirdPersonPlayer 3>>
+Old Bag: Never!
+<<change ThirdPersonPlayer 1>>
+Fashionista: Yes, we're still going to fight!
+<<change ThirdPersonPlayer 5>>
+Passionate Nurse: Oh okay, that's a shame then...
+Passionate Nurse: Ready for a rematch?
+    -> YES!
+        <<Battle  ProgressionManager 1>>
+    -> NO!
+        <<change ThirdPersonPlayer 2>>
+        Cat Grandma: We're not ready yet...
+        Cat Grandma: But cats are pretty good at licking their wounds, we should ask the Cat mama for help or advie...
+    <<stop>>
+
 <<endonce>>
+
 ===
 
 title: BeatenPassionateNurse
 ---
-<<declare $SpokenToClerk = false>>
-<<if $SpokenToClerk is true>>
-    <<jump TissuesPassionateNurse>>
-        <<endif>>
+
+
 <<change ThirdPersonPlayer 0>>
 The beaten nurse wipes her tears with tissues.
 <<change ThirdPersonPlayer 5>>
@@ -561,15 +680,13 @@ Cat Grandma: Maybe, we were too hard on her...
 Old Bag: All you need after losing an important operation is a bit of space...
 <<change ThirdPersonPlayer 1>>
 Fashionista: You might be right.
+<<if $SpokenToClerk is true>>
+    <<jump TissuesPassionateNurse>>
+        <<endif>>
 ===
 
 title: TissuesPassionateNurse
 ---
-<<declare $GetShake = false>>
-<<if $GetShake is true>>
-    <<jump CollectTissues>>
-    <<endif>>
-
 <<once>>
 <<change ThirdPersonPlayer 0>>
 Standing there still in shock from this terrifying loss, she is treating the scratch Maximilian gave her with a tissue.
@@ -643,6 +760,9 @@ Passionate Trainee Nurse: Oh. You but don't have to buy me one.
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: See it as an apology! We will be right back!
 <<else>>
+<<if $GetShake is true>>
+    <<jump CollectTissues>>
+<<endif>>
 <<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Sooo hungry...
 Passionate Trainee Nurse: Should I try eating my tissues?
@@ -666,7 +786,7 @@ Passionate Trainee Nurse: I am sorry.
 <<change ThirdPersonPlayer 3>>
 Old Bag: Why would you eat them?! What are we going to do now?
 <<change ThirdPersonPlayer 5>>
-Passionate Trainee Nurse: I sill have alcohol wipes left... but I wouldn't recommend using them as tissues...
+Passionate Trainee Nurse: I still have alcohol wipes left... but I wouldn't recommend using them as tissues...
 Passionate Trainee Nurse: This is the only thing I can give you...
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: Don't worry about it. We'll take them. Thank you!
@@ -741,7 +861,6 @@ Random Man: I guess I just stay here a little bit longer.
 ===
 title: SadClerk
 ---
-<<declare $WipesCollected = false>>
  <<if $WipesCollected is true>>
     <<jump SadClerkWipes>>
     <<endif>>
@@ -792,7 +911,7 @@ Cat Grandma: Oh dear, I do not know what to say...
 <<change ThirdPersonPlayer 1>>
 Fashionista: Well, at least we know now that we are not the only ones being mistreated by this joke of a bank.
 <<change ThirdPersonPlayer 3>>
-Old Bag: I'd normally say this builds character, but... oh my God, that is really too much.
+Old Bag: I'd normally say this builds character, but... oh dear, that seems really like too much.
 <<change ThirdPersonPlayer 4>>
 Clerk: I'm so sorry.... *SNIFF* Sitting on the toilet, crying like a baby.... I must seem so unprofessional to you.
 <<change ThirdPersonPlayer 2>>
@@ -823,6 +942,9 @@ Clerk: I look like a teary mess. I need something to wipe my face with because I
 Cat Grandma: We'll get you something, just hang in there.
 <<set $SpokenToClerk = true>>
 <<else>>
+<<if $WipesCollected is true>>
+    <<jump SadClerkWipes>>
+<<endif>>
 <<change ThirdPersonPlayer 3>>
 Old Bag: We will bring you some tissues, hang in there.
 <<change ThirdPersonPlayer 4>>
@@ -831,8 +953,9 @@ Clerk: Thank you, for helping me.
 ===
 title: SadClerkWipes
 ---
-<<declare $ProgressToOffice = false>>
+
 <<if $ProgressToOffice is true>>
+    
 <<endif>>
 <<once>>
 <<change ThirdPersonPlayer 0>>
@@ -846,7 +969,7 @@ Fashionista: How could we possibly forget.
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: We brought you the ...tissues! Here!
 <<change ThirdPersonPlayer 4>>
-Clerk: Thanky you, soooo much! Now I can clean my face and pretend that I did not cry for an hour.
+Clerk: Thank you, soooo much! Now I can clean my face and pretend that I did not cry for an hour.
 <<change ThirdPersonPlayer 1>>
 Fashionista: surely... no one will question the puddle of tears...
 <<change ThirdPersonPlayer 4>>
@@ -866,7 +989,7 @@ Fashionista: Finally, we are closer to our retirement funds.
 Cat Grandma: Let's go! We shouldn't waste too much time.
 
 <<set $ProgressToOffice = true>>
-    <<jump OfficeIntro>>
+//<<jump OfficeIntro>>
 
 <<else>>
 <<change ThirdPersonPlayer 4>>
@@ -875,6 +998,35 @@ Clerk: Why are you still here? Insert the keycard inside the cardreader next to 
 Clerk: My eyes are burning... are you sure this is supposed to happen?
 
 <<endonce>>
+===
+title: HighSecurityDoor
+---
+<<if $ProgressToOffice is true>>
+    A solid metal door is blocking the path forward
+    Fashionista: Okay, moment of truth, let's see if this card works...
+    *Beep*
+    *Click*
+    Old Bag: HAHAHA, take that machine! We win!
+    Cat Grandma: Does opening a lock the intended way, count as beating the lock?
+    Old Bag: Uuuh, come on, I have to take any small win that I can get.
+    <<declare $FormQuest = false>>
+    <<declare $ReceiveForm = false>>
+    <<declare $LostKittenBack = false>>
+    <<declare $KittenAdoption = false>>
+    <<declare $nurse2Beaten = false>>
+    <<declare $Distraction = false>>
+    <<declare $SecretaryGone = false>>
+    <<Deactivate ProgressionManager Barrier1>>
+<<else>>
+    A solid metal door is blocking the path forward.
+    Fashionista: Damnit, look at that, you know what this is.
+    Old Bag: No..
+    Fashionista: A Keycard reader, we need a keycard to unlock this door
+    Old Bag: Keycards??? What happened to the good old simple key, what's next, key-tablets?? key-smartphones??
+    Old Bag: Imagine unlocking your door with some sort electrically-wified-blueteethed Gizmo... ridiculous!
+    Cat Grandma: I have bad news for you, Old Bag...
+    Fashionista: Best not to tell him. We still need a keycard though.
+<<endif>>
 ===
 
 title: WhiteboardWall
@@ -908,7 +1060,6 @@ Fashionista: Everything was better back in the days.
 ===
 title: DocumentVendingMachine
 ---
-<<declare $FormQuest = false>>
     <<if $FormQuest is true>>
         <<jump DocumentMerchant>>
     <<endif>> 
@@ -929,7 +1080,6 @@ Cat Grandma: You could have seen them better with the right glasses on.
 ===
 title: DocumentMerchant
 ---
-
 <<change ThirdPersonPlayer 0>>
 A vending machine that only sells boring and overly complicated documents.
 Vending Machine: Important protocol note: No access for employees.
@@ -1093,7 +1243,7 @@ title: BreakroomCat
 ---
 <<once>>
 <<change ThirdPersonPlayer 1>>
-Fashionista: I have never seen a smoking raccon.
+Fashionista: I have never seen a smoking raccoon.
 <<change ThirdPersonPlayer 3>>
 Old Bag: That is also a cat.
 <<change ThirdPersonPlayer 1>>
@@ -1136,8 +1286,8 @@ Fashionista: What do you mean. I find it cozy in here.
 title: OfficeCatmom
 ---
     <<if $CatsFound >= 10>>
-        <<jump FifeBabysfound>>
-        <<endif>>
+        <<jump FiveBabysfound>>
+    <<endif>>
 
 <<once>>
 <<change ThirdPersonPlayer 0>>
@@ -1159,6 +1309,46 @@ Cat Grandma: Oh! Of course we will keep the fact that you lost your kittens from
 <<change ThirdPersonPlayer 3>>
 Old Bag: We should move on. The secretary is keeping an eye on us. If we drag this out any longer, she might kick us out...
 <<else>>
+<<if $battleLost is true>>
+    <<once>>
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: We really need your help, Mama Cat.
+    <<change ThirdPersonPlayer 0>>
+    Cat: Meow?
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Yes, you see this nurse lady defeated us and now stops us from doing what we came here to do...
+    <<change ThirdPersonPlayer 0>>
+    Cat: ...  Meow meow... meow meow meow, mrrrp!
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: That would be wonderful, thank you!
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: What did she say?
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: She is willing to let us play and pet with her and any of her kittens we have already found.
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Don't know if I want to play around with a raccoon, don't they have all kinds of illnesses.
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: ...
+    Cat Grandma: Anyways, we would love to, miss cat.
+    <<endonce>>
+    The group spends some time petting and playing with the Cat and her {$CatsFoundTotal} found kittens.
+    <<HealFlag ProgressionManager>>
+<<endif>>
+<<if $CatsFound > 0>>
+     <<change ThirdPersonPlayer 2>>
+    Cat Grandma: We found more of your kittens, Mama Cat.
+    Cat Grandma: Here you go {$CatsFound} kittens.
+    <<change ThirdPersonPlayer 0>>
+    Cat: Meow meow meow.
+    <<set $CatsFoundTotal = $CatsFoundTotal + $CatsFound>>
+    The cat quickly slips behind a closeby object, after a few seconds she comes back out, holding {$CatsFound} CatCoins.
+    <<set $CatCoin = $CatCoin + $CatsFound>>
+    You now have a total of {$CatCoin} CatCoins.
+    <<set $CatsFound = 0>>
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: Thank you, miss kitty!
+    <<stop>>
+<<endif>>
 <<change ThirdPersonPlayer 0>>
 Cat: Meeeeeeeoooowwww
 <<change ThirdPersonPlayer 2>>
@@ -1170,7 +1360,7 @@ title: OfficeIntro
 ---
 <<once>>
 <<change ThirdPersonPlayer 0>>
-Secretary: What are you old folks doing here?! This office is for staff only.
+Secretary: What are you old geriatrics doing here?! This office is for staff only.
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: We are here because there is nobody at the reception.
 <<change ThirdPersonPlayer 3>>
@@ -1187,17 +1377,19 @@ Secretary: Just make it quick. This isn't an retirement home after all.
 Old Bag: Back in my days this rude way of speak-
 <<change ThirdPersonPlayer 1>>
 Fashionista: Thank you! You won't need to worry about that. We'll be so fast that you won't even notice us leave.
-<<else>>
-<<change ThirdPersonPlayer 0>>
-Secretary: Are you still here?
-Secretary: Finish what you came here for and leave.
+//<<else>>
+//<<change ThirdPersonPlayer 0>>
+//Secretary: Are you still here?
+//Secretary: Finish what you came here for and leave.
+<<MoveTo Secretary Waypoint1>>
+<<Deactivate ProgressionManager NewTrigger>>
 <<endonce>>
 ===
 
 title: TroubelledBanker
 ---
 
-<<declare $ReceiveForm = false>>
+
 <<if $ReceiveForm is true>>
     <<jump BankerForm>>
 <<endif>>
@@ -1235,7 +1427,7 @@ Banker: I have always hated this place with every fiber of my body and want to s
 <<change ThirdPersonPlayer 1>>
 Fashionista: Splendid. We need to pass to the safe! We are due 3 months of retirement payment and need it.
 <<change ThirdPersonPlayer 0>>
-Banker: Everything that doesn't profit the bank monetarely gets cut.
+Banker: Everything that doesn't profit the bank monetarily gets cut.
 Banker: Personally I found it deplorable when I started here, but after a while you get desensitized.
 Banker: Our superiors make our lives living hell if we don't cave in to their one dimensionally evil demands.
 <<change ThirdPersonPlayer 3>>
@@ -1267,12 +1459,12 @@ Banker: Please, bring me form z-28401ft. Otherwise I refuse to help you.
 <<endonce>>
 ===
 
-title: FifeBabysfound
+title: FiveBabysfound
 ---
-<<declare $LostKittenBack = false>>
-    <<if $LostKittenBack is true>>
-        <<jump CatMomWithKitten>>
-        <<endif>>
+
+<<if $LostKittenBack is true>>
+    <<jump CatMomWithKitten>>
+<<endif>>
 
 <<once>>
 <<change ThirdPersonPlayer 0>>
@@ -1287,6 +1479,7 @@ Cat Grandma: Oh no. Someone is trying to adopt one of her children.
 Old Bag: You know what, that seems fair. The situation changed. Operation save kitty starts now.
 <<change ThirdPersonPlayer 1>>
 Fashionista: Why are you suddenly talking like this.
+<<set $KittenAdoption = true>>
 <<else>>
 <<change ThirdPersonPlayer 0>>
 Cat: Hisssssss
@@ -1297,6 +1490,18 @@ Fashionista: Don't worry we will save your child!
 
 title: FightIndifferentNurse
 ---
+<<if $battleWon == true>>
+    <<set $nurse2Beaten = true>>
+    <<set $battleWon to false>>
+    <<set $battleLost to false>>
+<<endif>>
+<<if $nurse2Beaten == true>>
+    <<jump IndifferentNurseWin>>
+    <<stop>>
+<<endif>>
+<<if $battleLost == true>>
+    <<jump IndifferentNurselose>>
+<<endif>>
 <<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Awww! Where did you little cutie come from.
 <<change ThirdPersonPlayer 4>>
@@ -1306,38 +1511,42 @@ Indifferent Trainee Nurse: Oh, I know! From now on your name will be Estefania!
 Indifferent Trainee Nurse: How exciting! I can take you to the gym, tell you all about the right way to build muscles and eat all the high protein stuff with you... 
 <<change ThirdPersonPlayer 4>>
 Lost Kitten: Meow
-<<change ThirdPersonPlayer 3>>
-Old Bag: Hey! Leave the kitten alone!
-<<change ThirdPersonPlayer 1>>
-Fashionista: Its mother is already worried about it.
-<<change ThirdPersonPlayer 2>>
-Cat Grandma: Please, give it back!
-<<change ThirdPersonPlayer 0>>
-Indifferent Trainee Nurse: Oh, no! I didn't know that little cutie already has a family. Please, I didn't mean to steal it!
-<<change ThirdPersonPlayer 3>>
-Old Bag: It's all water under the bridge! Everybody makes mistakes af-
-<<change ThirdPersonPlayer 0>>
-Indifferent Trainee Nurse: I would say, if I actually cared. I found her. I keep her. Simple.
-<<change ThirdPersonPlayer 1>>
-Fashionista: But! Her parents worry about her.
-<<change ThirdPersonPlayer 0>>
-Indifferent Trainee Nurse: To me, it sounds a lot like that this is their problem. Not mine. Estefania is now my cat.
-<<change ThirdPersonPlayer 2>>
-Cat Grandma: I've heard enough! You better hand us the cat over!
-<<change ThirdPersonPlayer 0>>
-Indifferent Trainee Nurse: Or what? What can you old people even do? 
-<<change ThirdPersonPlayer 3>>
-Old Bag: We fight you, win, reunite this family and lastly rob this bank.
-<<change ThirdPersonPlayer 0>>
-Indifferent Trainee Nurse: It's been a while since you proudly annouced that you will rob this boring bank. Guess what. Didn't happen.
-<<change ThirdPersonPlayer 1>>
-Fashionista: Didn't happen YET. How did you even get in here?
-<<change ThirdPersonPlayer 0>>
-Indifferent Trainee Nurse: I opened the door like every other door. Everybody is struggling to open it without a keycard for some reason.
-Indifferent Trainee Nurse: Well, I was in need of a short workout anyways.
+<<if $KittenAdoption == true>>
+    <<change ThirdPersonPlayer 3>>
+    Old Bag: Hey! Leave the kitten alone!
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Its mother is already worried about it.
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: Please, give it back!
+    <<change ThirdPersonPlayer 0>>
+    Indifferent Trainee Nurse: Oh, no! I didn't know that little cutie already has a family. Please, I didn't mean to steal it!
+    <<change ThirdPersonPlayer 3>>
+    Old Bag: It's all water under the bridge! Everybody makes mistakes af-
+    <<change ThirdPersonPlayer 0>>
+    Indifferent Trainee Nurse: Is what I would say, if I actually cared. I found her. I keep her. Simple.
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: But! Her parents worry about her.
+    <<change ThirdPersonPlayer 0>>
+    Indifferent Trainee Nurse: To me, it sounds a lot like that this is their problem. Not mine. Estefania is now my cat.
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: I've heard enough! You better hand us the cat over!
+    <<change ThirdPersonPlayer 0>>
+    Indifferent Trainee Nurse: Or what? What can you old people even do? 
+    <<change ThirdPersonPlayer 3>>
+    Old Bag: We fight you, win, reunite this family and lastly rob this bank.
+    <<change ThirdPersonPlayer 0>>
+    Indifferent Trainee Nurse: It's been a while since you proudly annouced that you will rob this boring bank. Guess what. Didn't happen.
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Didn't happen YET. How did you even get in here?
+    <<change ThirdPersonPlayer 0>>
+    Indifferent Trainee Nurse: I opened the door like every other door. Everybody is struggling to open it without a keycard for some reason.
+    Indifferent Trainee Nurse: Well, I was in need of a short workout anyways.
+    <<Battle ProgressionManager 0>>
+<<endif>>
 ===
 title: IndifferentNurselose
 ---
+<<once>>
 <<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Hah! I knew it. You guys were all bark and no bite!
 Indifferent Trainee Nurse: Now I can bring you back to the retirement home. And Estefania is coming with me.
@@ -1349,6 +1558,17 @@ Old Bag: You are just lucky, you haven't fought me during my prime!
 Fashionista: No! How did we lose against that brat?
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: My heart is bleeding for this poor cat family. I cannot fathom the sadness her parents will feel.
+<<change ThirdPersonPlayer 3>>
+Old Bag: This isn't over! We need to regroup ladies!
+<<change ThirdPersonPlayer 2>>
+Cat Grandma: Let us go back to the cat mother to collect ourselves.
+<<change ThirdPersonPlayer 0>>
+<<endonce>>
+Ready to rematch?
+-> Yes
+    <<Battle ProgressionManager 0>>
+-> No
+    <<stop>>
 ===
 title: IndifferentNurseWin
 ---
@@ -1366,7 +1586,7 @@ Indifferent Trainee Nurse: Can I atleast say goodbye?
 <<change ThirdPersonPlayer 3>>
 Old Bag: Make it quick.
 <<change ThirdPersonPlayer 0>>
-Indifferent Trainee Nurse: Even though I only knew you for 10 minutes, Estefania, you quickly turned out to be my favourite person in the entire world. 
+Indifferent Trainee Nurse: Even though I only knew you for 10 and a half minutes, Estefania, you quickly turned out to be my favourite person in the entire world. 
 Indifferent Trainee Nurse: Nothing will ever change the love I have for you. I will forever cherish the memories I made with you and hold them dearly to my heart. 
 Indifferent Trainee Nurse: Goodbye...*SOB* Estefania. No other cat will ever be able to fill the void you will leave.
 <<change ThirdPersonPlayer 4>>
@@ -1377,6 +1597,8 @@ Cat Grandma: Truly touching! *SNIFF*
 Fashionista: Are you finally done here?
 <<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Yes. Take her! Don't let me think about it too much.
+<<Deactivate ProgressionManager Cat14LostKitten>>
+You collected the lost kitty
 
 <<set $LostKittenBack = true>>
 <<set $CatsFound = $CatsFound + 1>>
@@ -1423,7 +1645,7 @@ Cat Grandma: By wearing your reading glasses maybe.
 <<change ThirdPersonPlayer 1>>
 Fashionista: I do not need them!
 <<change ThirdPersonPlayer 0>>
-Banker: How neat. Now I can bypass paying them back my salary for the last ten years I have worked for them.
+Banker: How neat. Now I can bypass paying them back my salary for the last ten years worked here.
 <<change ThirdPersonPlayer 3>>
 Old Bag: Now. Do you already know how you are going to execute your mission?
 <<change ThirdPersonPlayer 0>>
@@ -1432,6 +1654,51 @@ Banker: That's easy. I already know what I want to do. Even if my plan is a litt
 Fashionista: We should make a sign that lets us know when you are about to start, like in those movies.
 <<change ThirdPersonPlayer 0>>
 Banker: Trust me. We won't need that. You'll know.
+Banker: ...
+Banker: Maybe talk to the secretary, and then do please meet me after your bank robbery to tell me what kind of face she made.
+<<set $Distraction = true>>
+===
+title: SecretaryBlock
+---
+<<if $SecretaryGone == true>>
+<<jump DoorUnguarded>>
+<<endif>>
+<<change ThirdPersonPlayer 1>>
+Fashionista: That door must lead closer to the Vault!
+<<change ThirdPersonPlayer 2>>
+Cat Grandma: Then lets go it doesn't look locked
+<<change ThirdPersonPlayer 3>>
+Old Bag: Both of you should look again, there is something way worse than a simple security lock or guard standing in our way...
+Old Bag: ...Middle Management
+<<change ThirdPersonPlayer 4>>
+Secretary: WHAT are the three of you doing at this door, hmmmmmm????!!!
+<<change ThirdPersonPlayer 1>>
+Fashionista: Oh, uhm, just looking around...
+<<change ThirdPersonPlayer 4>>
+Secretary: then how about you and your cadre of retirement fund FREELOADERS(!!!) find somewhere else to snoop around, or better yet, leave my office alltogether!
+<<if $Distraction == true>>
+Secretary: Hey, what in upper management is going on over there
+Secretary: HEY! What are all of you doing???!!!
+<<BankerActivate ProgressionManager>>
+<<Deactivate ProgressionManager Banker>>
+<<Teleport OfficeCoffeeAddict Point1>>
+<<Teleport OfficeRomance Point2>>
+<<Teleport OfficePlayingGames Point3>>
+<<Teleport BreakroomSmoker Point4>>
+<<Teleport BreakroomCat Point5>>
+<<MoveTo Secretary Waypoint2>>
+<<set $SecretaryGone = true>>
+<<endif>>
+
+
+
+===
+title: DoorUnguarded
+---
+The Door is unguarded now.
+It seems to be unlocked.
+Fashionista: Everyone, ready? Let's go deeper
+<<Deactivate ProgressionManager OfficeToHallwayDoor>>
 ===
 
 title: BankerDistraction
@@ -1607,7 +1874,7 @@ title: ChiefSecurityOfficer
 ---
 <<if $HallwayKitten >= 12>>
     <<jump Catsfound>>
-    <<endif>>
+<<endif>>
 
 <<once>>
 <<change ThirdPersonPlayer 6>>
@@ -1856,7 +2123,8 @@ Henchman: That isn't true!
 ===
 
 title: HeadNurseLoss
----<<change ThirdPersonPlayer 0>>
+---
+<<change ThirdPersonPlayer 0>>
 Head Nurse: HAHAHAHAHAHAHA
 Head Nurse: Your stroll is over. It is time to go home.
 <<change ThirdPersonPlayer 1>>
@@ -1976,4 +2244,22 @@ Afterwards the evil cooperate boss got arrested. They seized his villa, bank acc
     <<endif>>
 Our three brave seniors got awarded for their genious investigation into the MCCF's shady practices.
 Now they are enjoying their retirement, playing with Maximilian and his siblings, knitting clothes for them and booking a cruise.
+===
+
+title:DEVMENU
+---
+THIS IS THE DEVMENU
+    -> Progress to office
+        alright
+    <<set $ProgressToOffice = true>>
+    -> Get CatsFound
+    <<set $CatsFound = $CatsFound + 5>>
+    -> Progress to Hallway
+        <<set $FormQuest = true>>
+        <<set $ReceiveForm = true>>
+        <<set $LostKittenBack = true>>
+        <<set $KittenAdoption = true>>
+        <<set $nurse2Beaten = true>>
+        <<set $Distraction = true>>
+Done
 ===

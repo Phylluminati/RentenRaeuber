@@ -12,8 +12,8 @@ position: -6,-118
     <<jump CubeComplete>>
 <<endif>>
 //IMPORTANT THE FOLLOWING DECLARATION NEEDS TO BE IN THE FINISHED SCRIPT, OTHERWISE THE COMBAT TRANSITIONS WON'T WORK
-<<declare $battleWon = false>>
-<<declare $battleLost = false>>
+//<<declare $battleWon = false>>
+//<<declare $battleLost = false>>
 The Cube: So you have found me in this empty plane, yet to be populated... #line:0f0da03 
 The Cube: You may ask me, the all knowing Cube, 1 question, choose wisely #line:0780372 
     -> Can you help me get this 1 8... uhm B... form? <<if $SpokeToSecretary is true>>
@@ -154,7 +154,7 @@ Random Customer: I wonder if all of these drinks are a better economic investmen
 ===
 title: battler
 ---
-<<declare $nurse1Beaten = false>>
+//<<declare $nurse1Beaten = false>>
 <<if $battleWon == true>>
     <<set $nurse1Beaten = true>>
     <<set $battleWon to false>>

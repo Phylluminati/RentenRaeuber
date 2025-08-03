@@ -11,6 +11,7 @@ public class ProgressionManager : MonoBehaviour
 
     [SerializeField] DialogueRunner overworldDialogueRunner;
     [SerializeField] GameObject enemySpawnpoint;
+    [SerializeField] GameObject BankerProgression;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,11 @@ public class ProgressionManager : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    [YarnCommand("BankerActivate")]
+    public void ActivateBanker()
+    {
+        BankerProgression.SetActive(true);
+    }
 
     [YarnCommand("Activate")]
     public void Activate(GameObject gameObject)
@@ -39,6 +45,7 @@ public class ProgressionManager : MonoBehaviour
     public void InitiateBattle(int enemyPrefabSelection)
     {
         GameObject enemy = enemyPrefab[enemyPrefabSelection];
+        overworldDialogueRunner.Stop();
         overworldParent.SetActive(false);
         battleParent.SetActive(true);
         Instantiate(enemy, enemySpawnpoint.transform);
@@ -51,5 +58,11 @@ public class ProgressionManager : MonoBehaviour
 
         battleParent.SetActive(false);
         overworldParent.SetActive(true);
+    }
+    [YarnCommand("HealFlag")]
+    public void HealFlag()
+    {
+        battleParent.GetComponentInChildren<BattleManager>().healActive = true;
+        print("HealFlag enabled");
     }
 }
