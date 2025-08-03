@@ -20,6 +20,7 @@ position: -297,5
 <<declare $char2Down = false>>
 <<declare $char3Down = false>>
 <<declare $enemyDown = false>>
+You can advance the combat-dialogue by pressing the arrow below or pressing space on your keyboard.
 
 <<jump character1Turn>>
 ===
@@ -32,11 +33,10 @@ position: 13,106
     Fashionista has fallen and can't get up.
     <<jump character2Turn>>
 <<endif>>
-Test
 It is currently {$character1}'s turn. What will they do? #line:062249f 
 -> Fight #line:028f7a2 
     <<fight BattleManager {$turnController}>>
-    {$character1} decided to attack
+    Fashionista attacks and deals {$tempNumber} damage.
     <<if $enemyDown is true>>
         <<jump battleWon>>
     <<endif>>
@@ -76,7 +76,7 @@ position: 327,-165
 It is {$character2}'s turn. What will they do #line:032c3d7 
 -> Fight #line:0efd2e9 
     <<fight BattleManager {$turnController}>>
-    {$character2} decided to attack
+    Cat Grandma attacks and deals {$tempNumber} damage.
     <<if $enemyDown is true>>
         <<jump battleWon>>
     <<endif>>
@@ -137,10 +137,10 @@ position: 620,199
     <<jump EnemyTurn>>
 <<endif>>
 <<newTurn BattleManager {$turnController}>>
-It is {$character3}'s turn. What will they do #line:035b344 
+It is Old Bag's turn. What will they do #line:035b344 
 -> Fight #line:0a5d5ce 
     <<fight BattleManager {$turnController}>>
-    {$character3} decided to attack
+    Old Bag attacks and deals {$tempNumber} damage.
     <<if $enemyDown is true>>
         <<jump battleWon>>
     <<endif>>
@@ -190,11 +190,11 @@ It's {$enemy}'s turn...
 <<if $enemyAttackController == 0>>
     {$enemy} decided to block, they will take less damage for 3 turns.
 <<elseif $enemyAttackController == 1>>
-    {$enemy} has decided to attack {$character1}
+    {$enemy} has decided to attack Fashionista
 <<elseif $enemyAttackController == 2>>
-    {$enemy} has decided to attack {$character2}
+    {$enemy} has decided to attack Cat Grandma
 <<elseif $enemyAttackController == 3>>
-    {$enemy} has decided to attack {$character3}
+    {$enemy} has decided to attack Old Bag
 <<endif>>
 <<if $char1Down is true>>
     <<if $char2Down is true>>

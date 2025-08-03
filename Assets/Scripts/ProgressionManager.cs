@@ -10,6 +10,7 @@ public class ProgressionManager : MonoBehaviour
     [SerializeField] GameObject overworldParent;
 
     [SerializeField] DialogueRunner overworldDialogueRunner;
+    [SerializeField] GameObject enemySpawnpoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,7 @@ public class ProgressionManager : MonoBehaviour
         GameObject enemy = enemyPrefab[enemyPrefabSelection];
         overworldParent.SetActive(false);
         battleParent.SetActive(true);
+        Instantiate(enemy, enemySpawnpoint.transform);
         battleParent.GetComponentInChildren<BattleManager>().BattleStart();
     }
 

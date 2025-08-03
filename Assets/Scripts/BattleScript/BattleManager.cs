@@ -22,6 +22,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField] DialogueRunner overworldDialogueRunner;
 
     int guardCounter = 0;
+    [SerializeField] List<Material> particles;
 
 
     // Start is called before the first frame update
@@ -32,23 +33,24 @@ public class BattleManager : MonoBehaviour
         //runner.VariableStorage.SetValue("$enemyIsAttacking", true);
         //runner.VariableStorage.TryGetValue<bool>("$enemyIsAttacking", out enemyIsAttacking);
         //print(enemyIsAttacking);
-        BattleStart();
-
     }
 
     public void BattleStart()
     {
-        if (GameObject.Find("Nurse1"))
+        if (GameObject.Find("Nurse1(Clone)") == true)
         {
-            Enemy = GameObject.Find("Nurse1");
+            Enemy = GameObject.Find("Nurse1(Clone)");
+            print("found Nurse 1");
         }
-        if (GameObject.Find("Nurse2"))
+        if (GameObject.Find("Nurse2(Clone)") == true)
         {
-            Enemy = GameObject.Find("Nurse2");
+            Enemy = GameObject.Find("Nurse2(Clone)");
+            print("found Nurse 2");
         }
-        if (GameObject.Find("Nurse3"))
+        if (GameObject.Find("Nurse3(Clone)") == true)
         {
-            Enemy = GameObject.Find("Nurse3");
+            Enemy = GameObject.Find("Nurse3(Clone)");
+            print("found Nurse 3");
         }
 
         string tempString = Enemy.GetComponent<Unit>().unitName;
@@ -66,6 +68,7 @@ public class BattleManager : MonoBehaviour
         CharacterHealthCheck(oldBag);
         CharacterHealthCheck(catGrandma);
         CharacterHealthCheck(Enemy);
+        runner.StartDialogue("Combat");
     }
     public void BarUpdate()
     {
@@ -136,7 +139,10 @@ public class BattleManager : MonoBehaviour
         int currentDamage = (int)(character.GetComponent<Unit>().damage / Enemy.GetComponent<Unit>().guard);
         Enemy.GetComponent<Unit>().currentHP -= currentDamage;
         Enemy.GetComponent<BattleHUD>().UpdateHealthBar(Enemy.GetComponent<Unit>().currentHP);
+        character.GetComponentInChildren<Animator>().SetTrigger("Attack");
         CharacterHealthCheck(Enemy);
+        Enemy.GetComponentInChildren<Animator>().SetTrigger("Block");
+        runner.VariableStorage.SetValue("$tempNumber", currentDamage);
     }
     [YarnCommand("special")]
     public void Special(int turnController, int specialTarget)
@@ -156,6 +162,7 @@ public class BattleManager : MonoBehaviour
                 characterSpecialTarget.GetComponent<BattleHUD>().UpdateHealthBar(characterSpecialTarget.GetComponent<Unit>().currentHP);
                 Character.GetComponent<Unit>().currentMP -= 20;
                 Mathf.Clamp(Character.GetComponent<Unit>().currentMP, 0, Character.GetComponent<Unit>().maxMP);
+                Character.GetComponentInChildren<Animator>().SetTrigger("Spellcasting");
             }
             else
             {
@@ -171,6 +178,10 @@ public class BattleManager : MonoBehaviour
                 Character.GetComponent<Unit>().currentMP -= 20;
                 guardCounter = 2;
                 Character.GetComponent<BattleHUD>().UpdateManaBar(Character.GetComponent<Unit>().currentMP);
+
+                Enemy.GetComponentInChildren<ParticleSystemRenderer>().material = particles[1];
+                Enemy.GetComponentInChildren<ParticleSystem>().Play();
+                Character.GetComponentInChildren<Animator>().SetTrigger("Taunt");
             }
             else
             {
@@ -261,6 +272,7 @@ public class BattleManager : MonoBehaviour
         Mathf.Clamp(Character.GetComponent<Unit>().currentMP, 0, Character.GetComponent<Unit>().maxMP);
         runner.VariableStorage.SetValue("$tempNumber", tempNumber);
         Character.GetComponent<BattleHUD>().UpdateManaBar(Character.GetComponent<Unit>().currentMP);
+        Character.GetComponentInChildren<Animator>().SetTrigger("Block");
 
     }
     [YarnCommand("EnemyTurn")]
@@ -315,6 +327,9 @@ public class BattleManager : MonoBehaviour
                 runner.VariableStorage.SetValue("$enemyAttackController", 0);
                 Enemy.GetComponent<Unit>().guard = 2;
                 guardCounter = 3;
+                Enemy.GetComponentInChildren<ParticleSystemRenderer>().material = particles[0];
+                Enemy.GetComponentInChildren<ParticleSystem>().Play();
+                Enemy.GetComponentInChildren<Animator>().SetTrigger("Block");
             }
 
         }
@@ -335,7 +350,9 @@ public class BattleManager : MonoBehaviour
             fashionista.GetComponent<Unit>().currentHP -= (int)(Enemy.GetComponent<Unit>().damage / fashionista.GetComponent<Unit>().guard);
             fashionista.GetComponent<BattleHUD>().UpdateHealthBar(fashionista.GetComponent<Unit>().currentHP);
             runner.VariableStorage.SetValue("$enemyAttackController", 1);
+            fashionista.GetComponentInChildren<Animator>().SetTrigger("Block");
             CharacterHealthCheck(TurnDetector(targetCharacter));
+            runner.VariableStorage.SetValue("$tempNumber", (int)(Enemy.GetComponent<Unit>().damage / fashionista.GetComponent<Unit>().guard));
             return;
 
         }
@@ -352,6 +369,8 @@ public class BattleManager : MonoBehaviour
             catGrandma.GetComponent<BattleHUD>().UpdateHealthBar(catGrandma.GetComponent<Unit>().currentHP);
             runner.VariableStorage.SetValue("$enemyAttackController", 2);
             CharacterHealthCheck(TurnDetector(targetCharacter));
+            catGrandma.GetComponentInChildren<Animator>().SetTrigger("Block");
+            runner.VariableStorage.SetValue("$tempNumber", (int)(Enemy.GetComponent<Unit>().damage / catGrandma.GetComponent<Unit>().guard));
             return;
 
 
@@ -369,7 +388,9 @@ public class BattleManager : MonoBehaviour
             oldBag.GetComponent<Unit>().currentHP -= (int)(Enemy.GetComponent<Unit>().damage / oldBag.GetComponent<Unit>().guard);
             oldBag.GetComponent<BattleHUD>().UpdateHealthBar(oldBag.GetComponent<Unit>().currentHP);
             runner.VariableStorage.SetValue("$enemyAttackController", 3);
+            oldBag.GetComponentInChildren<Animator>().SetTrigger("Block");
             CharacterHealthCheck(TurnDetector(targetCharacter));
+            runner.VariableStorage.SetValue("$tempNumber", (int)(Enemy.GetComponent<Unit>().damage / oldBag.GetComponent<Unit>().guard));
             return;
 
 
@@ -472,7 +493,7 @@ public class BattleManager : MonoBehaviour
         CharacterHealthCheck(catGrandma);
         GameObject.Destroy(Enemy);
 
-
+        progressionManager.LeaveBattle();
     }
     [YarnCommand("Won")]
     public void Won()
@@ -486,6 +507,8 @@ public class BattleManager : MonoBehaviour
         CharacterHealthCheck(oldBag);
         CharacterHealthCheck(catGrandma);
         GameObject.Destroy(Enemy);
+
+        progressionManager.LeaveBattle();
 
     }
 }

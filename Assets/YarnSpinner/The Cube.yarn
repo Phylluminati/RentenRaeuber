@@ -174,7 +174,7 @@ Ahahahaha, look at this, some poor geriatric folk.
 <<endonce>>
 I challenge you to a duel, do you accept?
 -> Yes
-    <<Battle  ProgressionManager 1>>
+    <<Battle  ProgressionManager 0>>
     <<stop>>
 -> No
     <<stop>>
