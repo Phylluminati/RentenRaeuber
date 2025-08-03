@@ -1,57 +1,84 @@
-﻿title: EmptyVendingMachine
+title: EmptyVendingMachine
 ---
+<<change ThirdPersonPlayer 0>>
 An old, dirty vending machine.
 Seems like noone bothered to restock it for ages.
 ===
 
 title: ATM
 ---
+<<change ThirdPersonPlayer 0>>
 Suprisingly, the ATM seeems to be brand new.
 But how do you work with such a modern machine?
+<<change ThirdPersonPlayer 1>>
 Old Bag: They want me to insert my debit card and expose not only my personal data, but also my pin number to this spying technology!
 Old Bag: HAH. They think I am a simpleton. Such a trick will not work on me, ever!
 ===
 title: EmptyFrontDesk
 ---
+<<change ThirdPersonPlayer 0>>
 A tidy desk that should be occupied by a smiling clerk.
 But where could they be?
 ===
+
 title: BasicMerchant
 ---
-You see a well stocked vending machine with exuberant prices #line:047fbf1 
-<<once>>
-
-<<endonce>>
+<<change ThirdPersonPlayer 0>>
+You see a well stocked vending machine with exuberant prices #line:047fbf1
 The machine offers a wide range of luxurious and expensive looking drinks
-    -> Buy a cup of water (1coin)
-    -> Buy a Te(a)tra-pack (1coin)
-    -> Buy Sodium-Soda (1coin)
-    -> Buy Sodium-Soda light (1coin)
-    -> Buy high-protein-almond-strawberry-protein-shake (one coin)
+    -> Buy a cup of water (1 catcoin)
+        <<change ThirdPersonPlayer 2>>
+        Cat Grandma: We don't need this!
+    -> Buy Sodium-Soda light (1 catcoin)
+        <<change ThirdPersonPlayer 3>>
+        Old Bag: Why are you trying to waste our money?
+    -> Buy high-protein-almond-strawberry-protein-shake (5 catcoins)
+        <<if $CatsFound >= 5>>
+            <<set $GetShake = true>>
+            <<change ThirdPersonPlayer 1>>
+            Fashionista: We got the shake with the complicated name, let's go and exchange it for some tissues!
+        <<else>>
+            <<change ThirdPersonPlayer 1>>
+            Fashionista: We need to find more cats!
+        <<endif>>
     -> I am too broke to buy things
-
+        Cat Grandma: We need more money!
 ===
 title: Intro
 ---
 <<once>>
+<<change ThirdPersonPlayer 1>>
 Fashionista: Is everyone ready?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: As ready as I'll ever be...
+<<change ThirdPersonPlayer 1>>
 Fashionista: It's going to be okay. Just stick to the plan, keeping using the codenames and nothing will go wrong.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Gosh, I never expected to be robbing a bank in my old age.
+<<change ThirdPersonPlayer 3>>
 Old Bag: HMPF, it's not a robbery. We're just taking what is rightfully owed to us!
 Old Bag: 3 months of pension payment these goons are withholding from us. 3 MONTHS!
 Old Bag: THE GALL! How are we supposed to feed ourselves?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Don't worry, we know. We're in the same boat after all.
+<<change ThirdPersonPlayer 3>>
 Old Bag: And everytime I tried to get through they always put me on these stupid automated calls that keep going in circles...
+<<change ThirdPersonPlayer 1>>
 Fashionista: Old Bag, you've complained quite enough about this already on the way here.
 Fashionista: Let's focus now. We're entering this bank and we're not giving in until we have our money!
 Fashionista: And Cat Grandma, make sure your nuisance stays quiet. Imagine the cat blows our cover.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I'll have you know, Maximilian is one of the best behaved kittens of the litter I adopted. You do NOT have to worry about a thing. Right, Maxi?
 Maximilian: Meow
+<<change ThirdPersonPlayer 3>>
 Old Bag: Remember, we move with the ARROW KEYS or WASD. With SPACE BAR we can interact with the enviroment.
+<<change ThirdPersonPlayer 1>>
 Fashionista: What in the retirement fund did you just say?
+<<change ThirdPersonPlayer 3>>
 Old Bag: I..I don't know? It just came over me.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: What even is a spacebar? Is that like a rebar pipe in space?
+<<change ThirdPersonPlayer 1>>
 Fashionista: Head in the game now, everyone. It is showtime!
 <<endonce>>
 
@@ -60,73 +87,212 @@ title: CatIntro
 position: 70,70
 ---
 <<once>>
+<<declare $CatsFound = 0>>
+
+<<change ThirdPersonPlayer 0 >>
 Cat: Meow
+<<change ThirdPersonPlayer 1>>
 Fashionista: What is this dog doing here?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: "Fashionista", have you forgotten your contacts again?
+<<change ThirdPersonPlayer 1>>
 Fashionista: Pah! I do not need them! I can see clearly. So, don't bother me about it.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Right...What animal is infront of us?
+<<change ThirdPersonPlayer 1>>
 Fashionista: It's obviously a racoon! Ha, you didn't anticipate me seeing so clearly, did you now?
+<<change ThirdPersonPlayer 0>>
 Cat: Meow...
+<<change ThirdPersonPlayer 3>>
 Old Bag: I told you guys we have entered the wrong building. But you wouldn't listen!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Hmm.... but the voice inside the smartphone thingy told us to come here.
+<<change ThirdPersonPlayer 3>>
 Old Bag: We should have never trusted those impractical computer maps.
 Old Bag: I could have knitted us a map and we would have been at the right place from the get go!
 Old Bag: Damn you technology!
+<<change ThirdPersonPlayer 0>>
 Cat: ....
 Cat: Meow?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I think we are right. This is the Money-Central-Cash-First bank.
 Cat Grandma: The cat went to visit her husband at work and lost her 16 kittens. She is now looking for them.
+<<change ThirdPersonPlayer 3>>
 Old Bag: How do you know?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I lived my whole life with those wonderful creatures. Of course, I learned how to communicate in cat language.
+<<change ThirdPersonPlayer 1>>
 Fashionista: That's still a racoon! You can't fool me.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: ...
+<<change ThirdPersonPlayer 0>>
 Cat: Meow! Meeeeeeeoooowwww!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Focus, ladies! What did it say? Translate for us, please!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: It asked us to find their kittens!
+<<change ThirdPersonPlayer 1>>
 Fashionista: For free? 
 Fashionista: No! Not in this economy.
+<<change ThirdPersonPlayer 0>>
 Cat: .... Meeeeooooowwwww!
 Cat: HISSS!
+<<change ThirdPersonPlayer 3>>
 Old Bag: You made her angry!
 Old Bag: Stay back, cat! I have wool and I am not afraid to use it!
 Old Bag: Back in my days, I was a high ranking milit-
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: The cat says, she pays us one coin for every found kitten. There are 7 in this entrance.
+<<change ThirdPersonPlayer 1>>
 Fashionista: That sounds much better! I am in!
+<<change ThirdPersonPlayer 0>>
 Cat: Meow. Meow, Meow!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: She want's to make sure that we won't adopt them...
+<<change ThirdPersonPlayer 3>>
 Old Bag: Simple. We find the cats. Bring them back and get the payment! This is how we operated back in -
+<<change ThirdPersonPlayer 1>>
 Fashionista: That's great. We'll just do it like this.
+<<change ThirdPersonPlayer 0>>
 Cat: Meow!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: How convinient! The kitty promised to stay at the same place, so we won't have to find her!
+<<change ThirdPersonPlayer 3>>
 Old Bag: We should press SPACE BAR, when we are near one of her kittens to collect them.
 Old Bag: What is wrong with me? I keep saying this weird stuff. This is getting-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Well then. Let us go and talk to the staff!
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Cat: Meow.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Don't worry, I promise to reunite you with your children.
+<<change ThirdPersonPlayer 1>>
 Fashionista: You better keep your end of the deal, cat!
+<<change ThirdPersonPlayer 3>>
 Old Bag: We have important work to do ladies! Let us proceed!
 <<endonce>>
 ===
 
+title: KittenFound01
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Found you!
+===
+title: KittenFound02
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Found one!
+===
+title: KittenFound03
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Another coin added to my balance!
+===
+title: KittenFound04
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+There it is!
+===
+title: KittenFound05
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+You have found one kitten!
+===
+title: KittenFound06
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Search for a better hiding spot next time.
+===
+title: KittenFound07
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Found another one!
+===
+title: KittenFound08
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+There you are!
+===
+title: KittenFound09
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+You can't hide from me!
+===
+title: KittenFound10
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Let`s bring you home!
+===
+title: KittenFound11
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+HA! You are coming with us!
+===
+title: KittenFound12
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Yes, found you!
+===
+
+title: KittenFound13
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Yes, found you!
+===
+title: KittenFound14
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+Ha, you cant hide from me!
+===
+title: KittenFound15
+---
+<<set $CatsFound = $CatsFound + 1 >>
+<<change ThirdPersonPlayer 0>>
+I almost missed you!
+===
+
+
 title: PicPocLiveHack
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Frustrated Man: OH NOOOOOOOOOO! What should I do?!
 Frustrated Man: My money!
 Frustrated Man: It is gone!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Sounds terrible, what happened young fellow?
+<<change ThirdPersonPlayer 0>>
 Frustrated Man: I saw the unlimited money live hack on picpoc. And I tried it...
 Frustrated Man: But now the bank believes I commited fraud... 
 Frustrated Man: They froze my account because of this! What should I do?
+<<change ThirdPersonPlayer 1>>
 Fashionista: Youngling, you shouldn't believe everything you see on the internet in the first place!
 Fashionista: People spread a lot of nonsense!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Right! Last time I found out that I wasn't chatting with a nigerian prince but with a scammer that wanted my money! 
 Cat Grandma: But sadly for both of us, I am broke.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Don't worry, son. Everything will be alright. You just have to hang in there for now.
 Old Bag: Just... don't do that again.
+<<change ThirdPersonPlayer 0>>
 Frustrated Man: Thank you.
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Frustrated Man: I should delete picpoc...
 <<endonce>>
 ===
@@ -134,28 +300,40 @@ Frustrated Man: I should delete picpoc...
 title: WaitingForMom
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Little Girl: This is sooo boring!
 Little Girl: I am waiting for tooo long! When is mum coming back?!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Child, are you lost?
+<<change ThirdPersonPlayer 0>>
 Little Girl: No, I am just waiting for my mum.
+<<change ThirdPersonPlayer 1>>
 Fashionista: You too?
 Fashionista: My mom made me wait in this area, since I was...
 Fashionista: 8 years old....
 Fashionista: And now my beautiful red hair turned gray and I am in my 70ies.
 Fashionista: I am slowly beginning to think that she might has forgotten me..
+<<change ThirdPersonPlayer 0>>
 Little Girl: *GASPS*
 Little Girl: You are so old...
 Little Girl: I do not wan't to wait this long!
 Little Girl: MOOOOOOOOOOOOM!
 Little GIrl: MOOOOOOOOOOOOM!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Ugh. Look at what you did!
+<<change ThirdPersonPlayer 0>>
 Little Girl: MOOOOOOOOOOOOOOOOOM!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Listen Kid. She was just joking! 
+<<change ThirdPersonPlayer 1>>
 Fashionista: Come on. It was just a little prank! She is just overreacting.
+<<change ThirdPersonPlayer 3>>
 Old Bag: See, she was. We apologize. Here take one of my caramel candy.
 Old Bag: Do not worry, I am sure your mother didn't forget about you.
+<<change ThirdPersonPlayer 0>>
 Little Girl: ... I hope.
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Little Girl: I don't talk to mean grannys!
 Little Girl: Bleh!
 <<endonce>>
@@ -164,22 +342,34 @@ Little Girl: Bleh!
 title: RugPull
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Young Man: I cannot believe that this happened to ME!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: What is wrong?
+<<change ThirdPersonPlayer 0>>
 Young Man: An Investment! That is what went wrong!
 Young Man: I invested in the new Fratz Coin!
 Young Man: By being one of the early investors, I should have had made a lot of money by now.
 Young Man: But me eagerly waiting to invest, didn't pay out as planned.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Why?
+<<change ThirdPersonPlayer 0>>
 Young Man: I got rug pulled! 
+<<change ThirdPersonPlayer 3>>
 Old Bag: What? The rugs are being pulled out from under peoples feet?
+<<change ThirdPersonPlayer 0>>
 Young Man: NO! Simply put, the person who made this coin took all of the money invested into it and ran away.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Who is this person? Can you not sue them?
+<<change ThirdPersonPlayer 0>>
 Young Man: ... I could try. But I got rug pulled by a 10 year old...
 Young Man: It is kind of embarassing... because he did this before.... and I fell for it again...
+<<change ThirdPersonPlayer 1>>
 Fashionista: ... 
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I get the feeling this crypto stuff isn't for you...
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Young Man: Hmm... this new Geezer Coin seems interesting.
 <<endonce>>
 ===
@@ -187,15 +377,23 @@ Young Man: Hmm... this new Geezer Coin seems interesting.
 title: Replaced
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Businesss Woman: Everything went so well at first. How did it go so terribly wrong?
+<<change ThirdPersonPlayer 3>>
 Old Bag: Young lady, you look troubled!
+<<change ThirdPersonPlayer 0>>
 Businesss Woman: Obviously, I just filed for bankruptcy. My company is gone... I have nothing left.
 Business Woman: I trusted the new AI to do all of the required work and therefore fired all my workers.
+<<change ThirdPersonPlayer 3>>
 Old Bag: See, technology is unreliable garbage. Why is everybody trusing it nowadays. Back in-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Let me make this clear. You fired everybody in favor of AI. Without checking if it actually works in the first place?
+<<change ThirdPersonPlayer 0>>
 Business Woman: Yes... I saved a ton of money from doing so.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: It seems you didn't make any either...
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Business Woman: I think I figured it out.
 Business Woman: I should have replaced my workers way sooner with AI!
 Business Woman: Then the switch would've worked and my company would be still striving.
@@ -206,18 +404,28 @@ Business Woman: Heh. I don't need human labour to succeed. Now I'll just found a
 title: StartUp
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Young Entrepreneur: I do not understand! Why is this so complicated?
 Young Entrepreneur: Why do I need seed capital in order to fund a company.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Right! This doesn't make any sense!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: It kind of does...
+<<change ThirdPersonPlayer 0>>
 Young Entrepreneur: Sadly, I cannot find any investors interested in my business idea at the moment.
 Young Entrepreneur: But I am sure the bank will lend me some money and support my endeavours!
+<<change ThirdPersonPlayer 3>>
 Old Bag: I love passionate recrui- younglings. What kind of StartUp are you trying to fund?
+<<change ThirdPersonPlayer 0>>
 Young Entrepreneur: A company that lends lawn mowers. You know, for a few days for mowing grass and stuff. 
+<<change ThirdPersonPlayer 1>>
 Fashionista: OHH. I get it. You mow in exchange for money.
+<<change ThirdPersonPlayer 0>>
 Young Entrepreneur: What? NO! I make the customer pay for lending the lawn mower AND let them do the work themselves.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Wouldn't it be more beneficial for the customer to buy one themselves then?
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Young Entrepreneur: You are back! Are you interested in making an investment?
 Young Entrepreneur: Hey! Don't leave! You could make millions!
 <<endonce>>
@@ -225,16 +433,24 @@ Young Entrepreneur: Hey! Don't leave! You could make millions!
 title: PinkTax
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Business Man: I cannot fathom how my company keeps losing money. 
 Business Man: Even a few investors already stopped supporting the company.
+<<change ThirdPersonPlayer 3>>
 Old Bag: What are you selling?
+<<change ThirdPersonPlayer 0>>
 Business Man: Oh, you care for an investment? We sell tools.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Doesn't this already exist? What is the twist?
+<<change ThirdPersonPlayer 0>>
 Business Man: Everything I sell is pink, so I can make it a bit more expensive.
 Business Man: Women flock to my products. They love pink after all.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Seems like it doesn't work as well as you are trying to sell us right now.
+<<change ThirdPersonPlayer 0>>
 Business Man: How offensive! I know what women need and want!
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Business Man: Women love pink. I am sure of it! There is no way they don't love my tools. 
 Business Man: Maybe I should focus on making more advertisments about my pink products.
 <<endonce>>
@@ -243,52 +459,88 @@ Business Man: Maybe I should focus on making more advertisments about my pink pr
 
 title: NursesApearance
 ---
+
 <<once>>
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: THERE THEY ARE!
 Passionate Trainee Nurse: GUYS! I HAVE FOUND THEM!
+<<change ThirdPersonPlayer 4>>
 Head Nurse: Good Job, April! 
 Head Nurse: Thanks to you, we can now bring them back.
+<<change ThirdPersonPlayer 6>>
 Indifferent Trainee Nurse: Ugh. Finally.
+<<change ThirdPersonPlayer 4>>
 Head Nurse: Ladies and Gentleman, please follow us. We will bring you home safe and sound.
+<<change ThirdPersonPlayer 1>>
 Fashionista: No! I do not want to! Leave us alone.
+<<change ThirdPersonPlayer 3>>
 Old Bag: We are not done with what we came to do! You have to wait.
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: What do you need to do? We might be able to help, right Melissa?
+<<change ThirdPersonPlayer 6>>
 Indifferent Trainee Nurse: NOOOOO! That isn't in our job description.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We are here to rob this bank!
+<<change ThirdPersonPlayer 4>>
 Head Nurse: Puhahahahahahahaha!
 Head Nurse: HAHAHAHAHAHAHA!
 Head Nurse: That was a good one.
+<<change ThirdPersonPlayer 3>>
 Old Bag: We are wasting time! You are in the way! Let us through!
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: No can do! It is time for your medication!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Please! I do not want to miss out on my favourite TV series today!
+<<change ThirdPersonPlayer 6>>
 Indifferent Trainee Nurse: Then just follow us... less work for us and you can watch your series in peace.
+<<change ThirdPersonPlayer 1>>
 Fashionista: If you won't leave on your own, we will make you!
+<<change ThirdPersonPlayer 4>>
 Head Nurse: Let's proceed with the hard way then! I have to teach my trainees how to catch seniors anyways.
 Head Nurse: April!
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: YES, MA'AM!
-Head NUrse: Stop them!
+
+Head Nurse: Stop them!
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: The more you resist the more it will hurt!
 <<endonce>>
 
 ===
 title: WinPassionateNurse
 ---
+<<declare $PasNurseIsBeaten = false>>
+    <<if $PasNurseIsBeaten is true>>
+    <<jump BeatenPassionateNurse>>
+<<endif>>
+
 <<once>>
+<<change ThirdPersonPlayer 3>>
 Old Bag: Hah! You didn't see my military tactics coming! Back in-
+<<change ThirdPersonPlayer 1>>
 Fashionista: HAH! We won! LOOOSER!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Now you have to let us do as we please!
-Passionate Trainee Nurse: Ugh noooo! We lost. What do we do now?
+<<change ThirdPersonPlayer 5>>
+Passionate Trainee Nurse: Ugh noooo! I lost. What do we do now?
+<<change ThirdPersonPlayer 4>>
 Head Nurse: Fine! You win for now! We WILL catch you soon enough!
+<<set $PasNurseIsBeaten = true>>
 <<endonce>>
 ===
 
 title: LossPassionateNurse
 ---
 <<once>>
+<<change ThirdPersonPlayer 4>>
 Head Nurse: Good job, April!
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Thank you, Ma'am.
+<<change ThirdPersonPlayer 3>>
 Old Bag: No. My tactics were splendid.... I got rusty.
+<<change ThirdPersonPlayer 1>>
 Fashionista: That can't be. I lost... Is my age finally catching up with me?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: At least I can watch my series now...
 <<endonce>>
 ===
@@ -299,58 +551,102 @@ title: BeatenPassionateNurse
 <<if $SpokenToClerk is true>>
     <<jump TissuesPassionateNurse>>
         <<endif>>
+<<change ThirdPersonPlayer 0>>
 The beaten nurse wipes her tears with tissues.
+<<change ThirdPersonPlayer 5>>
 Sad Trainee Nurse:....
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Maybe, we were too hard on her...
+<<change ThirdPersonPlayer 3>>
 Old Bag: All you need after losing an important operation is a bit of space...
+<<change ThirdPersonPlayer 1>>
 Fashionista: You might be right.
 ===
 
 title: TissuesPassionateNurse
 ---
+<<declare $GetShake = false>>
+<<if $GetShake is true>>
+    <<jump CollectTissues>>
+    <<endif>>
+
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Standing there still in shock from this terrifying loss, she is treating the scratch Maximilian gave her with a tissue.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Look, she has a piece of paper?! Why would she put paper on a wound?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Those are tissues! You seriously need to bring your actual glasses next time!
+<<change ThirdPersonPlayer 1>>
 Fashionista: But they aren't stylish enough!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: ....Old Bag, you are carrying this big bag on your shoulders... didn't you pack any tissues?
+<<change ThirdPersonPlayer 3>>
 Old Bag: HMPFH. Why should I give up my important space for insignificant tissues. During the military I used -
+<<change ThirdPersonPlayer 1>>
 Fashionista: What do you even have in there then?
+<<change ThirdPersonPlayer 3>>
 Old Bag: Wool. Obviously.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: ... We can try asking the nurse if she could give us her pack of tissues.
+<<change ThirdPersonPlayer 5>>
 Sad Trainee Nurse: How could this happen!
 Sad Trainee Nurse: Maybe I am not made for this job afer all....
+<<change ThirdPersonPlayer 1>>
 Fashionista: Don't talk nonsense, girl. You are very passionate! 
+<<change ThirdPersonPlayer 3>>
 Old Bag: I would have been very proud if I ever had such a passionate soldier like you in my ranks.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: You almost got us! One wrong move and we would have lost!
+<<change ThirdPersonPlayer 5>>
 Sad Trainee Nurse: .....
 Sad Trainee Nurse: Really?
+<<change ThirdPersonPlayer 3>>
 Old Bag: Yes! Your tactics just needed a little bit more refinement.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Don't beat yourself up about your loss, you are still a trainee after all.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I agree, you only need a little bit more experience. But that is something that only comes with age. Use it as a learning experience.
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Wow... I never thought about my losses as a learning opportunity.
 Passionate Trainee Nurse: Thank you. I feel so much better now.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I am glad, we could help-
+<<change ThirdPersonPlayer 1>>
 Fashionista: You know. I need to blow my nose but we sadly have no tissues to use. I asked old bag to pack some, but-
+<<change ThirdPersonPlayer 3>>
 Old Bag: I grew a little forgetful with age... would you be so friendly to give me your pack of tissues, please?
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Of course! Wait a-
+<<change ThirdPersonPlayer 0>>
 *GROOWWL*
+<<change ThirdPersonPlayer 1>>
 Fashionista: What was that!? Did Maximilian growl?
+<<change ThirdPersonPlayer 2>>
 Maximilian: Meow!
 Cat Grandma: NO! He didn't! A well behaved cat wouldn't do something like this.
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: ... 
 Passionate Trainee NUrse: All this questioning my existence made me a bit hungry and t....
+<<change ThirdPersonPlayer 3>>
 Old Bag: Wait. Ahh, There! Here I have caramel candy with me.
 Passionate Trainee Nurse: Thank you, but I cannot eat sweets... unless I want to lose my gains. Do you, only by chance, have a high-protein-almond-strawberry-protein-shake?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We don't... but we could get you one!
+<<change ThirdPersonPlayer 1>>
 Fashionista: We could? Do you actually want to buy her a-
+<<change ThirdPersonPlayer 3>>
 Old Bag: Didn't you just ask for something to eat?
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: I can replace a whole meal with the high-protein-almond-strawberry-protein-shake.
 Passionate Trainee Nurse: Oh. You but don't have to buy me one.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: See it as an apology! We will be right back!
 <<else>>
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Sooo hungry...
 Passionate Trainee Nurse: Should I try eating my tissues?
+<<change ThirdPersonPlayer 3>>
 Old Bag: Hold on, young lady! We'll get you something else....
 <<endonce>>
 
@@ -358,24 +654,38 @@ Old Bag: Hold on, young lady! We'll get you something else....
 title: CollectTissues
 ---
 <<once>>
+<<change ThirdPersonPlayer 1>>
 Fashionista: Youngling, we got your candybar with the fancy name!
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: ....
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: What is wrong?
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: I... I ate my last tissue...
 Passionate Trainee Nurse: I am sorry.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Why would you eat them?! What are we going to do now?
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: I sill have alcohol wipes left... but I wouldn't recommend using them as tissues...
 Passionate Trainee Nurse: This is the only thing I can give you...
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Don't worry about it. We'll take them. Thank you!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Take the bar, after all we brought it just for you.
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Thanks...
+
+<<set $WipesCollected = true>>
+
 <<else>>
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Hmmmmmm! So Yummy!
 <<endonce>>
 ===
 title: QueueAnnoyedWoman
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Annoyed older Woman: This is tireing. When is this unprofessional clerk coming back.
 Annoyed older Woman: Running away weeping after I took it upon myself to correct him about his spelling mistakes.
 Annoyed older Woman: PAH. He was working at a snail's pace on this computer as well. Typing with only two of his ten fingers.
@@ -387,6 +697,7 @@ Annoyed older Woman: How annoying. I have places to be. I should talk to his sup
 title: QueueWomanChild
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Woman with Child: Why did she feel the need to be rude to this poor service worker...
 Woman with Child: She should have cut him some slack. That man was obviously new.
 Woman with Child: I hope he is okay.
@@ -398,6 +709,7 @@ Woman with Child: Hopefully your sister is behaving....
 title: QueueAnnoyedMan
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Annoyed Man: This clerk needs to grow some thicker skin!
 Annoyed Man: Because of him I might miss my bus! I hope he comes back soon.
 Annoyed Woman: Can't you just check up on him? I mean, I can't possibly enter the men's restroom.
@@ -411,6 +723,7 @@ Annoyed Man: UGH. I just missed my bus.
 title: QueueWoman
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Woman: This man is not made for this job. Only yesterday he ran and hid in the women's restroom and cried so much that it flooded.
 Woman: Today I thought I could talk to my bank about some investments I want to make into a certain lawn mower lender company.
 <<else>>
@@ -420,6 +733,7 @@ Woman: I guess, it might take a bit longer today as well.
 ===
 title: ManOnToilet
 ---
+<<change ThirdPersonPlayer 0>>
 Random Man: Giving all the toilet paper I had in this bathroom stall to the crying man next to me seemed like a good idea at first.
 Random Man: But now I don't have any left to wipe myself with...
 Random Man: I guess I just stay here a little bit longer.
@@ -427,169 +741,278 @@ Random Man: I guess I just stay here a little bit longer.
 ===
 title: SadClerk
 ---
+<<declare $WipesCollected = false>>
+ <<if $WipesCollected is true>>
+    <<jump SadClerkWipes>>
+    <<endif>>
+
 <<once>>
+<<change ThirdPersonPlayer 0>>
 A big puddle is flowing through from under the stall's door.
+<<change ThirdPersonPlayer 3>>
 Old Bag: EWWW! DISGUSTING!
 Old Bag: Look at that, they can't even keep their toilets clean in this place.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: PSSSSSSSSHHHHHHHHHHHHHT!
 Cat Grandma: Do you hear that?
+<<change ThirdPersonPlayer 4>>
 Bathroomstall: *SOB*....*SOB*
+<<change ThirdPersonPlayer 3>>
 Old Bag: Oh thank God, for a moment I thought the puddle was something else...
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Of course it's not, Old Bag! It's just tears... Some poor youngling must've been crying in this stall for ages.
+<<change ThirdPersonPlayer 0>>
 *KNOCK KNOCK*
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Hello, dear! Is everything alright in there?
+<<change ThirdPersonPlayer 4>>
 Bathroomstall: ..........
 Bathroomstall: SNIIIIIIIIIIIIFFFFFFF!!!!
 Bathroomstall: Hello and welcome... to the Money-Central-Cash-First bank, MCCF bank in short. *SOB*
 Bathroomstall: If I can help you with any--*SNIFF* -thing, please do--- *SOB* *SOB*
+<<change ThirdPersonPlayer 1>>
 Fashionista: Wow, he is really going at it in there, isn't he?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Maybe we should give him a moment to collect himself and try again.
+<<change ThirdPersonPlayer 4>>
 Clerk: *SOB* *SOB* *CRY* *SOB *SOB* *CRY OF WOEFUL SUFFERING* *SNIFF* *SOB*
+<<change ThirdPersonPlayer 0>>
 Fashionista, Cat Grandma & Old Bag: .................................
+<<change ThirdPersonPlayer 3>>
 Old Bag: Did he just say cry of woeful suffering out lou-
+<<change ThirdPersonPlayer 4>>
 Clerk: *SNIIIIIIIIIIIIIIIIIIIIFF*
 Clerk: I can't.... I just can't work here anymore.
 Clerk: The customers ALWAYS yell at me for being too slow...
 Clerk: My boss ALWAYS yells at me for making mistakes because I get too hasty....
 Clerk: And the worst of them all is the secretary. My direct superior. She ALWAYS yells at me because she hates me...
 Clerk: WHY IS EVERYONE ALWAYS YELLING AT ME?!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Oh dear, I do not know what to say...
+<<change ThirdPersonPlayer 1>>
 Fashionista: Well, at least we know now that we are not the only ones being mistreated by this joke of a bank.
+<<change ThirdPersonPlayer 3>>
 Old Bag: I'd normally say this builds character, but... oh my God, that is really too much.
+<<change ThirdPersonPlayer 4>>
 Clerk: I'm so sorry.... *SNIFF* Sitting on the toilet, crying like a baby.... I must seem so unprofessional to you.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Don't worry, dear. We are not here to yell at you.
+<<change ThirdPersonPlayer 3>>
 Old Bag: We are not here to yell at people? Why did I come then?
+<<change ThirdPersonPlayer 1>>
 Fashionista: Actually, we came here to sneak into the staff-only area past the reception.
+<<change ThirdPersonPlayer 4>>
 Clerk: ... I mean, you would have to file a- *SOB* -4962B for... for getting family visitation access...
+<<change ThirdPersonPlayer 1>>
 Fashionista: Hmmm. Say, how do you normally enter the staff area?
+<<change ThirdPersonPlayer 4>>
 Clerk: Me?... I just *SOB* use my keycard.
+<<change ThirdPersonPlayer 1>>
 Fashionista: I see... Can I have it?
+<<change ThirdPersonPlayer 4>>
 Clerk: I don't know... that would be a breach of protocol... I could get fired for this.
 Clerk: ....
 Clerk: After saying this outloud...That actually doesn't sound so bad.
 Clerk: Okay, you can have it.
 Clerk: But... I would like to ask for a favor first.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Of course, how can we help you?
+<<change ThirdPersonPlayer 4>>
 Clerk: I look like a teary mess. I need something to wipe my face with because I have already used up all the toiletpaper in this stall.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We'll get you something, just hang in there.
 <<set $SpokenToClerk = true>>
 <<else>>
+<<change ThirdPersonPlayer 3>>
 Old Bag: We will bring you some tissues, hang in there.
+<<change ThirdPersonPlayer 4>>
 Clerk: Thank you, for helping me.
 <<endonce>>
 ===
 title: SadClerkWipes
 ---
+<<declare $ProgressToOffice = false>>
+<<if $ProgressToOffice is true>>
+<<endif>>
 <<once>>
+<<change ThirdPersonPlayer 0>>
 *KNOCK* *KNOCK*
+<<change ThirdPersonPlayer 3>>
 Old Bag: Are you still in here?
+<<change ThirdPersonPlayer 4>>
 Clerk: Yes. I've been waiting for you... I thought you forgot about me already.
+<<change ThirdPersonPlayer 1>>
 Fashionista: How could we possibly forget.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We brought you the ...tissues! Here!
+<<change ThirdPersonPlayer 4>>
 Clerk: Thanky you, soooo much! Now I can clean my face and pretend that I did not cry for an hour.
+<<change ThirdPersonPlayer 1>>
 Fashionista: surely... no one will question the puddle of tears...
+<<change ThirdPersonPlayer 4>>
 Clerk: Are you sure that those are tissues?
+<<change ThirdPersonPlayer 3>>
 Old Bag: ...Yes. Helps with the more intense tears.
+<<change ThirdPersonPlayer 4>>
 Clerk: Sounds convenient.
 Clerk: A promise is a promise. Here! Take my card.
+<<change ThirdPersonPlayer 0>>
 A hand reaches out of the bathroom stall, holding an unprofessionally designed card.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Thank you! Now we can enter the staff-only area. Let the operation-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Finally, we are closer to our retirement funds.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Let's go! We shouldn't waste too much time.
+
+<<set $ProgressToOffice = true>>
+    <<jump OfficeIntro>>
+
 <<else>>
+<<change ThirdPersonPlayer 4>>
 Clerk: ...
 Clerk: Why are you still here? Insert the keycard inside the cardreader next to the door behind the desks.
 Clerk: My eyes are burning... are you sure this is supposed to happen?
+
 <<endonce>>
 ===
 
 title: WhiteboardWall
 ---
+<<change ThirdPersonPlayer 1>>
 Fashionista: What does it say? I can hardly read it...
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: You know why.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Everything Is written in a different language!
 
 ===
 
 title: Printer
 ---
+<<change ThirdPersonPlayer 0>>
 Normally in offices the printer is defective. 
 But against all odds this printer is perfectly usable.
+<<change ThirdPersonPlayer 1>>
 Old Bag: Hmmm. Unexpectedly useful these printers.
 
 ===
 title: Whiteboard
 ---
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Wow, the economy is really bad right now.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Totally! Even wool costs triple the amount of what it did a few years ago... and the quality is worse now, too.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Everything was better back in the days.
 ===
 title: DocumentVendingMachine
 ---
+<<declare $FormQuest = false>>
+    <<if $FormQuest is true>>
+        <<jump DocumentMerchant>>
+    <<endif>> 
+
 <<once>>
+<<change ThirdPersonPlayer 0>>
 A vending machine that only sells boring and overly complicated documents. Maybe this is the reason this machine looks unused.
+<<change ThirdPersonPlayer 3>>
 Old bag: I do not think we need to fiddle with this machine.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Just by looking at it Maximilian fell asleep.
 <<else>>
+<<change ThirdPersonPlayer 1>>
 Fashionista: Why are those letters so smal?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: You could have seen them better with the right glasses on.
 <<endonce>>
 ===
 title: DocumentMerchant
 ---
+
+<<change ThirdPersonPlayer 0>>
 A vending machine that only sells boring and overly complicated documents.
 Vending Machine: Important protocol note: No access for employees.
 Vending Machine: Which of these forms would you like to buy?
-    ->Buy form z-2830fl (1 Catcoin)
-    Vending Machine: This form allows you to have ONE holiday per year. And you cannot choose christmas!
-    Old Bag: We don't need this!
-    Cat Grandma: Did you forget or did you just not see the right form, Fashionista?
-    Fashionista: What? I thought this is the right one!
-    ->Buy form z-2835fe (1 Catcoin)
-    Vending Machine: Unpaid sick leave. You can only be sick for one day or your salary will be cut in half. Get well soon.
-    Old Bag: Is this even legal? Cancel it quick!
-    Fashionista: I missclicked! It just wouldn't let my change my choice. But now I can revert it.
-    Old Bag: HMPFH, technology is more useless than I initially thought!
-    ->Buy form z-28401ft (1 Catcoin)
-    Vending Machine: Alarm! Alarm! Highly illegal form. You can be sued for using it and must pay back all of your earned salary.
-    Vending Machine: Are you really REALLY sure you want to proceed with this purchase?
-    Vending Machine: Recomendation: Pick "no"
+    ->Buy form z-2830fl 
+        <<change ThirdPersonPlayer 0>>
+        Vending Machine: This form allows you to have ONE holiday per year. And you cannot choose christmas!
+        <<change ThirdPersonPlayer 3>>
+        Old Bag: We don't need this!
+        <<change ThirdPersonPlayer 2>>
+        Cat Grandma: Did you forget or did you just not see the right form, Fashionista?
+        <<change ThirdPersonPlayer 1>>
+        Fashionista: What? I thought this is the right one!
+    ->Buy form z-2835fe 
+        <<change ThirdPersonPlayer 0>>
+        Vending Machine: Unpaid sick leave. You can only be sick for one day or your salary will be cut in half. Get well soon.
+        <<change ThirdPersonPlayer 3>>
+        Old Bag: Is this even legal? Cancel it quick!
+        <<change ThirdPersonPlayer 1>>
+        Fashionista: I missclicked! It just wouldn't let my change my choice. But now I can revert it.
+        <<change ThirdPersonPlayer 3>>
+        Old Bag: HMPFH, technology is more useless than I initially thought!
+    ->Buy form z-28401ft
+        <<change ThirdPersonPlayer 0>>
+        Vending Machine: Alarm! Alarm! Highly illegal form. You can be sued for using it and must pay back all of your earned salary.
+        Vending Machine: Are you really REALLY sure you want to proceed with this purchase?
+        Vending Machine: Recomendation: Pick "no"
         ->no
-        Vending machine: You just accidentally pressed the wrong button? Important Warning: Try to not repeat this mistake.
-        Fashionista: HUH? What just happened? I pressed yes to buy it!
-        Old Bag: No, you didn't! Please, bring your glasses with you next time....
-        ->yes
-        Vending machine: You poor soul. You are in dept now. Here is your form.
-        Old Bag: How offensive?! Come here we fight it out like -
-        Fashionista: This took longer than it should have.
-        Cat Grandma: At least we have the right document now! Lets go back to the banker and give him this form.
-        The vending machine slowly releases the chosen document from its holfer. 
-        Suddenly the vending machine stopped moving. Now the form is stuck with the majority of the paper inside the machine.
-        Vending machine: ERROR! ERROR! ERROR! ERROR!
-        Vending machine: Document is stuck. No refund possible. Shutdown activated. PEEEEEP
-        Old Bag: UGGGHHHHHHH! Damn you technology!!
-        Cat Grandma: Oh no...Is there a way to get the form from another machine?
-        Fashionista: I havent seen another vending machine with documents inside, have you?
-        Old Bag: I tried to pull the form out, but I cannot grab onto it long enough! Stupid machine! I should-
-        Cat: Meow
-        Cat Grandma: Wow! How thoughtful of you. 
-        Cat Grandma: The friendly cat just proposed that we find 5 of her kittens and bring them back to her.
-        Cat Grandma: In the meantime, she will do her best to pull out the form with the help of her claws.
-        Old Bag: Good news!
-        Fashionista: Let's get to work then.
+            <<change ThirdPersonPlayer 0>>
+            Vending machine: You just accidentally pressed the wrong button? Important Warning: Try to not repeat this mistake.
+            <<change ThirdPersonPlayer 1>>
+            Fashionista: HUH? What just happened? I pressed yes to buy it!
+            <<change ThirdPersonPlayer 3>>
+            Old Bag: No, you didn't! Please, bring your glasses with you next time....
+        ->yes 
+            <<change ThirdPersonPlayer 0>>
+            Vending machine: You poor soul. You are in debt now. Here is your form.
+            <<change ThirdPersonPlayer 3>>
+            Old Bag: How offensive?! Come here we fight it out like -
+            <<change ThirdPersonPlayer 1>>
+            Fashionista: This took longer than it should have.
+            <<change ThirdPersonPlayer 2>>
+            Cat Grandma: At least we have the right document now! Lets go back to the banker and give him this form.
+            <<change ThirdPersonPlayer 0>>
+            The vending machine slowly releases the chosen document from its holfer. 
+            Suddenly the vending machine stopped moving. Now the form is stuck with the majority of the paper inside the machine.
+            Vending machine: ERROR! ERROR! ERROR! ERROR!
+            Vending machine: Document is stuck. No refund possible. Shutdown activated. PEEEEEP
+            <<change ThirdPersonPlayer 3>>
+            Old Bag: UGGGHHHHHHH! Damn you technology!!
+            <<change ThirdPersonPlayer 2>>
+            Cat Grandma: Oh no...Is there a way to get the form from another machine?
+            <<change ThirdPersonPlayer 1>>
+            Fashionista: I havent seen another vending machine with documents inside, have you?
+            <<change ThirdPersonPlayer 3>>
+            Old Bag: I tried to pull the form out, but I cannot grab onto it long enough! Stupid machine! I should-
+            <<change ThirdPersonPlayer 4>>
+            Cat: Meow
+            <<change ThirdPersonPlayer 2>>
+            Cat Grandma: Wow! How thoughtful of you. 
+            Cat Grandma: The friendly cat just proposed that we find 5 of her kittens and bring them back to her.
+            Cat Grandma: In the meantime, she will do her best to pull out the form with the help of her claws.
+            <<change ThirdPersonPlayer 3>>
+            Old Bag: Good news!
+            <<change ThirdPersonPlayer 1>>
+            Fashionista: Let's get to work then.
 
 ===
 title: OfficeRomance
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Flirty banker: Hello, my lovely worker bee.
 Flirty banker: The document you just filled out was as splendidly formated as ever. I even noticed you used arial.
 Flirty banker: It has been a while since I last read a document this unnecessarily complicated. Good job.
 Blushing banker: Thank you! I made it extra difficult just for you!
 Blushing banker: I also love the suit you are wearing today. It looks so official and suits you very well.
+<<change ThirdPersonPlayer 1>>
 Fashionista: What is with their weird pickup lines? Is this how young people flirt these days?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Let them be. We can find someone else to talk to.
 <<else>>
+<<change ThirdPersonPlayer 3>>
 Old Bag: I am going to puke if I have to listen to even one more of their terrible pickup lines.
 <<endonce>>
 
@@ -597,14 +1020,22 @@ Old Bag: I am going to puke if I have to listen to even one more of their terrib
 title: OfficePlayingGames
 ---
 <<once>>
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Hello, could you-
+<<change ThirdPersonPlayer 0>>
 Slacking Banker: NOOOO TEAM!
+<<change ThirdPersonPlayer 1>>
 Fashionista: HUH?! Are you playing phone games instead of working?
+<<change ThirdPersonPlayer 3>>
 Old Bag: TSK. No work ethic these days.
+<<change ThirdPersonPlayer 0>>
 Slacking Banker: Hey! You are distracting me! Please, bother someone else.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: HUH?! But you already are distracting yourself from work!
+<<change ThirdPersonPlayer 0>>
 Slacking Banker: Look. The secretary is too busy to notice right now. I need a little break or else I go crazy...I don't want to end up like coffee John.
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Slacking Banker: YEEESSSS! Finally, I ranked up!
 Slacking Banker: I should do the rest of my work now....
 <<endonce>>
@@ -613,44 +1044,72 @@ Slacking Banker: I should do the rest of my work now....
 title: OfficeCoffeeAddict
 ---
 <<once>>
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Hello, kind sir could-
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: AHHHHHH! NOOOOOOOOOOOOO! MY COFFEEEE!
+<<change ThirdPersonPlayer 3>>
 Old Bag: What happened?! Are we under attack? Stay behind me, I was one of the top fighters -
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: My coffee. I spilled it on the dirty floor!
 Addicted Banker: CAN YOU EVEN FATHOM WHAT THIS MEANS FOR ME?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: No....
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: I can't. No! I CAN NOT FALL ASLEEP! I must stay awake AT ALL COST!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Did you not get enough rest last night? Young people and their phone addiction. Doomscrolling instead of sleepi-
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: How dare you accuse me of sleeping! I worked for one week straight!
+<<change ThirdPersonPlayer 1>>
 Fashionista: You really should take a nap then...
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: NO! If I can manage to work through a whole month without breaks I can get 1% more salary.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: This isn't worth risking your health for...
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: I. AM. PLENTY. HEALTHY!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Why not just buy another coffee?
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: My enourmous craving for an abnormal amount of coffee made me buy the whole vending machines empty....
 Addicted Banker: And they get refilled only once a year...
 Addicted Banker: What am I supposed to dooooooo now? 
+<<change ThirdPersonPlayer 1>>
 Fashionista: There is a coffee machine in the break room. You could make yourself one.
+<<change ThirdPersonPlayer 0>>
 Addicted Banker: No! My pay will be cut if I am being seen in this area during my work time-
 Addicted Banker: Maybe... I should just lick my spilled coffee from the floor.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Please don't...
 <<else>>
+<<change ThirdPersonPlayer 3>>
 Old Bag: This fella seems to be a little locoloco. We should ask someone ese.
+<<change ThirdPersonPlayer 1>>
 Fashionista: I hope he gets some rest soon.
 <<endonce>>
 ===
 title: BreakroomCat
 ---
 <<once>>
+<<change ThirdPersonPlayer 1>>
 Fashionista: I have never seen a smoking raccon.
+<<change ThirdPersonPlayer 3>>
 Old Bag: That is also a cat.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Stop trying to gaslight me! I am not blind!
+<<change ThirdPersonPlayer 0>>
 Banker Cat: M I A U *COUGH*
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Oh, we just wanted to find someone to help us with our issue.
+<<change ThirdPersonPlayer 0>>
 Banker Cat: M I A U
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Sorry, we did not mean to disturb your break time. We will leave now.
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Banker Cat: M I A U
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: What?! You must be overworked! There is no way you saw your children wandering around here. Try to relax a bit more...
 <<endonce>>
 ===
@@ -658,31 +1117,51 @@ Cat Grandma: What?! You must be overworked! There is no way you saw your childre
 title: BreakroomSmoker
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Smoking Banker: Is it really worth it to destroy my health for a 10 second longer break from this hellish workplace?
 Smoking Banker: Definitely. 
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Really? That doesn't sound right.
+<<change ThirdPersonPlayer 0>>
 Smoking Banker: Look. The economy is so bad even a cat had to start working to sustain his family.
 Smoking Banker: I still remember how cheerful he was when he started. Now he also turned into a smoker. Hah, life. What can you do.
 <<else>>
+<<change ThirdPersonPlayer 3>>
 Old Bag: I do not like the fumes in this room. Let us leave!
+<<change ThirdPersonPlayer 1>>
 Fashionista: What do you mean. I find it cozy in here.
 <<endonce>>
 
 ===
 title: OfficeCatmom
 ---
+    <<if $CatsFound >= 10>>
+        <<jump FifeBabysfound>>
+        <<endif>>
+
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Cat: Meow!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Hello there! Did you sneak in with us?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: She did. She suspects there are 7 more of her kittens in this area.
+<<change ThirdPersonPlayer 0>>
 Cat: MEOW!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: You are right. There is no guarantee that someone might just adopt your kittens.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Don't worry, we will keep looking for your kids. The money you paid us came in handy after all.
+<<change ThirdPersonPlayer 0>>
 Cat: Meow...
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Oh! Of course we will keep the fact that you lost your kittens from your husband.
+<<change ThirdPersonPlayer 3>>
 Old Bag: We should move on. The secretary is keeping an eye on us. If we drag this out any longer, she might kick us out...
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Cat: Meeeeeeeoooowwww
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Yes yes! You have my word, we won't tell your husband.
 <<endonce>>
 
@@ -690,17 +1169,26 @@ Cat Grandma: Yes yes! You have my word, we won't tell your husband.
 title: OfficeIntro
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Secretary: What are you old folks doing here?! This office is for staff only.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We are here because there is nobody at the reception.
+<<change ThirdPersonPlayer 3>>
 Old Bag: And we do not know how to use these new and modern ATM machines.
+<<change ThirdPersonPlayer 0>>
 Secretary: UGH. Not again. This simpleton is always weeping in the bathroom and floods the stalls with his pathetic little tears.
 Secretary: I sometimes wished he would put as much effort into his work as he does when he's trying to hide from me. 
+<<change ThirdPersonPlayer 1>>
 Fashionista: We need to figure out some problems with our rent payments.
+<<change ThirdPersonPlayer 0>>
 Secretary: Fine. You have my permission to ask one of my free workes for help.
 Secretary: Just make it quick. This isn't an retirement home after all.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Back in my days this rude way of speak-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Thank you! You won't need to worry about that. We'll be so fast that you won't even notice us leave.
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Secretary: Are you still here?
 Secretary: Finish what you came here for and leave.
 <<endonce>>
@@ -708,11 +1196,21 @@ Secretary: Finish what you came here for and leave.
 
 title: TroubelledBanker
 ---
+
+<<declare $ReceiveForm = false>>
+<<if $ReceiveForm is true>>
+    <<jump BankerForm>>
+<<endif>>
+
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Banker: Welcome to Money-Central-Cash-First bank, MCCF Bank in short, how can I help you?
 Banker: .... Why did you bring a cat with you?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Uhmm... We couldn't find a cat sitter...
+<<change ThirdPersonPlayer 1>>
 Fashionista: Wow, you have a lot of paperwork ahead of you. Is this all due today?
+<<change ThirdPersonPlayer 0>>
 Banker: Please, don't remind me...
 Banker: But yes... I have to finish my tasks today. Even though I would be lying if I said that I don't struggle with it. 
 Banker: The workload here is just way too much for one person to handle.
@@ -721,98 +1219,170 @@ Banker: Am I supposed to work overtime? Just like the last month? Or the month b
 Banker: Having not seen my family for a whole year sometimes makes me question what I am even doing here.
 Banker: While my coworkers, although crazy, are really kind, our superiors are a nightmare to work under.
 Banker: Everything just sucks here. 
+<<change ThirdPersonPlayer 1>>
 Fashionista: Why don't you just... leave? You could find a different job.
+<<change ThirdPersonPlayer 0>>
 Banker: I would have said the money... but the pay is a also a joke. 
 Banker: You are right... why haven't I tried looking for a better job until now?
+<<change ThirdPersonPlayer 3>>
 Old Bag: Fashionista, What are you doing? We need someone to help us infiltrate this bank-
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: PSSSHHHT! That guy is dangerously smart. He is the only one that questioned me bringing Maximilian here.
+<<change ThirdPersonPlayer 0>>
 Banker: Very interesting. This is my first time witnessing seniors trying to rob a bank.
 Banker: As long as MCCF loses every single penny, I am willing to help you with your endeavour.
 Banker: I have always hated this place with every fiber of my body and want to see it burn down in flames.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Splendid. We need to pass to the safe! We are due 3 months of retirement payment and need it.
+<<change ThirdPersonPlayer 0>>
 Banker: Everything that doesn't profit the bank monetarely gets cut.
 Banker: Personally I found it deplorable when I started here, but after a while you get desensitized.
 Banker: Our superiors make our lives living hell if we don't cave in to their one dimensionally evil demands.
+<<change ThirdPersonPlayer 3>>
 Old Bag: We'd love to pass further into the building but your superior, the secretary, is guarding the door.
+<<change ThirdPersonPlayer 0>>
 Banker: Oh that, I can easily distract her for you. I unfortunately memorized what ticks her off. 
 Banker: Working here made me realise nothing is free in life. Therefore I want you to bring me something first.
+<<change ThirdPersonPlayer 3>>
 Old Bag: What do you want us to get?
+<<change ThirdPersonPlayer 0>>
 Banker: Do you see the vending machine filled with documents? I need form z-28401ft. 
+<<change ThirdPersonPlayer 1>>
 Fashionista: Why are not getting it yourself?
+<<change ThirdPersonPlayer 0>>
 Banker: Sadly, they have safety measures in place to prevent employees, like me, from accessing them. 
 Banker: They make it extra hard by cutting our salery per use. But normal people can easily bypass these ridiculous measurments.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Situations like these is what I am always warning you about. Technology is made to spy on everybody and will destroy humanit-
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Sure, we can do this much for you.
+<<change ThirdPersonPlayer 1>>
 Fashionista: You better keep your end of the deal! 
+
+<<set $FormQuest = true>>
+
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Banker: Please, bring me form z-28401ft. Otherwise I refuse to help you.
 <<endonce>>
 ===
 
 title: FifeBabysfound
 ---
+<<declare $LostKittenBack = false>>
+    <<if $LostKittenBack is true>>
+        <<jump CatMomWithKitten>>
+        <<endif>>
+
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Cat: Meow
+<<change ThirdPersonPlayer 1>>
 Fashionista: Here are your kitten. Did you get the form, cat?
+<<change ThirdPersonPlayer 0>>
 Cat: Hissssss
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Oh no. Someone is trying to adopt one of her children.
+<<change ThirdPersonPlayer 3>>
 Old Bag: You know what, that seems fair. The situation changed. Operation save kitty starts now.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Why are you suddenly talking like this.
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Cat: Hisssssss
+<<change ThirdPersonPlayer 1>>
 Fashionista: Don't worry we will save your child!
 <<endonce>>
 ===
 
 title: FightIndifferentNurse
 ---
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Awww! Where did you little cutie come from.
+<<change ThirdPersonPlayer 4>>
 Lost Kitten: Meow
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Oh, I know! From now on your name will be Estefania! 
 Indifferent Trainee Nurse: How exciting! I can take you to the gym, tell you all about the right way to build muscles and eat all the high protein stuff with you... 
+<<change ThirdPersonPlayer 4>>
 Lost Kitten: Meow
+<<change ThirdPersonPlayer 3>>
 Old Bag: Hey! Leave the kitten alone!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Its mother is already worried about it.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Please, give it back!
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Oh, no! I didn't know that little cutie already has a family. Please, I didn't mean to steal it!
+<<change ThirdPersonPlayer 3>>
 Old Bag: It's all water under the bridge! Everybody makes mistakes af-
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: I would say, if I actually cared. I found her. I keep her. Simple.
+<<change ThirdPersonPlayer 1>>
 Fashionista: But! Her parents worry about her.
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: To me, it sounds a lot like that this is their problem. Not mine. Estefania is now my cat.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I've heard enough! You better hand us the cat over!
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Or what? What can you old people even do? 
+<<change ThirdPersonPlayer 3>>
 Old Bag: We fight you, win, reunite this family and lastly rob this bank.
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: It's been a while since you proudly annouced that you will rob this boring bank. Guess what. Didn't happen.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Didn't happen YET. How did you even get in here?
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: I opened the door like every other door. Everybody is struggling to open it without a keycard for some reason.
 Indifferent Trainee Nurse: Well, I was in need of a short workout anyways.
 ===
 title: IndifferentNurselose
 ---
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Hah! I knew it. You guys were all bark and no bite!
 Indifferent Trainee Nurse: Now I can bring you back to the retirement home. And Estefania is coming with me.
+<<change ThirdPersonPlayer 4>>
 Lost Kitten: Meow
+<<change ThirdPersonPlayer 3>>
 Old Bag: You are just lucky, you haven't fought me during my prime!
+<<change ThirdPersonPlayer 1>>
 Fashionista: No! How did we lose against that brat?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: My heart is bleeding for this poor cat family. I cannot fathom the sadness her parents will feel.
 ===
 title: IndifferentNurseWin
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Noooo! You must have cheated!
+<<change ThirdPersonPlayer 3>>
 Old Bag: There is no such thing as cheating in a real fight. Thinking like that could easily cost you your-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Eat this, loser!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Give us the cat, now!
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Can I atleast say goodbye?
+<<change ThirdPersonPlayer 3>>
 Old Bag: Make it quick.
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Even though I only knew you for 10 minutes, Estefania, you quickly turned out to be my favourite person in the entire world. 
 Indifferent Trainee Nurse: Nothing will ever change the love I have for you. I will forever cherish the memories I made with you and hold them dearly to my heart. 
 Indifferent Trainee Nurse: Goodbye...*SOB* Estefania. No other cat will ever be able to fill the void you will leave.
+<<change ThirdPersonPlayer 4>>
 Lost Kitten: *Sad* meow
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Truly touching! *SNIFF*
+<<change ThirdPersonPlayer 1>>
 Fashionista: Are you finally done here?
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Yes. Take her! Don't let me think about it too much.
+
+<<set $LostKittenBack = true>>
+<<set $CatsFound = $CatsFound + 1>>
+
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Indifferent Trainee Nurse: Estefania...
 <<endonce>>
 ===
@@ -820,211 +1390,353 @@ Indifferent Trainee Nurse: Estefania...
 title: CatMomWithKitten
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Cat: Meow
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: You're welcome.
+<<change ThirdPersonPlayer 3>>
 Old Bag: You should watch your children a little more closely. Another human almost adopted her.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Luckily, we were able to hinder her from doing so.
+<<change ThirdPersonPlayer 0>>
 Cat: Meeeeeeeoooowwww
 The cat reaches behind her. She hands you the form z-28401ft in a passable condition.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Yes! We finally can help the banker out.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Hopefully his promised commotion is big enough for the secretary to be fully distracted!
+
+<<set $ReceiveForm = true>>
+
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Cat: Meow
 <<endonce>>
 ===
 
 title: BankerForm
 ---
+<<change ThirdPersonPlayer 1>>
 Fashionista: Here is your paper with a too small font. How are you even supposed to decipher what is written on there?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: By wearing your reading glasses maybe.
+<<change ThirdPersonPlayer 1>>
 Fashionista: I do not need them!
+<<change ThirdPersonPlayer 0>>
 Banker: How neat. Now I can bypass paying them back my salary for the last ten years I have worked for them.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Now. Do you already know how you are going to execute your mission?
+<<change ThirdPersonPlayer 0>>
 Banker: That's easy. I already know what I want to do. Even if my plan is a little petty.
+<<change ThirdPersonPlayer 1>>
 Fashionista: We should make a sign that lets us know when you are about to start, like in those movies.
+<<change ThirdPersonPlayer 0>>
 Banker: Trust me. We won't need that. You'll know.
 ===
 
 title: BankerDistraction
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Banker: EXCUSE ME EVERYBODY!
 Banker: I NEED TO TELL YOU SOMETHING VERY IMPORTANT!
+<<change ThirdPersonPlayer 5>>
 Flirty Banker: What is going on, worker bee?
 Blushing Banker: I don't know... He's normally at his desk this time around.
+<<change ThirdPersonPlayer 4>>
 Secretary: Stop with this commotion right now and go back to your-
+<<change ThirdPersonPlayer 0>>
 Banker: I QUIT!
+<<change ThirdPersonPlayer 4>>
 Secretary: What do you mean, you quit!? You cannot just quit! You will be in debt if you do!
+<<change ThirdPersonPlayer 0>>
 Banker: Hah! You really think I didn't take any precautions. You will never be able to take the pay I have fairly earned away!
 Banker: I asked someone else to get me the form.
+<<change ThirdPersonPlayer 4>>
 Secretary: How? The vending machine is programmed to malfunction when outsiders are using it.
+<<change ThirdPersonPlayer 3>>
 Old Bag: This was on purpose?!
+<<change ThirdPersonPlayer 4>>
 Secretary: Why do you want to quit in the first place? You have always been such an diligent, serious and hardworking employee.
 Secretary: That never asked any unnecessary questions and was ready to work overtime without extra pay.
 Secretary: Perfect for exploitation... I mean... this corporation!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: She seems distracted.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Quick, we should take our leave now!
+<<change ThirdPersonPlayer 4>>
 Secretary: Wait a minute! What are those seniors doing at the door?
-Secretary: Is this a ploy to distract me from guarding the hallway?! 
+Secretary: Is this a ploy to distract me from guarding the hallway?!
+<<change ThirdPersonPlayer 0>> 
 Banker: NO. I do not care about those seniors! Or about distracting you. I just want everybody to know I quit!
 Banker: Oh and the reason I quit is none other than...
 Banker: You!
+<<change ThirdPersonPlayer 4>>
 Secretary: What? How could that be possible? Me? I am the best supervisor you could ask for. I am nice, friendly, hardworking-
+<<change ThirdPersonPlayer 0>>
 Banker: In your dreams! You always make me work your part of the workload aswell!
 Banker: Frustrated from all this work I decided to dig a little bit into your qualifications!
+<<change ThirdPersonPlayer 4>>
 Secretary: How dare you spy on me! 
+<<change ThirdPersonPlayer 0>>
 Banker: And guess what. There are none! None that could make you our supervisor and secretary of this bank!
 Banker: The only reason you got this position is because our boss is a friend of your father!
+<<change ThirdPersonPlayer 4>>
 Secretary: This... this is not true! He is lying!
+<<change ThirdPersonPlayer 5>>
 Addicted Banker: What! She is a fraud?!
 Slacking Banker: She has less qualifications than me and gets more pay and the weekends off?!
 Cat Banker: M I A U
 Smoking Banker: You are right, we should do something about this!
+<<change ThirdPersonPlayer 0>>
 Banker: I have the perfect Idea! Guys we should all quit.
+<<change ThirdPersonPlayer 5>>
 Addicted Banker: What about the debt?
+<<change ThirdPersonPlayer 0>>
 Banker: Just copy the document in my hand and we are free!
+<<change ThirdPersonPlayer 4>>
 Secretary: No, you can't do this!
 <<else>>
+<<change ThirdPersonPlayer 5>>
 Addicted Banker: Yes! Freedom!....
 Addicted Banker: I should go home and sleep....
 Flirty Banker: Bee, are you going to follow me to a new company?
 Blushing Banker: Of course, I could never leave you by yourself!
+<<change ThirdPersonPlayer 4>>
 Secretary: Come back! I will never be able to find workers as simple as you again! Please!
 <<endonce>>
 ===
 
 title: Vase
 ---
+<<change ThirdPersonPlayer 0>>
 An incredibly expensive looking vase. 
+<<change ThirdPersonPlayer 1>>
 Old Bag: They look beautiful. You think they are handpainted?
+<<change ThirdPersonPlayer 2>>
 Fashionista: It looks like a kid scribbled over it with crayons...
 ===
 title: Bust
 ---
+<<change ThirdPersonPlayer 0>>
 A bust of the Money-Central-Cash-First Bank CEO.
+<<change ThirdPersonPlayer 1>>
 Cat Grandma: How tacky.
 ===
 
 title: IntroHallway
 ---
 <<once>>
+<<change ThirdPersonPlayer 0>>
 Henchman: Hey! This place is a highly restricted area, how did you even-
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We are finally here! 
+<<change ThirdPersonPlayer 3>>
 Old Bag:  Now we can either make our secret operation succeed or fail. Focus!
+<<change ThirdPersonPlayer 1>>
 Fashionista: I can already smell our money!
+<<change ThirdPersonPlayer 0>>
 Henchman: Hello?! I am talking to-
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Is this where our money went? Everything here looks so-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Blurry!
+<<change ThirdPersonPlayer 3>>
 Cat Grandma: NO! Fancy... Look at those vases! They all must be handpainted.
+<<change ThirdPersonPlayer 0>>
 Henchman: Excuse m-
+<<change ThirdPersonPlayer 3>>
 Old Bag: And to top it all off! There is no unnecessary technology present. Beautiful!
+<<change ThirdPersonPlayer 0>>
 Henchman: Please return to the customer area! You are trespassing-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Hey! Has no one taught you to not interrupt people while speaking? Rude!
+<<change ThirdPersonPlayer 0>>
 Henchman: ...
 Henchman: As a guard, I have to ask you to leave. This is your last warning! You can continue your conversation elsewhere.
+<<change ThirdPersonPlayer 4>>
 Walkie Talkie: *BUZZZ* Intruders *BUZZZ* Catch *BUZZZ* OVER!
+<<change ThirdPersonPlayer 0>>
 Henchman: Chief Security Officer Kyle, could you please repeat your message, over!
+<<change ThirdPersonPlayer 4>>
 Walkie Talkie: *BUZZZ* Senior *BUZZ* Them *BUZZZ* Over!
+<<change ThirdPersonPlayer 0>>
 Henchman: The security firm needs to spend more money on better equipment.
+<<change ThirdPersonPlayer 4>>
 Walkie Talkie: WHAT DID YOU JUST SAY? The equipment is working, you *BUZZZ*!
 Walkie Talkie: Do I always have to yell at you, so that you actually do what you are told to do?!
+<<change ThirdPersonPlayer 0>>
 Henchman: What? I couldn't understand what you where saying just now...
+<<change ThirdPersonPlayer 1>>
 Fashionista: For some reason we could clearly hear him scold you.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Maybe you should go over to him and ask him for his order?
+<<change ThirdPersonPlayer 0>>
 Henchman: Are you crazy! He is going to give me a hard time...
 Henchman: Again...
+<<change ThirdPersonPlayer 4>>
 Walkie Talkie: BILLI! I want you to concentrate this time! There are *BUZZZ* that want to *BUZZZ* to the *BUZZZ*! You understood? Over!
+<<change ThirdPersonPlayer 0>>
 Henchman: ...
 Henchman: Did you guys understand?
+<<change ThirdPersonPlayer 3>>
 Old Bag: Didn't he just tell you to listen? It is the same with every underling. They are always ignoring your commands for-
+<<change ThirdPersonPlayer 1>>
 Fashionista: You really need to clean your ears, young man.
 Fashionista: He told you to capture some senior citicens that try to steal the money from the safe.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: How did you not hear this. He was loud and clear.
+<<change ThirdPersonPlayer 0>>
 Henchman:... 
 Henchman: Is this about you guys? 
+<<change ThirdPersonPlayer 3>>
 Old Bag: .... Let's just go!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Good Idea!
-<<endonce>>
-===
-
-title: HenchmanYellsAfterYou
----
+<<else>>
+<<change ThirdPersonPlayer 0>>
 Henchman: Hey, you need to leave this place asap!
 Henchman: Listen to me! 
 Henchman: Stop!
 Henchman: Hey!
 Henchman: Please! Don't go any further!
+<<endonce>>
 ===
 
 title: ChiefSecurityOfficer
 ---
+<<if $HallwayKitten >= 12>>
+    <<jump Catsfound>>
+    <<endif>>
+
 <<once>>
+<<change ThirdPersonPlayer 6>>
 Walkie Talkie: KYLE! The old people are ignoring me! What should I do? Over.
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: Billi, just catch them! Or at least one of them! They are old. You are faster than them. Over.
+<<change ThirdPersonPlayer 6>>
 Walkie Talkie: What did you say? The walkie talkie didn't pick it up. Over.
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: TSK. You are totally useless! BILLI, what happened to the intruders, over?
+<<change ThirdPersonPlayer 6>>
 Walkie Talkie: I am not useless! ... What did you say after that?
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: ...
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Not another one! 
+<<change ThirdPersonPlayer 3>>
 Old Bag: The security is being strengthend. We are on the right path!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Nice! We are even closer towards our retirement funds!
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: Not so fast.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Hmmmm, he seems to be a bit more reliable that the flimsy guy from before.
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: And I do not care if I hurt old folks in the process of catching them.
 Chief Security Officer: I will only ask you to leave once on your own merit.
+<<change ThirdPersonPlayer 3>>
 Old Bag: No! We'll never surrend-
+<<change ThirdPersonPlayer 4>>
 Henchman: I SAID STOP!
+<<change ThirdPersonPlayer 1>>
 Fashionista: We are already standing still. Do you need glasses by chance.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: The irony...
+<<change ThirdPersonPlayer 3>>
 Old Bag: Boy, go back... we have already outsmarted you. In the military you wouldn't even have lasted one-
+<<change ThirdPersonPlayer 4>>
 Henchman: See, Kyle! They keep ignoring me!
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: ....
 Chief Security Officer: Is there a reason you want to steal MCCFs money?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We have the suspicion that your boss might embezzel our retirement funds.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Now we are here to investigate-
+<<change ThirdPersonPlayer 1>>
 Fashionista: By robbing this bank!
+<<change ThirdPersonPlayer 4>>
 Henchman: Is this why I got a salary cut last month?
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: No! It's because you almost gave out high risk security details to your girlfriend. 
+<<change ThirdPersonPlayer 4>>
 Henchman: Ex...She broke up with me... Because you threw her out of the security room.
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: See skimmed through highly confidential documents...
+<<change ThirdPersonPlayer 4>>
 Henchman: She told me she can't read-
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: Sometimes I question whether you are just naive or simply stupid.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Seems to me she was only in it for the information.
+<<change ThirdPersonPlayer 4>>
 Henchman: You don't know anything.
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: As you can see, I have enough to deal with my henchman. Just go back already...
+<<change ThirdPersonPlayer 1>>
 Fashionista: HA! You repeated yourself!
+<<change ThirdPersonPlayer 3>>
 Old Bag: NEVER! I will keep fighting until-
+<<change ThirdPersonPlayer 2>>
 Maximilian: Meow
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: AHHH! What is this beast doing here?
+<<change ThirdPersonPlayer 2>>
 Maximilian: Offended Meow
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: How dare you insult my fluffy baby, Maximilian, like that!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Have you only noticed him now?
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: NOOOO! Get that thing away from me! 
+<<change ThirdPersonPlayer 4>>
 Henchman: Chill, it's just a cat...
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: Didn't I tell you to get rid of all the cats in the hallway over the walkie talkie?!
+<<change ThirdPersonPlayer 4>>
 Henchman: You... did?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Say, we could catch them and bring them back to their mother? So you could let us pass?
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: A bribe? I don't take any-
+<<change ThirdPersonPlayer 5>>
 Cat: Meow
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHH!
 Chief Security Officer: Not another one!
 Chief Security Officer: ....
+<<change ThirdPersonPlayer 1>>
 Fashionista: You are also here, racoon?
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: She asked the henchman if they could find her two remaining children.
+<<change ThirdPersonPlayer 4>>
 Henchman: So that is what she wanted from me....
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: There are more cats here? I am starting to feel sick....
 Chief Security Officer: FINE! Maybe you could help find those two creatures that are hiding in here and catch them for me. It is such a hassle, Billi is useless-
+<<change ThirdPersonPlayer 4>>
 Henchman: HEY!
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: And I am too scare- I have more important things to do.
+<<change ThirdPersonPlayer 1>>
 Fashionista: We are not doing any work for free!
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: ... I'll close my eyes until you reach the safe. Just get rid of them.
+<<change ThirdPersonPlayer 4>>
 Henchman: But! Isn't this against protocol?!
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: We just hired them to find and collect the cats in the hallway... thus there is no breach.
+<<change ThirdPersonPlayer 4>>
 Henchman: If you say so then it must be right.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: How gullible...
 <<else>>
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: Make it fast I don't want to see those beasts anymore!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Back in my days asking old people to do your work was seen as-
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: I have no shame. Go on now, before I change my mind.
 <<endonce>>
 
@@ -1032,134 +1744,236 @@ Chief Security Officer: I have no shame. Go on now, before I change my mind.
 title: Catsfound
 ---
 <<once>>
+<<change ThirdPersonPlayer 1>>
 Fashionista: We did it. Here are your children, racoon! They kind of look like cats... are you sure they are yours?
+<<change ThirdPersonPlayer 5>>
 Cat: Meow
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: You are welcome!
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: Billi. Let's focus on reviewing the security footage...
+<<change ThirdPersonPlayer 4>>
 Henchman: But these people stated that they want to rob this bank!
+<<change ThirdPersonPlayer 0>>
 Chief Security Officer: They did? I don't believe you.
+<<change ThirdPersonPlayer 4>>
 Henchman: Really! They even told me before!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Let it rest. Corruption is everywhere.
 <<endonce>>
 
 ===
 title: Bossfight
 ---
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: The safe! Finally. Now I can buy all the cat toys I want for Maximilian and his siblings.
 Maximilian: Meow
+<<change ThirdPersonPlayer 3>>
 Old Bag: Weird. Don't you guys think, that this was way too easy? It is suspicious...
+<<change ThirdPersonPlayer 1>>
 Fashionista: You are worrying too much! We are here. Now it is time for the rest of our-
+<<change ThirdPersonPlayer 4>>
 Chief Security Officer: Not so fast! You stand directly before the safe. I kept my end of the deal now we can kick you out!
+<<change ThirdPersonPlayer 5>>
 Henchman: Why, didn't we want to let them go?
+<<change ThirdPersonPlayer 4>>
 Chief Security Officer: Are you crazy? How are we supposed to find another job in this economy?
+<<change ThirdPersonPlayer 5>>
 Henchman: You are right.
+<<change ThirdPersonPlayer 3>>
 Old Bag: I knew it! Call it intuition! So you are here for a fight. But I have to warn you, I was-
+<<change ThirdPersonPlayer 6>>
 ????: They won't fight you!
+<<change ThirdPersonPlayer 0>>
 Head Nurse: But I will, if you don't come with me.
+<<change ThirdPersonPlayer 4>>
 Chief Security Officer: How did you get in here?
+<<change ThirdPersonPlayer 0>>
 Head Nurse: I climbed through the vent.
+<<change ThirdPersonPlayer 4>>
 Chief Security Officer: Wanna work for me? You seem competent and the security department pays well-
+<<change ThirdPersonPlayer 0>>
 Head Nurse: No thank you! I am a nurse at heart. Looking after old people and going to the gym are my joys in life.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Oh no! Not the head nurse!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Why are those nurses so persistent?
+<<change ThirdPersonPlayer 1>>
 Fashionista: What a pain in the neck!
+<<change ThirdPersonPlayer 0>>
 Head Nurse: Can't you see how they are greeting me with such enthusiasm. They love me.
+<<change ThirdPersonPlayer 4>>
 Chief Security Officer: Stop lying to yourself-
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We already won against the other two! Fighting you won't be any different!
+<<change ThirdPersonPlayer 0>>
 Head Nurse: HAHAHAHAHAHAHA! Easy guys, we can just talk it out. Follow me back to the re-
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I am sorry, but we can't. We are so close to finish what we came here for.
+<<change ThirdPersonPlayer 0>>
 Head Nurse: But robbing a bank. Come on, you wouldn't want to spend the rest of your lives in prison?
 Head Nurse: How about we all relax now and take a deep breath.
+<<change ThirdPersonPlayer 1>>
 Fashionista: We cannot let anybody ruin this!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We have proof that this bank is embezzeling our hard earned money! 
 Cat Grandma: My whole life I looked after sick and injured animals, just to end up being barely able to feed my 4 cats.
+<<change ThirdPersonPlayer 3>>
 Old Bag: And I can't buy high quality wool anymore, without struggling to find something to eat. 
 Old Bag: I just want to enjoy the rest of my remaining time. I spend so much time on the battle fields-
+<<change ThirdPersonPlayer 1>>
 Fashionista: Finally I have enough freetime to visit all the places I always wanted to see. But now I am struggling more than ever before.
+<<change ThirdPersonPlayer 0>>
 Head Nurse: ...
 Head Nurse: Of couse I understand. But protocol is protocol. You guys are harming yourselves. Let us go back and figure everything out-
+<<change ThirdPersonPlayer 3>>
 Old Bag: For the last time! We will finish this operation. And if it is the last thing I do!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Show us what you can.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: The hard way it is.
+<<change ThirdPersonPlayer 0>>
 Head Nurse: Make yourselves ready to leave!
 ===
 
 title: HeadNurseWin
 ---
+<<change ThirdPersonPlayer 0>>
 Head Nurse: Nooo! 
 Head Nurse: I cannot believe I lost!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Do we also have to fight those two?
+<<change ThirdPersonPlayer 4>>
 Chief Security Officer: No, I am good. I don't want to get scratched by the cat.
+<<change ThirdPersonPlayer 5>>
 Henchman: No! Please don't hit me!
+<<change ThirdPersonPlayer 1>>
 Fashionista: How did you even think of becoming a security guard, with this attitude?
+<<change ThirdPersonPlayer 0>>
 Head Nurse: I miss my girls... those men are useless
+<<change ThirdPersonPlayer 5>>
 Henchman: That isn't true!
 ===
 
 title: HeadNurseLoss
----
+---<<change ThirdPersonPlayer 0>>
 Head Nurse: HAHAHAHAHAHAHA
 Head Nurse: Your stroll is over. It is time to go home.
+<<change ThirdPersonPlayer 1>>
 Fashionista: But we were so close!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: What am I supposed to do with my cats...
+<<change ThirdPersonPlayer 3>>
 Old Bag: No! My tactics. I got rusty....
 ===
 
 title: Conclusion
 ---
+<<change ThirdPersonPlayer 3>>
 Old Bag: We finally infiltrated this safe and this is it?
+<<change ThirdPersonPlayer 1>>
 Fashionista: That has to be some sort of prank. 
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Where is the money?
+<<change ThirdPersonPlayer 3>>
 Old Bag: To top it all off, the fumes in here are horrid.
+<<change ThirdPersonPlayer 1>>
 Fashionista: What do you mean? The air is very clean.
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: Who are you? What are you doing here? How did you even get in here?
+<<change ThirdPersonPlayer 1>>
 Fashionista: Through the door behind us, obviously!
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: Security! SECURITY!
 MCCF Boss: Take them away! Now!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: They won't be able to help you!
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: What? I invested a huge sum into the security department! How did they lose against some geezers?
+<<change ThirdPersonPlayer 3>>
 Old Bag: We are not any geezers. I was a huge military o-
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: I do not care who you are... or were in the past. I just want you to leave!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Not without our money!
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: Pah! What money?
+<<change ThirdPersonPlayer 1>>
 Fashionista: Our retirement obviously. This bank cut us three whole months from our payment.
-Old Geezer: Three Months! How do you expect us to survive?
+<<change ThirdPersonPlayer 3>>
+Old Bag: Three Months! How do you expect us to survive?
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: Who? Our bank. That cant be right.
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Yes you! And we even have proof for our claims!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Through our investigation-
+<<change ThirdPersonPlayer 1>>
 Fashionista: By only looking at our bank statements
+<<change ThirdPersonPlayer 3>>
 Old Bag:...
 Old Bag: We concluded that-
+<<change ThirdPersonPlayer 1>>
 Fashionista: You are doing something shady with our money!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We believe you use not only our rerirement money, but also the ones from other seniors.
 Cat Grandma: The empty safe is proof for this. 
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: HUh? That is not true.... I do not need your money at all!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Wrong, you are overspending for useless overpriced trinkets. Otherwise you wouldn't be wearing such extravagant-
+<<change ThirdPersonPlayer 1>>
 Fashionista: And ugly Assesorys. Golly, someone needs to help you choose a better outfit.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Can you not cut me off for onc-
+<<change ThirdPersonPlayer 1>>
 Fashionista: No
+<<change ThirdPersonPlayer 0>>
 MMCF Boss: HA
 MCCF Boss: HAHAHAHAHAHAHA
 MCCF Boss: Excellent job! You deducted everything correctly. Yes, I am cutting your retirement money. Yes, I am stealing other peoples retirement money. AND I am using it to enrich myself. 
 MCCF Boss: But what are you going to do about it? No, what can you do about it? Nobody will believe some senile grandparents after all.
+<<change ThirdPersonPlayer 3>>
 Old Bag: Lie! The young people are catching up on what you are doing!
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: The exact young people that let me exploit their hard labour for chump change?
+<<change ThirdPersonPlayer 1>>
 Fashionista: Don't listen to him, Old Bag. He knows we are a threat. 
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: Why did you think, you were never seen as a threat running around this bank? Because everybody believes you cannot do anything!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: Nobody suspects friendly looking seniors to rob a bank! So we simply took advantage of it.
+<<change ThirdPersonPlayer 1>>
 Fashionista: And now we are going to report you!
+<<change ThirdPersonPlayer 3>>
 Old Bag: Say goodbye to your freedom scumbag!
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: You cannot do anything! I will just delete all the proof from my PC.
+<<change ThirdPersonPlayer 1>>
 Fashionista: Too bad for you...
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: We thought ahead of this.
+<<change ThirdPersonPlayer 3>>
 Old Bag: We are using this technology to life... to take live footage. And a lot of people are watching now!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Good thing I asked my grandson to teach Maximilian how to use it.
+<<change ThirdPersonPlayer 2>>
 Maximilian: Meow
+<<change ThirdPersonPlayer 0>>
 MCCF Boss: Nooo! How do you geezers even know about live streaming?!
+<<change ThirdPersonPlayer 2>>
 Cat Grandma: I wanted to start a side hussle... for cat food.
+<<change ThirdPersonPlayer 3>>
 Old Bag: This technology would have been really useful back in the day!
+<<change ThirdPersonPlayer 1>>
 Fashionista: Now there is no way out for you! Give us our money back!
+<<change ThirdPersonPlayer 4>>
 Afterwards the evil cooperate boss got arrested. They seized his villa, bank account and dog.
+<<if $CatsFound == 16 >>
+    The lovely cat mom and her children are fully reunited and happy. One of them even made a red haired friend during their adventure.
+<<elseif $CatsFound <=15>>
+    Sadly you couldn't find all of the missing kittens.The cats husband found the rest of them after his shift. Now the cat feels embarassed about the whole incitent.
+    <<endif>>
 Our three brave seniors got awarded for their genious investigation into the MCCF's shady practices.
 Now they are enjoying their retirement, playing with Maximilian and his siblings, knitting clothes for them and booking a cruise.
 ===
