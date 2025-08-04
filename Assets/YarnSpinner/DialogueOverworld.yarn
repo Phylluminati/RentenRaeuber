@@ -338,15 +338,17 @@ title: KittenFound14
 ---
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
+<<set $HallwayKitten = $HallwayKitten +1>>
 Ha, you cant hide from me!
-<<Deactivate ProgressionManager Cat14Item>>
+<<Deactivate ProgressionManager Cat15Item>>
 ===
 title: KittenFound15
 ---
 <<set $CatsFound = $CatsFound + 1 >>
+<<set $HallwayKitten = $HallwayKitten +1>>
 <<change ThirdPersonPlayer 0>>
 I almost missed you!
-<<Deactivate ProgressionManager Cat15Item>>
+<<Deactivate ProgressionManager Cat16Item>>
 ===
 
 
@@ -617,7 +619,6 @@ Fashionista: HAH! We won! LOOOSER!
 Cat Grandma: Now you have to let us do as we please!
 <<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Ugh noooo! I lost. What do we do now?
-<<change ThirdPersonPlayer 4>>
 Head Nurse: Fine! You win for now! We WILL catch you soon enough!
 <<endonce>>
 
@@ -1698,6 +1699,9 @@ title: DoorUnguarded
 The Door is unguarded now.
 It seems to be unlocked.
 Fashionista: Everyone, ready? Let's go deeper
+<<declare $HallwayKitten = 0>>
+<<declare $Nurse3Beaten = false>>
+<<declare $HallwayKittensFound = false>>
 <<Deactivate ProgressionManager OfficeToHallwayDoor>>
 ===
 
@@ -1793,6 +1797,24 @@ Cat Grandma: How tacky.
 
 title: IntroHallway
 ---
+<<if $Nurse3Beaten == true>>
+    Henchman: Wow... that was a fight of enormous proportions
+    Henchman: I guess, I never been or actually have seen a fight.
+    Henchman: I guess I have a pretty low bar...
+    <<stop>>
+<<endif>>
+<<if $battleWon == true>>
+    Henchman: Wow... that was a fight of enormous proportions
+    Henchman: I guess, I never been or actually have seen a fight.
+    Henchman: I guess I have a pretty low bar...
+    <<stop>>
+<<endif>>
+<<if $battleLost == true>>
+    Henchman: Dang, are you all okay?
+    Henchman: these retirement home nurses are really ruthless...
+    Henchman: I guess I should save up some funds really early...
+    <<stop>>
+<<endif>>
 <<once>>
 <<change ThirdPersonPlayer 0>>
 Henchman: Hey! This place is a highly restricted area, how did you even-
@@ -1872,10 +1894,24 @@ Henchman: Please! Don't go any further!
 
 title: ChiefSecurityOfficer
 ---
-<<if $HallwayKitten >= 12>>
-    <<jump Catsfound>>
+<<if $Nurse3Beaten == true>>
+    Chief Security Officer: Wow... You really showed her...
+    Chief Security Officer: Me? Oh don't worry about me, I won't stop you
+    Chief Security Officer: I don't want to get scratched...
+    <<stop>>
 <<endif>>
-
+<<if $battleWon == true>>
+    Chief Security Officer: Wow... You really showed her...
+    Chief Security Officer: Me? Oh don't worry about me, I won't stop you
+    Chief Security Officer: I don't want to get scratched...
+    <<stop>>
+<<endif>>
+<<if $battleLost == true>>
+    Chief Security Officer: Wow... She really showed you all...
+    Chief Security Officer: Shame she won't join the security team.
+    Chief Security Officer: Oh sorry, don't mind me, I don't want to get scratched...
+    <<stop>>
+<<endif>>
 <<once>>
 <<change ThirdPersonPlayer 6>>
 Walkie Talkie: KYLE! The old people are ignoring me! What should I do? Over.
@@ -1918,9 +1954,9 @@ Henchman: See, Kyle! They keep ignoring me!
 Chief Security Officer: ....
 Chief Security Officer: Is there a reason you want to steal MCCFs money?
 <<change ThirdPersonPlayer 2>>
-Cat Grandma: We have the suspicion that your boss might embezzel our retirement funds.
+Cat Grandma: We have the suspicion, open the safe.
 <<change ThirdPersonPlayer 3>>
-Old Bag: Now we are here to investigate-
+Old Bag: We are here to investigate-
 <<change ThirdPersonPlayer 1>>
 Fashionista: By robbing this bank!
 <<change ThirdPersonPlayer 4>>
@@ -1930,7 +1966,7 @@ Chief Security Officer: No! It's because you almost gave out high risk security 
 <<change ThirdPersonPlayer 4>>
 Henchman: Ex...She broke up with me... Because you threw her out of the security room.
 <<change ThirdPersonPlayer 0>>
-Chief Security Officer: See skimmed through highly confidential documents...
+Chief Security Officer: She skimmed through highly confidential documents...
 <<change ThirdPersonPlayer 4>>
 Henchman: She told me she can't read-
 <<change ThirdPersonPlayer 0>>
@@ -1999,6 +2035,9 @@ Henchman: If you say so then it must be right.
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: How gullible...
 <<else>>
+<<if $HallwayKitten >= 2>>
+    <<jump Catsfound>>
+<<endif>>
 <<change ThirdPersonPlayer 0>>
 Chief Security Officer: Make it fast I don't want to see those beasts anymore!
 <<change ThirdPersonPlayer 3>>
@@ -2011,8 +2050,9 @@ Chief Security Officer: I have no shame. Go on now, before I change my mind.
 title: Catsfound
 ---
 <<once>>
+<<set $HallwayKittensFound = true>>
 <<change ThirdPersonPlayer 1>>
-Fashionista: We did it. Here are your children, racoon! They kind of look like cats... are you sure they are yours?
+Fashionista: We did it. Here are your children, raccoon! They kind of look like cats... are you sure they are yours?
 <<change ThirdPersonPlayer 5>>
 Cat: Meow
 <<change ThirdPersonPlayer 2>>
@@ -2025,6 +2065,10 @@ Henchman: But these people stated that they want to rob this bank!
 Chief Security Officer: They did? I don't believe you.
 <<change ThirdPersonPlayer 4>>
 Henchman: Really! They even told me before!
+<<change ThirdPersonPlayer 0>>
+Chief Security Officer: Really? How worrying, then come on, I need to review the security footage to verify this claim, immediately.
+<<change ThirdPersonPlayer 4>>
+Henchman: Oh come on
 <<change ThirdPersonPlayer 3>>
 Old Bag: Let it rest. Corruption is everywhere.
 <<endonce>>
@@ -2032,6 +2076,23 @@ Old Bag: Let it rest. Corruption is everywhere.
 ===
 title: Bossfight
 ---
+<<if $HallwayKittensFound == false>>
+    The Vault door...
+    There's no way of getting in, while the guards are watching and patrolling
+    <<stop>>
+<<endif>>
+<<if $battleWon == true>>
+    <<set $nurse3Beaten = true>>
+    <<set $battleWon to false>>
+    <<set $battleLost to false>>
+<<endif>>
+<<if $nurse3Beaten == true>>
+    <<jump HeadNurseWin>>
+    <<stop>>
+<<endif>>
+<<if $battleLost == true>>
+    <<jump HeadNurseLoss>>
+<<endif>>
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: The safe! Finally. Now I can buy all the cat toys I want for Maximilian and his siblings.
 Maximilian: Meow
@@ -2040,6 +2101,8 @@ Old Bag: Weird. Don't you guys think, that this was way too easy? It is suspicio
 <<change ThirdPersonPlayer 1>>
 Fashionista: You are worrying too much! We are here. Now it is time for the rest of our-
 <<change ThirdPersonPlayer 4>>
+<<MoveTo  ChiefSecurityOfficer GuardWaypoint1>>
+<<MoveTo  Henchman GuardWaypoint2>>
 Chief Security Officer: Not so fast! You stand directly before the safe. I kept my end of the deal now we can kick you out!
 <<change ThirdPersonPlayer 5>>
 Henchman: Why, didn't we want to let them go?
@@ -2051,6 +2114,7 @@ Henchman: You are right.
 Old Bag: I knew it! Call it intuition! So you are here for a fight. But I have to warn you, I was-
 <<change ThirdPersonPlayer 6>>
 ????: They won't fight you!
+<<MoveTo  HeadNurse HeadNurseWaypoint>>
 <<change ThirdPersonPlayer 0>>
 Head Nurse: But I will, if you don't come with me.
 <<change ThirdPersonPlayer 4>>
@@ -2058,7 +2122,7 @@ Chief Security Officer: How did you get in here?
 <<change ThirdPersonPlayer 0>>
 Head Nurse: I climbed through the vent.
 <<change ThirdPersonPlayer 4>>
-Chief Security Officer: Wanna work for me? You seem competent and the security department pays well-
+Chief Security Officer: Vent crawling all while evading security? Wanna work for me? You seem competent and the security department pays well-
 <<change ThirdPersonPlayer 0>>
 Head Nurse: No thank you! I am a nurse at heart. Looking after old people and going to the gym are my joys in life.
 <<change ThirdPersonPlayer 2>>
@@ -2083,7 +2147,7 @@ Head Nurse: How about we all relax now and take a deep breath.
 <<change ThirdPersonPlayer 1>>
 Fashionista: We cannot let anybody ruin this!
 <<change ThirdPersonPlayer 2>>
-Cat Grandma: We have proof that this bank is embezzeling our hard earned money! 
+Cat Grandma: We have a suspicion, that can only be confirmed by opening this vault door and seeing what's behind it! 
 Cat Grandma: My whole life I looked after sick and injured animals, just to end up being barely able to feed my 4 cats.
 <<change ThirdPersonPlayer 3>>
 Old Bag: And I can't buy high quality wool anymore, without struggling to find something to eat. 
@@ -2101,6 +2165,20 @@ Fashionista: Show us what you can.
 Cat Grandma: The hard way it is.
 <<change ThirdPersonPlayer 0>>
 Head Nurse: Make yourselves ready to leave!
+<<change  ThirdPersonPlayer 7>>
+Cat: MEOWW!!
+<<change  ThirdPersonPlayer 2>>
+Cat Grandma: You came here to help us?
+<<change  ThirdPersonPlayer 7>>
+Cat: MEOWW, MEOW MEOWWWWWW!!
+Cat: MMMMRRRRRRRRRRRRRRRRPPPPP!!!
+<<change  ThirdPersonPlayer 6>>
+The power of cat purrs radiates within You.
+The Pensioners feel their exhaustion dissipating, in light of the upcoming daunting battle
+<<change  ThirdPersonPlayer 2>>
+Cat Grandma: Thank you!
+<<HealFlag ProgressionManager>>
+<<Battle  ProgressionManager 2>>
 ===
 
 title: HeadNurseWin
@@ -2119,7 +2197,17 @@ Fashionista: How did you even think of becoming a security guard, with this atti
 <<change ThirdPersonPlayer 0>>
 Head Nurse: I miss my girls... those men are useless
 <<change ThirdPersonPlayer 5>>
-Henchman: That isn't true!
+Henchman: That isn't true! I'm not useless!
+Henchman: I can lock and unlock this Vault door
+<<Deactivate ProgressionManager HallwayToSafeDoor>>
+Henchman: See!
+<<change ThirdPersonPlayer 1>>
+Fashionista: Thank you, suckers.
+<<change ThirdPersonPlayer 5>>
+Henchman: Oh no, I'm sorry everyone, I didn't have my head in the game
+<<change ThirdPersonPlayer 4>>
+Chief Security Officer: The bad ventilation is really getting to you, Billie....
+
 ===
 
 title: HeadNurseLoss
@@ -2133,6 +2221,20 @@ Fashionista: But we were so close!
 Cat Grandma: What am I supposed to do with my cats...
 <<change ThirdPersonPlayer 3>>
 Old Bag: No! My tactics. I got rusty....
+<<change  ThirdPersonPlayer 7>>
+Cat: MEOWW, MEOW MEOWWWWWW!!
+Cat: MMMMRRRRRRRRRRRRRRRRPPPPP!!!
+<<change ThirdPersonPlayer 3>>
+Old Bag: Wait, we can win this, we can
+<<change ThirdPersonPlayer 2>>
+Cat Grandma: The cat is helping us again
+<<change ThirdPersonPlayer 1>>
+Fashionista: I feel better already.
+Fashionista: Let's rematch!
+<<change ThirdPersonPlayer 0>>
+Head Nurse: Wait, what are you doing? I just beat you! Impossible!
+<<HealFlag ProgressionManager>>
+<<Battle  ProgressionManager 2>>
 ===
 
 title: Conclusion
@@ -2171,7 +2273,7 @@ Fashionista: Our retirement obviously. This bank cut us three whole months from 
 <<change ThirdPersonPlayer 3>>
 Old Bag: Three Months! How do you expect us to survive?
 <<change ThirdPersonPlayer 0>>
-MCCF Boss: Who? Our bank. That cant be right.
+MCCF Boss: Who? Our bank. That can't be right.
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: Yes you! And we even have proof for our claims!
 <<change ThirdPersonPlayer 3>>
@@ -2184,14 +2286,14 @@ Old Bag: We concluded that-
 <<change ThirdPersonPlayer 1>>
 Fashionista: You are doing something shady with our money!
 <<change ThirdPersonPlayer 2>>
-Cat Grandma: We believe you use not only our rerirement money, but also the ones from other seniors.
+Cat Grandma: We believe you use not only our retirement money, but also the ones from other seniors.
 Cat Grandma: The empty safe is proof for this. 
 <<change ThirdPersonPlayer 0>>
 MCCF Boss: HUh? That is not true.... I do not need your money at all!
 <<change ThirdPersonPlayer 3>>
 Old Bag: Wrong, you are overspending for useless overpriced trinkets. Otherwise you wouldn't be wearing such extravagant-
 <<change ThirdPersonPlayer 1>>
-Fashionista: And ugly Assesorys. Golly, someone needs to help you choose a better outfit.
+Fashionista: And ugly Accessories. Golly, someone needs to help you choose a better outfit.
 <<change ThirdPersonPlayer 3>>
 Old Bag: Can you not cut me off for onc-
 <<change ThirdPersonPlayer 1>>
@@ -2240,10 +2342,12 @@ Afterwards the evil cooperate boss got arrested. They seized his villa, bank acc
 <<if $CatsFound == 16 >>
     The lovely cat mom and her children are fully reunited and happy. One of them even made a red haired friend during their adventure.
 <<elseif $CatsFound <=15>>
-    Sadly you couldn't find all of the missing kittens.The cats husband found the rest of them after his shift. Now the cat feels embarassed about the whole incitent.
+    Sadly you couldn't find all of the missing kittens.The cats husband found the rest of them after his shift. Now the cat feels embarassed about the whole incident.
     <<endif>>
 Our three brave seniors got awarded for their genious investigation into the MCCF's shady practices.
 Now they are enjoying their retirement, playing with Maximilian and his siblings, knitting clothes for them and booking a cruise.
+The End.
+<<Exit GameManager>>
 ===
 
 title:DEVMENU

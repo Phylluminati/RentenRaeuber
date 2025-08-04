@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -43,8 +44,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         PauseIsActive = false;
     }
-
-    public void Exit() 
+    [YarnCommand("Exit")]
+    public void Exit()
     {
         Application.Quit();
     }

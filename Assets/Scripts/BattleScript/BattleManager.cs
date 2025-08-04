@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using Yarn.Unity;
@@ -16,8 +16,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     GameObject catGrandma;
     int targetCharacter;
-    [SerializeField]
-    DialogueRunner runner;
+    [SerializeField] DialogueRunner runner;
     [SerializeField] ProgressionManager progressionManager;
     [SerializeField] DialogueRunner overworldDialogueRunner;
     public bool healActive = false;

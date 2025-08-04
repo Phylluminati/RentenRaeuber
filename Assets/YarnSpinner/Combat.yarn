@@ -60,8 +60,6 @@ It is currently {$character1}'s turn. What will they do? #line:062249f
         <<jump character1Turn>>
     <<endif>>
     <<jump character2Turn>>
--> Use Item
-    <<jump Inventory>>
 -> Guard #line:0c9a77e 
     <<guard BattleManager {$turnController}>>
     {$character1} is guarding, they will take half damage until the start of their next turn.
@@ -124,8 +122,6 @@ It is {$character2}'s turn. What will they do #line:032c3d7
     -> nevermind.
         <<jump character2Turn>>
     <<jump character3Turn>>
--> Use Item
-    <<jump Inventory>>
 -> Guard #line:041d215 
     <<guard BattleManager {$turnController}>>
     {$character2} is guarding, they will take half damage until the start of their next turn.
