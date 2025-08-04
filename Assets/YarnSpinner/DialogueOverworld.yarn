@@ -1585,6 +1585,7 @@ Lost Kitten: Meow
     <<change ThirdPersonPlayer 0>>
     Indifferent Trainee Nurse: I opened the door like every other door. Everybody is struggling to open it without a keycard for some reason.
     Indifferent Trainee Nurse: Well, I was in need of a short workout anyways.
+    <<change ThirdPersonPlayer 4>>
     <<Battle ProgressionManager 0>>
 <<endif>>
 ===
@@ -2222,6 +2223,7 @@ The power of cat purrs radiates within You.
 The Pensioners feel their exhaustion dissipating, in light of the upcoming daunting battle
 <<change  ThirdPersonPlayer 2>>
 Cat Grandma: Thank you!
+<<change ThirdPersonPlayer 6>>
 <<HealFlag ProgressionManager>>
 <<Battle  ProgressionManager 2>>
 ===
