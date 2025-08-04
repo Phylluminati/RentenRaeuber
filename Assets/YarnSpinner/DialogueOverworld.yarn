@@ -247,6 +247,7 @@ title: KittenFound01
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Found you!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat01Item>>
 ===
 title: KittenFound02
@@ -254,6 +255,7 @@ title: KittenFound02
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Found one!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat02Item>>
 ===
 title: KittenFound03
@@ -261,6 +263,7 @@ title: KittenFound03
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Another coin added to my balance!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat03Item>>
 ===
 title: KittenFound04
@@ -268,6 +271,7 @@ title: KittenFound04
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 There it is!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat04Item>>
 ===
 title: KittenFound05
@@ -275,6 +279,7 @@ title: KittenFound05
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 You have found one kitten!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat05Item>>
 ===
 title: KittenFound06
@@ -282,6 +287,7 @@ title: KittenFound06
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Search for a better hiding spot next time.
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat06Item>>
 ===
 title: KittenFound07
@@ -289,6 +295,7 @@ title: KittenFound07
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Found another one!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat07Item>>
 ===
 title: KittenFound08
@@ -296,6 +303,7 @@ title: KittenFound08
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 There you are!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat08Item>>
 ===
 title: KittenFound09
@@ -303,6 +311,7 @@ title: KittenFound09
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 You can't hide from me!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat09Item>>
 ===
 title: KittenFound10
@@ -310,6 +319,7 @@ title: KittenFound10
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Let`s bring you home!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat10Item>>
 ===
 title: KittenFound11
@@ -317,6 +327,7 @@ title: KittenFound11
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 HA! You are coming with us!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat11Item>>
 ===
 title: KittenFound12
@@ -324,6 +335,7 @@ title: KittenFound12
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Yes, found you!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat12Item>>
 ===
 
@@ -332,6 +344,7 @@ title: KittenFound13
 <<set $CatsFound = $CatsFound + 1 >>
 <<change ThirdPersonPlayer 0>>
 Yes, found you!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat13Item>>
 ===
 title: KittenFound14
@@ -340,6 +353,7 @@ title: KittenFound14
 <<change ThirdPersonPlayer 0>>
 <<set $HallwayKitten = $HallwayKitten +1>>
 Ha, you cant hide from me!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat15Item>>
 ===
 title: KittenFound15
@@ -348,6 +362,7 @@ title: KittenFound15
 <<set $HallwayKitten = $HallwayKitten +1>>
 <<change ThirdPersonPlayer 0>>
 I almost missed you!
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager Cat16Item>>
 ===
 
@@ -1017,6 +1032,7 @@ title: HighSecurityDoor
     <<declare $nurse2Beaten = false>>
     <<declare $Distraction = false>>
     <<declare $SecretaryGone = false>>
+    <<DisableFlag ThirdPersonPlayer>>
     <<Deactivate ProgressionManager Barrier1>>
 <<else>>
     A solid metal door is blocking the path forward.
@@ -1286,7 +1302,7 @@ Fashionista: What do you mean. I find it cozy in here.
 ===
 title: OfficeCatmom
 ---
-    <<if $CatsFound >= 10>>
+    <<if $CatsFoundTotal >= 10>>
         <<jump FiveBabysfound>>
     <<endif>>
 
@@ -1383,6 +1399,7 @@ Fashionista: Thank you! You won't need to worry about that. We'll be so fast tha
 //Secretary: Are you still here?
 //Secretary: Finish what you came here for and leave.
 <<MoveTo Secretary Waypoint1>>
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager NewTrigger>>
 <<endonce>>
 ===
@@ -1487,6 +1504,31 @@ Cat: Hisssssss
 <<change ThirdPersonPlayer 1>>
 Fashionista: Don't worry we will save your child!
 <<endonce>>
+<<if $battleLost is true>>
+    <<once>>
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: We really need your help, Mama Cat.
+    <<change ThirdPersonPlayer 0>>
+    Cat: Meow?
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Yes, you see the nurse lady defeated us and now stops us from doing what we came here to do...
+    <<change ThirdPersonPlayer 0>>
+    Cat: ...  Meow meow... meow meow meow, mrrrp!
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: That would be wonderful, thank you!
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: What did she say?
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: She is willing to let us play and pet with her and any of her kittens we have already found.
+    <<change ThirdPersonPlayer 1>>
+    Fashionista: Don't know if I want to play around with a raccoon, don't they have all kinds of illnesses.
+    <<change ThirdPersonPlayer 2>>
+    Cat Grandma: ...
+    Cat Grandma: Anyways, we would love to, miss cat.
+    <<endonce>>
+    The group spends some time petting and playing with the Cat and her {$CatsFoundTotal} found kittens.
+    <<HealFlag ProgressionManager>>
+<<endif>>
 ===
 
 title: FightIndifferentNurse
@@ -1702,6 +1744,7 @@ Fashionista: Everyone, ready? Let's go deeper
 <<declare $HallwayKitten = 0>>
 <<declare $Nurse3Beaten = false>>
 <<declare $HallwayKittensFound = false>>
+<<DisableFlag ThirdPersonPlayer>>
 <<Deactivate ProgressionManager OfficeToHallwayDoor>>
 ===
 

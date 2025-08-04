@@ -68,15 +68,25 @@ public class InteractionScript : MonoBehaviour
     {
         Image image = portrait.GetComponent<Image>();
         if (cube.GetComponent<Interactee>().spriteList[number] != null)
-            {
-                image.enabled = true;
-                image.sprite = cube.GetComponent<Interactee>().spriteList[number];
-            }
+        {
+            image.enabled = true;
+            image.sprite = cube.GetComponent<Interactee>().spriteList[number];
+        }
         else
-            {
-                image.enabled = false;
-                return;
-            }
+        {
+            image.enabled = false;
+            return;
+        }
+    }
+
+    [YarnCommand("DisableFlag")]
+    public void DisableInteractionFlag()
+    {
+        //The way the interactionsystem is coded, there is a problem with objects that are being deactivated at the end of their conversation
+        //Since the InteractionScript Object isn't leaving the previous objects hitbox (since it has been deactivated) the option of starting a dialog is still there even if the object isn't
+        //This often leads to soft-locking, due to a conversation starting with no object there. So this is a method to call on mid conversation to disable the interaction flag.
+
+        E2Interact.SetActive(false);
     }
 
     // OBSOLETE METHODS FROM PREVIOUS PORTRAIT CHANGING WAY, KEPT HERE IN CASE WE NEED TO REVERT DUE TO SOMETHING
