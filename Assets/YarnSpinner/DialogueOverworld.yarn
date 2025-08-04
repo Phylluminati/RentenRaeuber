@@ -763,6 +763,7 @@ Passionate Trainee Nurse: ...
 Passionate Trainee NUrse: All this questioning my existence made me a bit hungry and t....
 <<change ThirdPersonPlayer 3>>
 Old Bag: Wait. Ahh, There! Here I have caramel candy with me.
+<<change ThirdPersonPlayer 5>>
 Passionate Trainee Nurse: Thank you, but I cannot eat sweets... unless I want to lose my gains. Do you, only by chance, have a high-protein-almond-strawberry-protein-shake?
 <<change ThirdPersonPlayer 2>>
 Cat Grandma: We don't... but we could get you one!
@@ -2120,6 +2121,7 @@ Old Bag: Let it rest. Corruption is everywhere.
 title: Bossfight
 ---
 <<if $HallwayKittensFound == false>>
+<<change ThirdPersonPlayer 6>>
     The Vault door...
     There's no way of getting in, while the guards are watching and patrolling
     <<stop>>
